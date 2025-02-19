@@ -116,15 +116,23 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir que moradores realizem reservas de áreas comuns do condomínio. | ALTA | 
+|RF-002| Registrar e permitir o acompanhamento de ocorrências pelos moradores e administradores.   | ALTA |
+|RF-003| Cadastrar e controlar a entrada de visitantes pelo porteiro ou morador.   | ALTA |
+|RF-004| Permitir que administradores gerenciem usuários, áreas comuns e regras do condomínio.   | ALTA |
+|RF-005| Gerar relatórios sobre reservas, ocorrências e entrada de visitantes.   | MÉDIA |
+|RF-006| Enviar notificações para os moradores sobre comunicados e atualizações.   | MÉDIA |
+
+
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-001| O sistema deve garantir a segurança dos dados dos usuários. |  ALTA |
+|RNF-002| O sistema deve ter uma interface amigável e intuitiva. |  ALTA |
+|RNF-003| O sistema deve ser responsivo para rodar em um dispositivos móvel. | MÉDIA | 
+|RNF-004| Deve processar requisições do usuário em no máximo 3s. |  BAIXA | 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
