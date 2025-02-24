@@ -116,10 +116,10 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que moradores realizem reservas de áreas comuns do condomínio. | ALTA | 
-|RF-002| Registrar e permitir o acompanhamento de ocorrências pelos moradores e administradores.   | ALTA |
-|RF-003| Cadastrar e controlar a entrada de visitantes pelo porteiro ou morador.   | ALTA |
-|RF-004| Permitir que administradores gerenciem usuários, áreas comuns e regras do condomínio.   | ALTA |
+|RF-001| Registrar e permitir o acompanhamento de ocorrências pelos moradores e administradores.   | ALTA |
+|RF-002| Cadastrar e controlar a entrada de visitantes pelo porteiro ou morador.   | ALTA |
+|RF-003| Permitir que administradores gerenciem usuários, áreas comuns e regras do condomínio.   | ALTA |
+|RF-004| Permitir a realização de reservas das áreas comuns do condomínio. | ALTA | 
 |RF-005| Gerar relatórios sobre reservas, ocorrências e entrada de visitantes.   | MÉDIA |
 |RF-006| Enviar notificações para os moradores sobre comunicados e atualizações.   | MÉDIA |
 
