@@ -156,7 +156,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
@@ -166,28 +165,67 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 # Catálogo de Serviços
 
-Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
+**1. Serviço de Autenticação**
+Características e Funcionalidades:
+Login: Permite que os usuários façam login no sistema fornecendo credenciais (usuário e senha).
+Logout: Permite que os usuários realizem logout, invalidando suas sessões.
+Controle de Sessão: Garante que o usuário esteja autenticado para realizar ações no sistema, fornecendo tokens de autenticação.
+Recuperação de Senha: Oferece a funcionalidade de recuperar ou redefinir a senha caso o usuário tenha esquecido.
+Segurança: Assegura que apenas usuários autenticados possam acessar os recursos e funcionalidades protegidas.
+
+**2. Serviço de Reserva**
+Características e Funcionalidades:
+Criação de Reserva: Permite que os usuários criem reservas no sistema, seja para um serviço ou produto específico.
+Consulta de Reservas: Permite consultar as reservas realizadas, exibindo detalhes como data, horário e status.
+Edição de Reservas: Os usuários podem modificar suas reservas, caso necessário, como alterar o horário ou os detalhes da reserva.
+Cancelamento de Reservas: Permite que os usuários cancelem uma reserva, garantindo que o sistema esteja sempre atualizado com as alterações feitas.
+Histórico de Reservas: O serviço mantém um histórico completo de todas as reservas feitas, facilitando o rastreamento e auditoria.
+
+**3. Serviço de Visitantes**
+Características e Funcionalidades:
+Registro de Visitantes: Permite registrar a entrada de novos visitantes no sistema, incluindo informações como nome, contato e horário de chegada.
+Consulta de Visitantes: Permite consultar a lista de visitantes presentes no sistema, com a possibilidade de visualizar dados específicos de cada visitante.
+Saída de Visitantes: Registra a saída de um visitante, atualizando o sistema com o horário de saída.
+Histórico de Visitantes: Mantém um histórico detalhado de todos os visitantes que passaram pelo sistema, o que pode ser útil para auditoria ou controle.
+
+**4. Serviço de Ocorrências**
+Características e Funcionalidades:
+Registro de Ocorrências: Permite registrar incidentes ou ocorrências dentro do sistema, como problemas, reclamações ou alertas.
+Acompanhamento de Ocorrências: Permite acompanhar o status das ocorrências registradas, fornecendo detalhes sobre cada incidente e suas resoluções.
+Resolução de Ocorrências: Após investigar ou resolver uma ocorrência, o sistema permite que a situação seja fechada e o status seja atualizado.
+Histórico de Ocorrências: Mantém um histórico completo de todas as ocorrências registradas, incluindo detalhes como tipo de problema, data de registro e status de resolução.
+
+**5. Serviço de Notificação**
+Características e Funcionalidades:
+Envio de Notificações: Permite o envio de notificações para os usuários, seja via e-mail, SMS ou notificações push.
+Notificações Personalizadas: O sistema possibilita o envio de notificações específicas baseadas nas ações do usuário ou eventos no sistema, como a confirmação de reserva ou alertas de ocorrência.
+Status de Notificações: Permite que os usuários verifiquem o status de uma notificação, como se foi entregue ou lida.
+Notificações de Sistema: Envia mensagens do sistema para alertar os usuários sobre atualizações importantes, como mudanças no sistema ou manutenção programada.
 
 # Arquitetura da Solução
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d)
+![image_1](https://github.com/user-attachments/assets/1417b15a-20e6-4a4f-9911-ef609736067b)
 
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+React & React Native: Interfaces modernas, responsivas e interativas.
+Node.js + Express: Backend rápido e escalável.
+MySQL: Banco de dados relacional para armazenamento seguro.
+JWT: Autenticação segura dos usuários.
+AWS: Hospedagem confiável e escalável.
+Amazon API Gateway: Criação, publicação, manutenção, monitoramento e proteção de APIs 
+
 
 Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+O código-fonte é versionado no GitHub.
+Um pipeline de CI/CD (GitHub Actions) faz o deploy automático.
+O backend é hospedado em uma instância EC2.
+O banco de dados fica no RDS (MySQL).
+O frontend é hospedado no S3 + CloudFront para performance otimizada.
 
-> **Links Úteis**:
->
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
