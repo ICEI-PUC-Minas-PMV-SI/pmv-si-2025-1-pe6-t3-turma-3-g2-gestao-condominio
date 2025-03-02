@@ -96,14 +96,18 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Registrar e permitir o acompanhamento de ocorrências pelos moradores e administradores.   | ALTA |
-|RF-002| Cadastrar e controlar a entrada de visitantes pelo porteiro ou morador.   | ALTA |
-|RF-003| Permitir que administradores gerenciem usuários, áreas comuns e regras do condomínio.   | ALTA |
-|RF-004| Permitir a realização de reservas das áreas comuns do condomínio. | ALTA | 
-|RF-005| Gerar relatórios sobre reservas, ocorrências e entrada de visitantes.   | MÉDIA |
-|RF-006| Enviar notificações para os moradores sobre comunicados e atualizações.   | MÉDIA |
+|ID    | Descrição do Requisito  | Prioridade | Responsável|
+|------|-----------------------------------------|----|-----|
+|RF-001|	Permitir autenticação de todos os usuários.	| ALTA | Jean |
+|RF-002|	Permitir que os moradores registrem visitantes.	| ALTA | Guilherme |
+|RF-003|	Permitir que os moradores registrem e acompanhem as ocorrências.	| ALTA | Lívia |
+|RF-004|	Permitir que os moradores agendem reservas.	| ALTA | Guilherme |
+|RF-005|	Permitir que o administrador gerencie os apartamentos.	| ALTA | Gabriel |
+|RF-006|	Permitir que o administrador registre avisos no mural de avisos.	| ALTA | Gabriel Alves |
+|RF-007|	Permitir que o administrador acompanhe as ocorrências.	| ALTA | Lívia |
+|RF-008|	Permitir que o administrador gerencie as reservas.	| ALTA | Gabriel |
+|RF-009|	Permitir que o porteiro controle o acesso de visitantes. |	ALTA | Jean |
+|RF-010|	Permitir que o porteiro envie notificações da portaria para moradores.	| ALTA | Gabriel Alves |
 
 
 
