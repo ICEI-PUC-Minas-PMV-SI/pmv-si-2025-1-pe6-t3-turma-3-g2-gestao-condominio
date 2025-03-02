@@ -195,8 +195,6 @@ AWS: Hospedagem confiável e escalável.
 Amazon API Gateway: Criação, publicação, manutenção, monitoramento e proteção de APIs 
 
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
-
 ## Hospedagem
 
 O código-fonte é versionado no GitHub.
