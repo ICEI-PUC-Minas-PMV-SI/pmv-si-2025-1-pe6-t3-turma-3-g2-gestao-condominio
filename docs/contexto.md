@@ -204,7 +204,6 @@ A autenticação é feita via JWT, e os dados são armazenados em um banco MySQL
 ## Hospedagem  
 
 - O código-fonte é versionado no **GitHub**.  
-- Um pipeline de **CI/CD** com **GitHub Actions** realiza o deploy automático.  
 - O backend é hospedado em uma instância **EC2**.  
 - O banco de dados está no **RDS (MySQL)**.  
 - O frontend é hospedado no **S3 + CloudFront**, garantindo alta performance.  
