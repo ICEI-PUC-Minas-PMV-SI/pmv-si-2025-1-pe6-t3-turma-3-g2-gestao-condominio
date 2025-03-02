@@ -180,7 +180,9 @@ Notificações de Sistema: Envia mensagens do sistema para alertar os usuários 
 
 # Arquitetura da Solução
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
+O sistema possui um frontend web (React.js) para administradores e síndicos e um frontend mobile (React Native) para moradores. Todas as requisições passam pela Amazon API Gateway, que encaminha para os serviços backend desenvolvidos em Node.js e Express.js.
+
+A autenticação é feita via JWT, e os dados são armazenados em um banco MySQL. Após o processamento no backend, as respostas retornam pela API Gateway e são entregues ao frontend. Essa estrutura garante organização, segurança e escalabilidade.
 
 ![image_1](https://github.com/user-attachments/assets/1417b15a-20e6-4a4f-9911-ef609736067b)
 
