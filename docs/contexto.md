@@ -102,12 +102,12 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-002|	Permitir que os moradores registrem visitantes.	| ALTA | Guilherme |
 |RF-003|	Permitir que os moradores registrem e acompanhem as ocorrências.	| ALTA | Lívia |
 |RF-004|	Permitir que os moradores agendem reservas.	| ALTA | Guilherme |
-|RF-005|	Permitir que o administrador gerencie os apartamentos.	| ALTA | Gabriel |
-|RF-006|	Permitir que o administrador registre avisos no mural de avisos.	| ALTA | Gabriel Alves |
+|RF-005|	Permitir que o administrador gerencie os apartamentos.	| ALTA | Gabriel Aredes |
+|RF-006|	Permitir que o administrador registre avisos no mural de avisos.	| ALTA | Gabriel Rodrigues |
 |RF-007|	Permitir que o administrador acompanhe as ocorrências.	| ALTA | Lívia |
-|RF-008|	Permitir que o administrador gerencie as reservas.	| ALTA | Gabriel |
+|RF-008|	Permitir que o administrador gerencie as reservas.	| ALTA | Gabriel Aredes |
 |RF-009|	Permitir que o porteiro controle o acesso de visitantes. |	ALTA | Jean |
-|RF-010|	Permitir que o porteiro envie notificações da portaria para moradores.	| ALTA | Gabriel Alves |
+|RF-010|	Permitir que o porteiro envie notificações da portaria para moradores.	| ALTA | Gabriel Rodrigues |
 
 
 
