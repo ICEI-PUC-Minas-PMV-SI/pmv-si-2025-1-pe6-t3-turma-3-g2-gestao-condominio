@@ -193,19 +193,19 @@ A autenticação é feita via JWT, e os dados são armazenados em um banco MySQL
 
 ## Tecnologias Utilizadas
 
-React & React Native: Interfaces modernas, responsivas e interativas.
-Node.js + Express: Backend rápido e escalável.
-MySQL: Banco de dados relacional para armazenamento seguro.
-JWT: Autenticação segura dos usuários.
-AWS: Hospedagem confiável e escalável.
-Amazon API Gateway: Criação, publicação, manutenção, monitoramento e proteção de APIs 
+- **React & React Native**: Desenvolvimento de interfaces modernas, responsivas e interativas.  
+- **Node.js + Express**: Backend rápido, eficiente e escalável.  
+- **MySQL**: Banco de dados relacional para armazenamento seguro e estruturado.  
+- **JWT (JSON Web Token)**: Autenticação segura e confiável dos usuários.  
+- **AWS**: Infraestrutura de hospedagem escalável e de alta disponibilidade.  
+- **Amazon API Gateway**: Gerenciamento completo de APIs, incluindo criação, publicação, manutenção, monitoramento e segurança.
 
 
-## Hospedagem
+## Hospedagem  
 
-O código-fonte é versionado no GitHub.
-Um pipeline de CI/CD (GitHub Actions) faz o deploy automático.
-O backend é hospedado em uma instância EC2.
-O banco de dados fica no RDS (MySQL).
-O frontend é hospedado no S3 + CloudFront para performance otimizada.
+- O código-fonte é versionado no **GitHub**.  
+- Um pipeline de **CI/CD** com **GitHub Actions** realiza o deploy automático.  
+- O backend é hospedado em uma instância **EC2**.  
+- O banco de dados está no **RDS (MySQL)**.  
+- O frontend é hospedado no **S3 + CloudFront**, garantindo alta performance.  
 
