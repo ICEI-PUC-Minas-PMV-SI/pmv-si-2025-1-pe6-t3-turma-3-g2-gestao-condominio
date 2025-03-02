@@ -18,11 +18,6 @@ A administração de condomínios frequentemente enfrenta desafios como:
 
 O **Habitare** resolve esses problemas ao centralizar e automatizar esses processos, melhorando a transparência e eficiência da administração.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
-
 ## Objetivos
 
 ### Objetivo Geral
@@ -34,9 +29,6 @@ Desenvolver um **software distribuído** para aprimorar a gestão condominial, u
 3. Desenvolver um sistema de controle de visitantes para melhorar a segurança.
 4. Integrar uma ferramenta de comunicação para facilitar a interação entre moradores e administração.
  
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
-
 ## Justificativa
 
 A gestão ineficiente de condomínios pode gerar:
@@ -45,9 +37,6 @@ A gestão ineficiente de condomínios pode gerar:
 - Dificuldades na comunicação entre moradores e administração.
 
 O **Habitare** visa solucionar esses problemas com uma plataforma moderna e integrada, garantindo maior **transparência, eficiência e segurança** na gestão condominial.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
 ## Público-Alvo  
 
@@ -98,13 +87,6 @@ Para melhor entendimento do público-alvo, abaixo estão dois exemplos de **pers
 - **Ocupação:** Analista de RH  
 - **Dores:** Dificuldade em saber se a área de lazer está disponível e problemas na comunicação com a administração.  
 - **Objetivo:** Reservar áreas comuns facilmente pelo celular e receber notificações rápidas sobre o condomínio.  
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
-
 
 # Especificações do Projeto
 
