@@ -7,6 +7,8 @@ import { fileURLToPath } from 'url';
 import { connectDB as connectMySQL } from './database/mysqlConnection.js';
 import router from './routes/router.js';
 import { sequelize } from './database/mysqlConnection.js';
+import authRoutes from './routes/authRoutes.js';
+
 
 const app = express();
 
@@ -27,7 +29,8 @@ sequelize.sync({ force: false }).then(() => {
 });
 
 // Rotas
-app.use('/api', router);
+app.use('/api/auth', authRoutes);
+
 
 app.get('/', (req, res) => {
     res.send('Servidor está funcionando corretamente!');
