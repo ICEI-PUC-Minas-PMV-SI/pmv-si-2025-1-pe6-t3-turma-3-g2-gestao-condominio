@@ -1,7 +1,7 @@
 import Reserva from '../models/reservaModel.js';
 
-// Criar reserva
-exports.criarReserva = async (req, res) => {
+
+export const criarReserva = async (req, res) => {
   try {
     const reserva = await Reserva.create(req.body);
     res.status(201).json(reserva);
@@ -10,8 +10,8 @@ exports.criarReserva = async (req, res) => {
   }
 };
 
-// Listar reservas
-exports.listarReservas = async (req, res) => {
+
+export const listarReservas = async (req, res) => {
   try {
     const reservas = await Reserva.findAll();
     res.json(reservas);
@@ -20,8 +20,8 @@ exports.listarReservas = async (req, res) => {
   }
 };
 
-// Buscar reserva por ID
-exports.buscarReserva = async (req, res) => {
+
+export const buscarReserva = async (req, res) => {
   try {
     const reserva = await Reserva.findByPk(req.params.id);
     if (!reserva) return res.status(404).json({ error: "Reserva não encontrada" });
@@ -31,8 +31,8 @@ exports.buscarReserva = async (req, res) => {
   }
 };
 
-// Atualizar reserva
-exports.atualizarReserva = async (req, res) => {
+
+export const atualizarReserva = async (req, res) => {
   try {
     const [updated] = await Reserva.update(req.body, { where: { id: req.params.id } });
     if (!updated) return res.status(404).json({ error: "Reserva não encontrada" });
@@ -43,8 +43,8 @@ exports.atualizarReserva = async (req, res) => {
   }
 };
 
-// Cancelar reserva
-exports.cancelarReserva = async (req, res) => {
+
+export const cancelarReserva = async (req, res) => {
   try {
     const [updated] = await Reserva.update({ status: "cancelado" }, { where: { id: req.params.id } });
     if (!updated) return res.status(404).json({ error: "Reserva não encontrada" });
@@ -55,12 +55,21 @@ exports.cancelarReserva = async (req, res) => {
   }
 };
 
-// Histórico
-exports.historicoReservas = async (req, res) => {
-  try {
-    const historico = await Reserva.findAll({ order: [["createdAt", "DESC"]] });
-    res.json(historico);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+
+export const historicoReservas = async (req, res) => {
+    try {
+      const historico = await Reserva.findAll({
+        order: [["createdAt", "DESC"]],  
+      });
+  
+      if (historico.length === 0) {
+        return res.status(404).json({ error: "Nenhuma reserva encontrada" });
+      }
+  
+      res.json(historico);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+  
+  

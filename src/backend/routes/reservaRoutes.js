@@ -1,12 +1,14 @@
-const express = require("express");
+// routes/reservaRoutes.js
+import express from 'express';
+import { criarReserva, listarReservas, buscarReserva, atualizarReserva, cancelarReserva, historicoReservas } from '../controllers/reservaController.js';
+
 const router = express.Router();
-const reservaController = require("../controllers/reservaController");
 
-router.post("/reserva", reservaController.criarReserva);
-router.get("/reserva", reservaController.listarReservas);
-router.get("/reserva/:id", reservaController.buscarReserva);
-router.put("/reserva/:id", reservaController.atualizarReserva);
-router.delete("/reserva/:id", reservaController.cancelarReserva);
-router.get("/reserva/historico", reservaController.historicoReservas);
+router.post('/reserva', criarReserva);
+router.get('/reserva', listarReservas);
+router.get('/reserva/:id', buscarReserva);
+router.put('/reserva/:id', atualizarReserva);
+router.delete('/reserva/:id', cancelarReserva);
+router.get('/historico', historicoReservas);
 
-module.exports = router;
+export default router;
