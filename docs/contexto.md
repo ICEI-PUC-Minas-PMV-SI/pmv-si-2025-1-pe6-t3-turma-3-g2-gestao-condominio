@@ -94,14 +94,13 @@ Para melhor entendimento do público-alvo, abaixo estão dois exemplos de **pers
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade | Responsável|
+| ID    | Descrição do Requisito  | Prioridade | Responsável |
 |------|-----------------------------------------|----|-----|
-|RF-001|	Serviço de Autenticação.	| ALTA | Jean |
-|RF-002|	Serviço de Reservas.	| ALTA | Guilherme |
-|RF-003|	Serviço de Ocorrências.	| ALTA | Lívia |
-|RF-004|	Serviço de Visitantes.	| ALTA | Gabriel Rodrigues |
-|RF-005|	Serviço de Moradores.	| ALTA | Gabriel Aredes |
-
+| RF-001 | O sistema deve prover autenticação de usuários. | ALTA | Jean |
+| RF-002 | O sistema deve permitir reservas de recursos. | ALTA | Guilherme |
+| RF-003 | O sistema deve permitir o registro de ocorrências. | ALTA | Lívia |
+| RF-004 | O sistema deve gerenciar o acesso de visitantes. | ALTA | Gabriel Rodrigues |
+| RF-005 | O sistema deve permitir o cadastro de moradores. | ALTA | Gabriel Aredes |
 
 
 ### Requisitos não Funcionais
