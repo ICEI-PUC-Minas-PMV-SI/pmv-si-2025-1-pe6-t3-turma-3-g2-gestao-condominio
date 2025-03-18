@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { connectDB as connectMySQL } from './database/mysqlConnection.js';
 import router from './routes/router.js';
 import { sequelize } from './database/mysqlConnection.js';
+import visitanteRoutes from "./routes/visitanteRoutes.js";
 
 
 const app = express();
@@ -29,6 +30,7 @@ sequelize.sync({ alter: true }).then(() => {
 
 // Rotas
 app.use('/api', router);
+app.use("/api", visitanteRoutes);
 
 
 app.get('/', (req, res) => {
@@ -36,3 +38,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => { console.log(`Server is running on http://localhost:${PORT}`) });
+
+
