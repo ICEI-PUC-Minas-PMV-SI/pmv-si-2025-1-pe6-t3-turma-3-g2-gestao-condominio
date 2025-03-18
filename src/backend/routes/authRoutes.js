@@ -1,0 +1,12 @@
+// routes/authRoutes.js
+import express from 'express';
+import { register, login, verifyToken } from '../controllers/authController.js';
+
+const router = express.Router();
+
+// Rotas de autenticação
+router.post('/register', register);
+router.post('/login', login);
+router.get('/verify', verifyToken);
+
+export default router;
