@@ -1,13 +1,16 @@
 // routes/ocorrenciaRoutes.js
 import express from 'express';
-import { createOcorrencia, getOcorrencias, getOcorrenciaById, updateOcorrencia, deleteOcorrencia } from '../controllers/ocorrenciaController.js';
+import { createOcorrencia, getOcorrencias, getOcorrenciaById, updateOcorrencia, deleteOcorrencia, updateOcorrenciaStatus, getOcorrenciasByUser } from '../controllers/ocorrenciaController.js';
+import { verifyToken } from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.post('/ocorrencias', createOcorrencia);
-router.get('/ocorrencias', getOcorrencias);
-router.get('/ocorrencias/:id', getOcorrenciaById);
-router.put('/ocorrencias/:id', updateOcorrencia);
-router.delete('/ocorrencias/:id', deleteOcorrencia);
+router.post('/ocorrencias', verifyToken, createOcorrencia);
+router.get('/listar/ocorrencias', verifyToken, getOcorrencias);
+router.get('/ocorrencias', verifyToken, getOcorrenciasByUser);
+router.get('/ocorrencias/:id', verifyToken, getOcorrenciaById);
+router.put('/ocorrencias/:id', verifyToken, updateOcorrencia);
+router.put('/ocorrencias/status/:id', verifyToken, updateOcorrenciaStatus);
+router.delete('/ocorrencias/:id', verifyToken, deleteOcorrencia);
 
 export default router;

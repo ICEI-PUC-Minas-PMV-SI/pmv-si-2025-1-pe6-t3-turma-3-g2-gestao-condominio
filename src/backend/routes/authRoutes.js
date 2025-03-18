@@ -5,8 +5,10 @@ import { register, login, verifyToken } from '../controllers/authController.js';
 const router = express.Router();
 
 // Rotas de autenticação
-router.post('/register', register);
-router.post('/login', login);
-router.get('/verify', verifyToken);
+router.post('/auth/register', register);
+router.post('/auth/login', login);
+router.get('/auth/verify', verifyToken, (req, res) => {
+    res.json({ message: 'Token válido', userId: req.userId });
+});
 
 export default router;
