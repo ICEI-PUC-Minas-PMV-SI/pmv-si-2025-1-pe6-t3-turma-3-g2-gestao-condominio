@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/mysqlConnection.js';
 
-const Visitante = db.define("Visitante", {
+const Visitante = sequelize.define("Visitante", {
   nome: {
     type: DataTypes.STRING,
     allowNull: false,
