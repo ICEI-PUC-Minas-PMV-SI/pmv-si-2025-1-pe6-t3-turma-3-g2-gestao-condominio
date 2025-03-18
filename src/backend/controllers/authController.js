@@ -47,13 +47,14 @@ export const login = async (req, res) => {
 };
 
 // Verificação de Token (Proteção de Rotas)
-export const verifyToken = (req, res) => {
+export const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
 
     if (!token) return res.status(401).json({ message: 'Acesso negado' });
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) return res.status(403).json({ message: 'Token inválido' });
-        res.json({ message: 'Token válido', userId: decoded.id });
+        req.userId = decoded.id;
+        next();
     });
 };
