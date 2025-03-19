@@ -1,4 +1,3 @@
-// controllers/ocorrenciaController.js
 import Ocorrencia from '../models/ocorrenciaModel.js';
 import { User } from '../models/user.js';
 
@@ -15,20 +14,13 @@ export const createOcorrencia = async (req, res) => {
 
 export const getOcorrencias = async (req, res) => {
     try {
-        const userId = req.userId;
-        const user = await User.findByPk(userId);
-
-        if (userId === 1) {
-            const ocorrencias = await Ocorrencia.findAll({
-                include: {
-                    model: User,
-                    attributes: ['id', 'name', 'email']
-                }
-            });
-            res.status(200).json(ocorrencias);
-        } else {
-            res.status(403).json({ message: 'Permissão negada' });
-        }
+        const ocorrencias = await Ocorrencia.findAll({
+            include: {
+                model: User,
+                attributes: ['id', 'name', 'email']
+            }
+        });
+        res.status(200).json(ocorrencias);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -78,24 +70,17 @@ export const updateOcorrencia = async (req, res) => {
     }
 };
 
-// Atualizar status da ocorrência pelo admin
 export const updateOcorrenciaStatus = async (req, res) => {
     try {
         const { id } = req.params;
         const { status } = req.body;
-        const userId = req.userId;
-
-        if (userId === 1) {
-            const ocorrencia = await Ocorrencia.findByPk(id);
-            if (ocorrencia) {
-                ocorrencia.status = status;
-                await ocorrencia.save();
-                res.status(200).json(ocorrencia);
-            } else {
-                res.status(404).json({ message: 'Ocorrência não encontrada' });
-            }
+        const ocorrencia = await Ocorrencia.findByPk(id);
+        if (ocorrencia) {
+            ocorrencia.status = status;
+            await ocorrencia.save();
+            res.status(200).json(ocorrencia);
         } else {
-            res.status(403).json({ message: 'Permissão negada' });
+            res.status(404).json({ message: 'Ocorrência não encontrada' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
