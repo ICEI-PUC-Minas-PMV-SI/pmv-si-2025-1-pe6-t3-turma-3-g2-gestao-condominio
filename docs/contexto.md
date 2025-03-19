@@ -94,19 +94,13 @@ Para melhor entendimento do público-alvo, abaixo estão dois exemplos de **pers
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade | Responsável|
+| ID    | Descrição do Requisito  | Prioridade | Responsável |
 |------|-----------------------------------------|----|-----|
-|RF-001|	Permitir autenticação de todos os usuários.	| ALTA | Jean |
-|RF-002|	Permitir que os moradores registrem visitantes.	| ALTA | Guilherme |
-|RF-003|	Permitir que os moradores registrem e acompanhem as ocorrências.	| ALTA | Lívia |
-|RF-004|	Permitir que os moradores agendem reservas.	| ALTA | Guilherme |
-|RF-005|	Permitir que o administrador gerencie os apartamentos.	| ALTA | Gabriel Aredes |
-|RF-006|	Permitir que o administrador registre avisos no mural de avisos.	| ALTA | Gabriel Rodrigues |
-|RF-007|	Permitir que o administrador acompanhe as ocorrências.	| ALTA | Lívia |
-|RF-008|	Permitir que o administrador gerencie as reservas.	| ALTA | Gabriel Aredes |
-|RF-009|	Permitir que o porteiro controle o acesso de visitantes. |	ALTA | Jean |
-|RF-010|	Permitir que o porteiro envie notificações da portaria para moradores.	| ALTA | Gabriel Rodrigues |
-
+| RF-001 | O sistema deve prover autenticação de usuários. | ALTA | Jean |
+| RF-002 | O sistema deve permitir reservas de recursos. | ALTA | Guilherme |
+| RF-003 | O sistema deve permitir o registro de ocorrências. | ALTA | Lívia |
+| RF-004 | O sistema deve gerenciar o acesso de visitantes. | ALTA | Gabriel Rodrigues |
+| RF-005 | O sistema deve permitir o cadastro de moradores. | ALTA | Gabriel Aredes |
 
 
 ### Requisitos não Funcionais
@@ -159,12 +153,12 @@ Acompanhamento de Ocorrências: Permite acompanhar o status das ocorrências reg
 Resolução de Ocorrências: Após investigar ou resolver uma ocorrência, o sistema permite que a situação seja fechada e o status seja atualizado.
 Histórico de Ocorrências: Mantém um histórico completo de todas as ocorrências registradas, incluindo detalhes como tipo de problema, data de registro e status de resolução.
 
-**5. Serviço de Notificação**
-Características e Funcionalidades:
-Envio de Notificações: Permite o envio de notificações para os usuários, seja via e-mail, SMS ou notificações push.
-Notificações Personalizadas: O sistema possibilita o envio de notificações específicas baseadas nas ações do usuário ou eventos no sistema, como a confirmação de reserva ou alertas de ocorrência.
-Status de Notificações: Permite que os usuários verifiquem o status de uma notificação, como se foi entregue ou lida.
-Notificações de Sistema: Envia mensagens do sistema para alertar os usuários sobre atualizações importantes, como mudanças no sistema ou manutenção programada.
+**5. Serviço de Moradores**
+Características e Funcionalidades: 
+Criação de Moradores: Permite o cadastro de novos moradores no sistema, incluindo informações como nome, contato e dados pessoais. 
+Consulta de Moradores: Permite consultar a lista de moradores cadastrados, exibindo detalhes como nome, apartamento vinculado e situação atual. 
+Edição de Moradores: Os usuários podem modificar os dados dos moradores, como atualizar informações de contato ou corrigir dados pessoais. 
+Exclusão de Moradores: Permite remover moradores do sistema quando necessário, mantendo as informações atualizadas.
 
 # Arquitetura da Solução
 
