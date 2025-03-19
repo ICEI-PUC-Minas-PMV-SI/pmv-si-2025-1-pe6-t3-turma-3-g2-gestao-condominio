@@ -9,6 +9,7 @@ import router from './routes/router.js';
 import { sequelize } from './database/mysqlConnection.js';
 
 
+
 const app = express();
 
 dotenv.config({ path: 'config.env' });
@@ -31,8 +32,11 @@ sequelize.sync({ alter: true }).then(() => {
 app.use('/api', router);
 
 
+
 app.get('/', (req, res) => {
     res.send('Servidor está funcionando corretamente!');
 });
 
 app.listen(PORT, () => { console.log(`Server is running on http://localhost:${PORT}`) });
+
+
