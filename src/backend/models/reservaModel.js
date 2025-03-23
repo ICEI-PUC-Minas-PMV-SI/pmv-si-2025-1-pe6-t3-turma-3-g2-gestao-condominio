@@ -19,7 +19,7 @@ const Reserva = sequelize.define("Reserva", {
     defaultValue: "ativo",
   },
 }, {
-  timestamps: true, // cria automaticamente createdAt e updatedAt
+  timestamps: true, 
 });
 
 export default Reserva;
