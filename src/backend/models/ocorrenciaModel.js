@@ -28,7 +28,16 @@ const Ocorrencia = sequelize.define('Ocorrencia', {
     timestamps: true,
 });
 
-Ocorrencia.belongsTo(User, { foreignKey: 'userId' });
-User.hasMany(Ocorrencia, { foreignKey: 'userId' });
+Ocorrencia.belongsTo(User, {
+    foreignKey: 'userId',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
+});
+
+User.hasMany(Ocorrencia, {
+    foreignKey: 'userId',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
 
 export default Ocorrencia;
