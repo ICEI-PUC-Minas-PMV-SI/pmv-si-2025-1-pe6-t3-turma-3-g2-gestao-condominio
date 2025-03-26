@@ -93,9 +93,9 @@ export const deleteOcorrencia = async (req, res) => {
         const ocorrencia = await Ocorrencia.findByPk(id);
         if (ocorrencia) {
             await ocorrencia.destroy();
-            res.status(204).json();
+            res.status(200).json({ message: 'Ocorrência excluída com sucesso!' });
         } else {
-            res.status(404).json({ message: 'Ocorrência não encontrada' });
+            res.status(404).json({ message: 'Ocorrência não encontrada.' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
