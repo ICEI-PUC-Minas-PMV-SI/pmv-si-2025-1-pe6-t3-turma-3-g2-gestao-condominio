@@ -25,7 +25,7 @@ const Morador = sequelize.define("Morador", {
   },
 }, {
   freezeTableName: true,
-  timestamps: true, // cria automaticamente createdAt e updatedAt
+  timestamps: true, 
 });
 
 export default Morador;

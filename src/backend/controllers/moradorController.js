@@ -1,4 +1,5 @@
 import Morador from "../models/moradorModel.js";
+import { User } from '../models/user.js';
 
 export const criarMorador = async (req, res) => {
   try {
@@ -11,7 +12,12 @@ export const criarMorador = async (req, res) => {
 
 export const listarMoradores = async (req, res) => {
   try {
-    const moradores = await Morador.findAll();
+    const moradores = await Morador.findAll({
+      include: {
+        model: User,
+        attributes: ["id", "name", "email"], 
+      },
+    });
     res.json(moradores);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -20,7 +26,12 @@ export const listarMoradores = async (req, res) => {
 
 export const buscarMoradorPorId = async (req, res) => {
   try {
-    const morador = await Morador.findByPk(req.params.id);
+    const morador = await Morador.findByPk(req.params.id, {
+      include: {
+        model: User,
+        attributes: ["id", "name", "email"], 
+      },
+    });
     if (!morador) return res.status(404).json({ error: "Morador não encontrado" });
     res.json(morador);
   } catch (error) {
