@@ -3,7 +3,9 @@ import { User } from '../models/user.js';
 
 export const criarReserva = async (req, res) => {
   try {
-    const reserva = await Reserva.create(req.body);
+    const userId = req.userId;
+    const { nome, data, horario } = req.body;
+    const reserva = await Reserva.create({ nome, data, horario, userId });
     res.status(201).json(reserva);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -15,7 +17,7 @@ export const listarReservas = async (req, res) => {
     const reservas = await Reserva.findAll({
       include: {
         model: User,
-        attributes: ['id', 'name', 'email'], 
+        attributes: ['id', 'name', 'email'],
       },
     });
     res.json(reservas);
@@ -43,18 +45,21 @@ export const buscarReserva = async (req, res) => {
 
 export const atualizarReserva = async (req, res) => {
   try {
-    const [updated] = await Reserva.update(req.body, { where: { id: req.params.id } });
+    const { id } = req.params;
+    const { nome, data, horario } = req.body;
+    const userId = req.userId;
+    const reserva = await Reserva.findByPk(id);
 
-    if (!updated) return res.status(404).json({ error: "Reserva não encontrada" });
+    if (!reserva || reserva.userId !== userId) {
+      return res.status(403).json({ error: "Você não tem permissão para alterar esta reserva." });
+    }
 
-    const reservaAtualizada = await Reserva.findByPk(req.params.id, {
-      include: {
-        model: User,
-        attributes: ['id', 'name', 'email'],
-      },
-    });
+    reserva.nome = nome;
+    reserva.data = data;
+    reserva.horario = horario;
+    await reserva.save();
 
-    res.json(reservaAtualizada);
+    res.json(reserva);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -62,21 +67,18 @@ export const atualizarReserva = async (req, res) => {
 
 export const cancelarReserva = async (req, res) => {
   try {
-    const [updated] = await Reserva.update(
-      { status: "cancelado" },
-      { where: { id: req.params.id } }
-    );
+    const { id } = req.params;
+    const userId = req.userId;
+    const reserva = await Reserva.findByPk(id);
 
-    if (!updated) return res.status(404).json({ error: "Reserva não encontrada" });
+    if (!reserva || reserva.userId !== userId) {
+      return res.status(403).json({ error: "Você não tem permissão para cancelar esta reserva." });
+    }
 
-    const reservaCancelada = await Reserva.findByPk(req.params.id, {
-      include: {
-        model: User,
-        attributes: ['id', 'name', 'email'],
-      },
-    });
+    reserva.status = "cancelado";
+    await reserva.save();
 
-    res.json(reservaCancelada);
+    res.json(reserva);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -84,10 +86,12 @@ export const cancelarReserva = async (req, res) => {
 
 export const historicoReservas = async (req, res) => {
   try {
+    const userId = req.userId;
     const historico = await Reserva.findAll({
+      where: { userId },
       include: {
         model: User,
-        attributes: ['id', 'name', 'email'], 
+        attributes: ['id', 'name', 'email'],
       },
       order: [["createdAt", "DESC"]],
     });
