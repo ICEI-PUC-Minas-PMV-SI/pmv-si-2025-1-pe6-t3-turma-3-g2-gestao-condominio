@@ -27,28 +27,149 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 [Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.]
 
-### Endpoint 1
-- Método: GET
-- URL: /endpoint1
+### Endpoints do Serviço de Ocorrências
+### Endpoint 1: Criar Ocorrências (usuário)
+- Método: POST
+- URL: /api/ocorrencias
 - Parâmetros:
-  - param1: [descrição]
+  - titulo (string): Título da ocorrência. (Obrigatório)
+  - descricao (string): Descrição detalhada da ocorrência. (Obrigatório)
+- Resposta:
+  - Sucesso (201 Created)
+    ```
+    {
+      "id": 1,
+      "titulo": "Título da ocorrência",
+      "descricao": "Descrição da ocorrência",
+      "status": "aberto",
+      "userId": 123,
+      "createdAt": "2023-10-01T00:00:00.000Z",
+      "updatedAt": "2023-10-01T00:00:00.000Z"
+    }
+    ```
+
+### Endpoint 2: Listar Todas as Ocorrências (admin)
+- Método: GET
+- URL: /api/listar/ocorrencias
+- Parâmetros: Nenhum.
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "titulo": "Título 1",
+        "descricao": "Descrição 1",
+        "status": "aberto",
+        "userId": 123,
+        "User": {
+          "id": 123,
+          "name": "Nome do Usuário",
+          "email": "email@example.com"
+        }
+      },
+      ...
+    ]
+    ```
+
+### Endpoint 3: Listar Ocorrências do Usuário Autenticado
+- Método: GET
+- URL: /api/ocorrencias
+- Parâmetros: Nenhum.
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "titulo": "Título 1",
+        "descricao": "Descrição 1",
+        "status": "aberto",
+        "userId": 123
+      },
+      ...
+    ]
+    ```
+
+### Endpoint 4: Obter Detalhes de uma Ocorrência
+- Método: GET
+- URL: /api/ocorrencias/:id
+- Parâmetros:
+  - id (path): ID da ocorrência. (Obrigatório)
 - Resposta:
   - Sucesso (200 OK)
     ```
     {
-      "message": "Success",
-      "data": {
-        ...
-      }
+      "id": 1,
+      "titulo": "Título da ocorrência",
+      "descricao": "Descrição da ocorrência",
+      "status": "aberto",
+      "userId": 123
     }
     ```
-  - Erro (4XX, 5XX)
+  - Erro (404 Not Found)
     ```
     {
-      "message": "Error",
-      "error": {
-        ...
-      }
+      "message": "Ocorrência não encontrada"
+    }
+    ```
+
+### Endpoint 5: Atualizar Ocorrência
+- Método: PUT
+- URL: /api/ocorrencias/:id
+- Parâmetros:
+  - id (path): ID da ocorrência. (Obrigatório)
+- Body:
+  - titulo (string): Novo título da ocorrência. (Obrigatório)
+  - descricao (string): Nova descrição da ocorrência. (Obrigatório)
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "titulo": "Novo título",
+      "descricao": "Nova descrição",
+      "status": "aberto",
+      "userId": 123
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Ocorrência não está aberta para alteração."
+    }
+    ```
+
+### Endpoint 6: Atualizar Status da Ocorrência (admin)
+- Método: PUT
+- URL: /api/ocorrencias/status/:id
+- Parâmetros:
+  - id (path): ID da ocorrência. (Obrigatório)
+- Body:
+  - status (string): Novo status da ocorrência. (Obrigatório)
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "titulo": "Título da ocorrência",
+      "descricao": "Descrição da ocorrência",
+      "status": "novo_status",
+      "userId": 123
+    }
+    ```
+
+### Endpoint 7: Deletar Ocorrência
+- Método: DELETE
+- URL: /api/ocorrencias/:id
+- Parâmetros:
+  - id (path): ID da ocorrência. (Obrigatório)
+- Resposta:
+  - Sucesso (200 OK): Sem corpo de resposta.
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Ocorrência não encontrada"
     }
     ```
 
