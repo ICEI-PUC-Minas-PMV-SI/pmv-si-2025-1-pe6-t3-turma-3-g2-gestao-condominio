@@ -191,6 +191,154 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
+### Testes de API para Ocorrências
+
+### 1. Criar Ocorrência
+- Método: POST /api/ocorrencias
+- Testes:
+  - ✅ Criar uma ocorrência válida
+    - Enviar um título e uma descrição válidos.
+    - **Esperado:** 201 Created e retorno da ocorrência criada.
+    ![Criar ocorrência válida](imgservicocorrencias/createocorrencia.png)
+
+  - ❌ Criar ocorrência sem título ou descrição
+    - Enviar um corpo incompleto.
+    - **Esperado:** 400 Bad Request ou erro de validação.
+    ![Criar ocorrência sem título ou descrição](imgservicocorrencias/createocorrenciacamponull.png)
+
+  - ❌ Criar ocorrência sem autenticação
+    - Não enviar o token do usuário.
+    - **Esperado:** 401 Unauthorized.
+    ![Criar ocorrência sem autenticação](imgservicocorrencias/creatocorrenciasemtoken.png)
+
+### 2. Listar Todas as Ocorrências
+- Método: GET /listar/ocorrencias
+- Testes:
+  - ✅ Listar todas as ocorrências como administrador
+    - Enviar token de um usuário administrador.
+    - **Esperado:** 200 OK e retorno de uma lista de ocorrências.
+    ![Listar ocorrências como admin](imgservicocorrencias/listarocorrenciaadmin.png)
+
+  - ❌ Listar todas as ocorrências como usuário comum
+    - Enviar token de um usuário não administrador.
+    - **Esperado:** 403 Forbidden.
+    ![Listar ocorrências como usuário comum](imgservicocorrencias/listarocorrenciasusercomum.png)
+
+  - ❌ Listar todas as ocorrências sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Listar ocorrências sem autenticação](imgservicocorrencias/listarocorrenciaadminsemtoken.png)
+
+### 3. Listar Ocorrências do Usuário Autenticado
+- Método: GET /ocorrencias
+- Testes:
+  - ✅ Listar ocorrências do usuário logado
+    - Enviar token de um usuário válido.
+    - **Esperado:** 200 OK e retorno apenas das ocorrências do usuário.
+    ![Listar ocorrências do usuário logado](imgservicocorrencias/getocorrenciasuser.png)
+
+  - ❌ Listar ocorrências sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Listar ocorrências sem autenticação](imgservicocorrencias/listarocorrenciausersemtoken.png)
+
+### 4. Obter Detalhes de uma Ocorrência
+- Método: GET /ocorrencias/:id
+- Testes:
+  - ✅ Obter detalhes de uma ocorrência existente do usuário
+    - Enviar token de um usuário e buscar uma ocorrência de sua propriedade.
+    - **Esperado:** 200 OK e detalhes da ocorrência.
+    ![Obter detalhes de uma ocorrência](imgservicocorrencias/listarocorrenciaunica.png)
+
+  - ❌ Tentar acessar uma ocorrência de outro usuário
+    - Enviar token de um usuário tentando acessar a ocorrência de outro usuário.
+    - **Esperado:** 403 Forbidden.
+    ![Acessar ocorrência de outro usuário](imgservicocorrencias/ocorrenciaoutrouser.png)
+
+  - ❌ Tentar acessar uma ocorrência inexistente
+    - Passar um ID inválido ou que não existe.
+    - **Esperado:** 404 Not Found.
+    ![Acessar ocorrência inexistente](imgservicocorrencias/ocorrenciainexistente.png)
+
+  - ❌ Acessar ocorrência sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Acessar ocorrência sem autenticação](imgservicocorrencias/listarocorrenciausersemtoken.png)
+
+### 5. Atualizar Ocorrência
+- Método: PUT /ocorrencias/:id
+- Testes:
+  - ✅ Atualizar uma ocorrência do próprio usuário quando está aberta
+    - Enviar um título e descrição novos para uma ocorrência que pertence ao usuário e está no status "aberto".
+    - **Esperado:** 200 OK e ocorrência atualizada.
+    ![Atualizar ocorrência válida](imgservicocorrencias/updateocorrenciauser.png)
+
+  - ❌ Tentar atualizar uma ocorrência fechada
+    - Enviar atualização para uma ocorrência com status diferente de "aberto".
+    - **Esperado:** 403 Forbidden.
+    ![Atualizar ocorrência fechada](imgservicocorrencias/updateocorrenciafechad.png)
+
+  - ❌ Tentar atualizar uma ocorrência de outro usuário
+    - Enviar token de um usuário tentando modificar ocorrência de outro.
+    - **Esperado:** 403 Forbidden.
+    ![Atualizar ocorrência de outro usuário](imgservicocorrencias/sempermissaoupdate.png)
+
+  - ❌ Atualizar ocorrência inexistente
+    - Passar um ID inválido.
+    - **Esperado:** 404 Not Found.
+    ![Atualizar ocorrência inexistente](imgservicocorrencias/updateocorrenciainexiste.png)
+
+  - ❌ Atualizar ocorrência sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Atualizar ocorrência sem autenticação](imgservicocorrencias/updatesemtoken.png)
+
+### 6. Atualizar Status da Ocorrência
+- Método: PUT /ocorrencias/status/:id
+- Testes:
+  - ✅ Alterar status de uma ocorrência como administrador
+    - Enviar um novo status para uma ocorrência.
+    - **Esperado:** 200 OK e status atualizado.
+    ![Alterar status como admin](imgservicocorrencias/updateocorrenciadmin.png)
+
+  - ❌ Tentar alterar status sem ser admin
+    - Enviar token de um usuário comum.
+    - **Esperado:** 403 Forbidden.
+    ![Alterar status sem ser admin](imgservicocorrencias/updatesemseradmin.png)
+
+  - ❌ Alterar status de uma ocorrência inexistente
+    - Passar um ID inválido.
+    - **Esperado:** 404 Not Found.
+    ![Alterar status de ocorrência inexistente](imgservicocorrencias/updatesemocorrenciadmin.png)
+
+  - ❌ Alterar status sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Alterar status sem autenticação](imgservicocorrencias/updateadminsemtoken.png)
+
+### 7. Deletar Ocorrência
+- Método: DELETE /ocorrencias/:id
+- Testes:
+  - ✅ Deletar uma ocorrência do próprio usuário
+    - Enviar token do usuário dono da ocorrência.
+    - **Esperado:** 200 OK.
+    ![Deletar ocorrência válida](imgservicocorrencias/deleteocorrencia.png)
+
+  - ❌ Tentar deletar uma ocorrência de outro usuário
+    - Enviar token de um usuário tentando apagar a ocorrência de outro.
+    - **Esperado:** 403 Forbidden.
+    ![Deletar ocorrência de outro usuário](imgservicocorrencias/deleteocorrenciaoutrouser.png)
+
+  - ❌ Tentar deletar uma ocorrência inexistente
+    - Passar um ID inválido.
+    - **Esperado:** 404 Not Found.
+    ![Deletar ocorrência inexistente](imgservicocorrencias/deletenotfound.png)
+
+  - ❌ Deletar ocorrência sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Deletar ocorrência sem autenticação](imgservicocorrencias/deletesemtoken.png)
+
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
