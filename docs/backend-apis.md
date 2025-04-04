@@ -14,7 +14,18 @@ O primeiro passo é definir os objetivos da sua API. O que você espera alcança
 
 
 ## Modelagem da Aplicação
-[Descreva a modelagem da aplicação, incluindo a estrutura de dados, diagramas de classes ou entidades, e outras representações visuais relevantes.]
+
+### Entidades
+
+O modelo de dados é composto por cinco entidades principais que representam a gestão de um condomínio:
+
+1. **Usuários (users)**: Representa os usuários do sistema, que podem ser administradores ou moradores.
+2. **Ocorrências (ocorrencias)**: Registra situações ou eventos que precisam ser documentados, como problemas ou incidentes.
+3. **Reservas (reservas)**: Gerencia as reservas de espaços ou serviços disponíveis, como salões de festas ou áreas comuns.
+4. **Visitantes (visitantes)**: Armazena informações sobre os visitantes que entram no condomínio.
+5. **Moradores (moradores)**: Contém dados dos moradores do condomínio, como seus apartamentos e informações de contato.
+
+![Modelo de dados](img/modelagemdados.png)
 
 
 ## Tecnologias Utilizadas
