@@ -1,9 +1,11 @@
 import Morador from "../models/moradorModel.js";
-import { User } from '../models/user.js';
+import { User } from "../models/user.js";
 
 export const criarMorador = async (req, res) => {
   try {
-    const morador = await Morador.create(req.body);
+    const userId = req.userId; 
+    const { nome, apartamento, bloco, contato } = req.body;
+    const morador = await Morador.create({ nome, apartamento, bloco, contato, userId });
     res.status(201).json(morador);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -12,10 +14,14 @@ export const criarMorador = async (req, res) => {
 
 export const listarMoradores = async (req, res) => {
   try {
+    if (req.userId !== 1) {
+      return res.status(403).json({ error: "Acesso negado. Apenas administradores podem ver todos os moradores." });
+    }
+
     const moradores = await Morador.findAll({
       include: {
         model: User,
-        attributes: ["id", "name", "email"], 
+        attributes: ["id", "name", "email"],
       },
     });
     res.json(moradores);
@@ -26,13 +32,13 @@ export const listarMoradores = async (req, res) => {
 
 export const buscarMoradorPorId = async (req, res) => {
   try {
-    const morador = await Morador.findByPk(req.params.id, {
-      include: {
-        model: User,
-        attributes: ["id", "name", "email"], 
-      },
-    });
+    const morador = await Morador.findByPk(req.params.id);
     if (!morador) return res.status(404).json({ error: "Morador não encontrado" });
+
+    if (morador.userId !== req.userId && req.userId !== 1) {
+      return res.status(403).json({ error: "Você não tem permissão para ver este morador." });
+    }
+
     res.json(morador);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -41,20 +47,42 @@ export const buscarMoradorPorId = async (req, res) => {
 
 export const atualizarMorador = async (req, res) => {
   try {
-    const [updated] = await Morador.update(req.body, { where: { id: req.params.id } });
-    if (!updated) return res.status(404).json({ error: "Morador não encontrado" });
-    const moradorAtualizado = await Morador.findByPk(req.params.id);
-    res.json(moradorAtualizado);
+    const { id } = req.params;
+    const userId = req.userId;
+
+    const morador = await Morador.findByPk(id);
+    if (!morador) return res.status(404).json({ error: "Morador não encontrado" });
+
+    if (morador.userId !== userId && userId !== 1) {
+      return res.status(403).json({ error: "Você não tem permissão para atualizar este morador." });
+    }
+
+    const { nome, apartamento, bloco, contato } = req.body;
+
+    await morador.update({ nome, apartamento, bloco, contato });
+
+    res.json(morador);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
+
 export const deletarMorador = async (req, res) => {
   try {
-    const deleted = await Morador.destroy({ where: { id: req.params.id } });
-    if (!deleted) return res.status(404).json({ error: "Morador não encontrado" });
-    res.status(204).send();
+    const { id } = req.params;
+    const userId = req.userId;
+
+    if (userId !== 1) {
+      return res.status(403).json({ error: "Apenas administradores podem deletar moradores." });
+    }
+
+    const morador = await Morador.findByPk(id);
+    if (!morador) return res.status(404).json({ error: "Morador não encontrado" });
+
+    await morador.destroy();
+
+    res.status(200).json({ message: "Morador excluído com sucesso." });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
