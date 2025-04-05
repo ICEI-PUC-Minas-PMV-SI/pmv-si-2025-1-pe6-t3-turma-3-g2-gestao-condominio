@@ -184,6 +184,163 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
     }
     ```
 
+### Endpoints do Serviço de Reservas
+
+### Endpoint 1: Criar Reserva (usuário)
+- Método: POST
+- URL: /api/reserva
+- Autenticação: Token do usuário (`verifyToken`)
+- Parâmetros (Body):
+  - `data` (string, formato ISO 8601): Data da reserva. **Obrigatório**
+  - `horaInicio` (string, formato HH:mm): Hora de início da reserva. **Obrigatório**
+  - `horaFim` (string, formato HH:mm): Hora de término da reserva. **Obrigatório**
+  - `descricao` (string): Descrição opcional da reserva.
+- Resposta:
+  - Sucesso (201 Created)
+    ```
+    {
+      "id": 1,
+      "data": "2024-04-10",
+      "horaInicio": "14:00",
+      "horaFim": "16:00",
+      "descricao": "Reserva da sala de reunião",
+      "status": "pendente",
+      "userId": 123,
+      "createdAt": "2024-04-01T00:00:00.000Z",
+      "updatedAt": "2024-04-01T00:00:00.000Z"
+    }
+    ```
+
+### Endpoint 2: Listar Todas as Reservas (admin)
+- Método: GET
+- URL: /api/reservas
+- Autenticação: Token do administrador (`verifyToken` + `isAdmin`)
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "data": "2024-04-10",
+        "horaInicio": "14:00",
+        "horaFim": "16:00",
+        "descricao": "Reserva da sala de reunião",
+        "status": "pendente",
+        "userId": 123,
+        "User": {
+          "id": 123,
+          "name": "Nome do Usuário",
+          "email": "email@example.com"
+        }
+      }
+    ]
+    ```
+
+### Endpoint 3: Obter Detalhes de uma Reserva
+- Método: GET
+- URL: /api/reservas/:id
+- Autenticação: Token do usuário (`verifyToken`)
+- Parâmetros:
+  - `id` (path): ID da reserva. **Obrigatório**
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "name": "Salão de Festas",
+      "data": "2024-04-10",
+      "horaInicio": "14:00",
+      "horaFim": "16:00",
+      "status": "Ativo",
+      "userId": 123
+    }
+    ```
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Reserva não encontrada"
+    }
+    ```
+
+### Endpoint 4: Atualizar Reserva
+- Método: PUT
+- URL: /api/reserva/:id
+- Autenticação: Token do usuário (`verifyToken`)
+- Parâmetros:
+  - `id` (path): ID da reserva. **Obrigatório**
+- Body:
+  - `data`, `horaInicio`, `horaFim`, `descricao`: Novos dados da reserva. **Obrigatório**
+- Condições:
+  - Apenas reservas com status **"pendente"** podem ser alteradas pelo usuário que criou.
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "data": "2024-04-12",
+      "horaInicio": "10:00",
+      "horaFim": "12:00",
+      "descricao": "Reserva alterada",
+      "status": "ativo",
+      "userId": 123
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Reserva não está pendente para alteração."
+    }
+    ```
+
+### Endpoint 5: Cancelar Reserva
+- Método: DELETE
+- URL: /api/reserva/:id
+- Autenticação: Token do usuário (`verifyToken`)
+- Parâmetros:
+  - `id` (path): ID da reserva. **Obrigatório**
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "nome": "Salão de Festas",
+      "data": "2024-04-05",
+      "horario": "14:00",
+      "status": "cancelado",
+      "userId": 123
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Você não tem permissão para cancelar esta reserva."
+    }
+    ```
+
+### Endpoint 6: Histórico de Reservas do Usuário
+- Método: GET
+- URL: /api/reservas/historico
+- Autenticação: Token do usuário (`verifyToken`)
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "nome": "Salão de Festas",
+        "data": "2024-04-05",
+        "horario": "14:00",
+        "userId": 123
+      }
+    ]
+    ```
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Nenhuma reserva encontrada"
+    }
+    ```
+
 ## Considerações de Segurança
 
 [Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
@@ -349,6 +506,117 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
     - Não enviar o token.
     - **Esperado:** 401 Unauthorized.
     ![Deletar ocorrência sem autenticação](imgservicocorrencias/deletesemtoken.png)
+
+### Testes de API para Reservas
+
+### 1. Criar Reserva
+- Método: POST /api/reservas
+- Testes:
+  - ✅ Criar uma reserva válida
+    - Enviar nome, data e horário válidos.
+    - **Esperado:** 201 Created e retorno da reserva criada.
+    ![Criar reserva válida](imgservicoreservas/create_reserva_valida.png)
+
+  - ❌ Criar reserva sem nome, data ou horário
+    - Enviar corpo incompleto.
+    - **Esperado:** 400 Bad Request ou erro de validação.
+    ![Criar reserva com campos faltando](imgservicoreservas/create_reserva_invalida.png)
+
+  - ❌ Criar reserva sem autenticação
+    - Não enviar token do usuário.
+    - **Esperado:** 401 Unauthorized.
+    ![Criar reserva sem autenticação](imgservicoreservas/create_reserva_sem_token.png)
+
+### 2. Listar Todas as Reservas (Admin)
+- Método: GET /api/reservas
+- Testes:
+  - ✅ Listar todas as reservas como administrador
+    - Enviar token de usuário com perfil de administrador.
+    - **Esperado:** 200 OK e retorno da lista de reservas.
+    ![Listar reservas como admin](imgservicoreservas/listar_reservas_admin.png)
+
+  - ❌ Listar todas as reservas como usuário comum
+    - Enviar token de usuário não administrador.
+    - **Esperado:** 403 Forbidden.
+    ![Listar reservas como usuário comum](imgservicoreservas/listar_reservas_user_comum.png)
+
+  - ❌ Listar todas as reservas sem autenticação
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Listar reservas sem autenticação](imgservicoreservas/listar_reservas_sem_token.png)
+
+### 3. Obter Detalhes de uma Reserva
+- Método: GET /reserva/:id
+- Testes:
+  - ✅ Obter detalhes de uma reserva do próprio usuário
+    - Enviar token e buscar uma reserva de sua propriedade.
+    - **Esperado:** 200 OK com detalhes da reserva.
+    ![Obter detalhes de uma reserva](imgservicoreservas/detalhe_reserva_user.png)
+
+  - ❌ Acessar reserva inexistente
+    - Passar um ID inválido ou que não existe.
+    - **Esperado:** 404 Not Found.
+    ![Reserva inexistente](imgservicoreservas/reserva_inexistente.png)
+
+  - ❌ Acessar reserva sem autenticação
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Acessar reserva sem token](imgservicoreservas/detalhe_reserva_sem_token.png)
+
+### 4. Atualizar Reserva
+- Método: PUT /reserva/:id
+- Testes:
+  - ✅ Atualizar uma reserva do próprio usuário
+    - Enviar dados válidos para reserva que o usuário possui.
+    - **Esperado:** 200 OK e reserva atualizada.
+    ![Atualizar reserva válida](imgservicoreservas/update_reserva_valida.png)
+
+  - ❌ Atualizar reserva de outro usuário
+    - Tentar atualizar reserva que não pertence ao usuário logado.
+    - **Esperado:** 403 Forbidden.
+    ![Atualizar reserva de outro usuário](imgservicoreservas/update_reserva_outro_user.png)
+
+  - ❌ Atualizar reserva sem autenticação
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Atualizar reserva sem token](imgservicoreservas/update_reserva_sem_token.png)
+
+### 5. Cancelar Reserva
+- Método: DELETE /reserva/:id
+- Testes:
+  - ✅ Cancelar uma reserva do próprio usuário
+    - Enviar token e cancelar reserva válida do próprio usuário.
+    - **Esperado:** 200 OK com status "cancelado".
+    ![Cancelar reserva válida](imgservicoreservas/delete_reserva_valida.png)
+
+  - ❌ Cancelar reserva de outro usuário
+    - Tentar cancelar reserva de outro usuário.
+    - **Esperado:** 403 Forbidden.
+    ![Cancelar reserva de outro usuário](imgservicoreservas/delete_reserva_outro_user.png)
+
+  - ❌ Cancelar reserva sem autenticação
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Cancelar reserva sem autenticação](imgservicoreservas/delete_reserva_sem_token.png)
+
+### 6. Histórico de Reservas do Usuário
+- Método: GET /api/reservas/historico
+- Testes:
+  - ✅ Listar reservas do usuário logado
+    - Enviar token de um usuário válido.
+    - **Esperado:** 200 OK e retorno das reservas do usuário.
+    ![Histórico do usuário](imgservicoreservas/historico_reservas_user.png)
+
+  - ❌ Listar reservas sem autenticação
+    - Não enviar o token.
+    - **Esperado:** 401 Unauthorized.
+    ![Histórico sem autenticação](imgservicoreservas/historico_sem_token.png)
+
+  - ❌ Nenhuma reserva encontrada
+    - Usuário autenticado, mas sem histórico.
+    - **Esperado:** 404 Not Found.
+    ![Nenhuma reserva encontrada](imgservicoreservas/historico_vazio.png)
+
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
