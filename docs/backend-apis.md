@@ -1,16 +1,20 @@
 # APIs e Web Services
 
-O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
+O planejamento de uma aplicação de APIs Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
 
-Aqui estão algumas etapas importantes que devem ser consideradas no planejamento de uma aplicação de APIS Web.
-
-[Inclua uma breve descrição do projeto.]
+A API do sistema **Habitare – Gestão de Condomínios** será responsável por viabilizar a comunicação entre os módulos do sistema distribuído, garantindo que as informações fluam corretamente entre moradores, administradores, porteiros e demais usuários. Ela também permitirá futuras integrações com sistemas externos, como serviços de notificação, plataformas de pagamento e sistemas de controle de acesso.
 
 ## Objetivos da API
 
-O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer?
+### Objetivo Geral
+Desenvolver uma API RESTful para permitir a comunicação entre os módulos do sistema Habitare, de forma segura, escalável e eficiente.
 
-[Inclua os objetivos da sua api.]
+### Objetivos Específicos
+- Fornecer endpoints para gerenciamento de usuários (moradores, síndicos, administradores, porteiros).
+- Permitir a criação, consulta, atualização e cancelamento de reservas de áreas comuns.
+- Gerenciar o registro e o acompanhamento de ocorrências condominiais.
+- Prover um canal de comunicação assíncrono entre os moradores.
+- Garantir autenticação e autorização de usuários utilizando padrões JWT.
 
 
 ## Modelagem da Aplicação
@@ -343,7 +347,19 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Em aplicações distribuídas como o **Habitare – Gestão de Condomínios**, garantir a segurança da comunicação, dos dados e dos acessos é fundamental. Como diferentes módulos da aplicação interagem por meio de redes, é necessário adotar práticas robustas de segurança para proteger os usuários e o sistema.
+
+### Autenticação
+A autenticação será realizada por meio de tokens JWT (JSON Web Token), garantindo que apenas usuários autenticados possam acessar os recursos da aplicação. O processo de login irá gerar um token assinado digitalmente, que será validado em cada requisição subsequente.
+
+### Autorização
+A autorização será baseada em perfis de acesso (morador, síndico, administrador, porteiro, etc.), utilizando políticas de controle de acesso (RBAC - Role-Based Access Control). Cada endpoint da API verificará se o usuário possui permissão para realizar a operação requisitada.
+
+### Comunicação Segura
+Todo o tráfego entre os módulos da aplicação, bem como entre o frontend e backend, será realizado através de HTTPS com TLS (Transport Layer Security), garantindo confidencialidade e integridade dos dados transmitidos.
+
+### Atualizações e Correções
+O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e dependências, além de revisões de segurança no código-fonte, com suporte a testes automatizados de vulnerabilidades.
 
 ## Implantação
 
@@ -617,12 +633,6 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
     - **Esperado:** 404 Not Found.
     ![Nenhuma reserva encontrada](imgservicoreservas/historico_vazio.png)
 
-
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
 
 # Referências
 
