@@ -43,8 +43,6 @@ O modelo de dados é composto por cinco entidades principais que representam a g
 
 ## API Endpoints
 
-[Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.]
-
 ### Endpoints do Serviço de Ocorrências
 ### Endpoint 1: Criar Ocorrências (usuário)
 - Método: POST
@@ -375,8 +373,6 @@ O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e d
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
 
 ## Testes
-
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
 ### Testes de API para Ocorrências
 
