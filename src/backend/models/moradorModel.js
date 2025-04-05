@@ -1,5 +1,6 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/mysqlConnection.js';
+import { DataTypes } from "sequelize";
+import { sequelize } from "../database/mysqlConnection.js";
+import { User } from "./user.js";
 
 const Morador = sequelize.define("Morador", {
   id: {
@@ -15,7 +16,7 @@ const Morador = sequelize.define("Morador", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  bloco: {   
+  bloco: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -23,9 +24,29 @@ const Morador = sequelize.define("Morador", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: User,
+      key: "id",
+    },
+  },
 }, {
   freezeTableName: true,
-  timestamps: true, 
+  timestamps: true,
+});
+
+Morador.belongsTo(User, {
+  foreignKey: "userId",
+  onDelete: "SET NULL",
+  onUpdate: "CASCADE"
+});
+
+User.hasOne(Morador, {
+  foreignKey: "userId",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE"
 });
 
 export default Morador;
