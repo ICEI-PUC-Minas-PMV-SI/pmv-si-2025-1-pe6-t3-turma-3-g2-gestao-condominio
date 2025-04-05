@@ -34,9 +34,12 @@ O modelo de dados é composto por cinco entidades principais que representam a g
 
 ## Tecnologias Utilizadas
 
-Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs Web. A tecnologia certa para o seu projeto dependerá dos seus objetivos, dos seus clientes e dos recursos que a API deve fornecer.
-
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- **Node.js**: Plataforma para execução do JavaScript no servidor, oferecendo alta performance e grande ecossistema de bibliotecas.
+- **Express.js**: Framework web minimalista para Node.js, ideal para criação de APIs RESTful.
+- **JWT (JSON Web Token)**: Para autenticação segura baseada em tokens.
+- **Sequelize ORM**: Para abstração e manipulação de bancos de dados relacionais com JavaScript.
+- **RESTful API**: Arquitetura de API baseada em recursos e métodos HTTP (GET, POST, PUT, DELETE).
+- **MySQL**: Banco de dados relacional utilizado para armazenar de forma estruturada os dados manipulados pela API.
 
 ## API Endpoints
 
