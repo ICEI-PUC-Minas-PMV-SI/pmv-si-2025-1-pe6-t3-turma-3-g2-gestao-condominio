@@ -781,8 +781,6 @@ O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e d
 
 ### Testes de API para Moradores
 
-# Testes de API - Serviço de Moradores
-
 ### 1. Criar Morador
 - Método: POST /api/moradores
 - Testes:
