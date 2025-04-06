@@ -59,8 +59,8 @@ O modelo de dados é composto por cinco entidades principais que representam a g
       "descricao": "Descrição da ocorrência",
       "status": "aberto",
       "userId": 123,
-      "createdAt": "2023-10-01T00:00:00.000Z",
-      "updatedAt": "2023-10-01T00:00:00.000Z"
+      "createdAt": "2025-04-01T00:00:00.000Z",
+      "updatedAt": "2025-04-01T00:00:00.000Z"
     }
     ```
 
@@ -170,7 +170,7 @@ O modelo de dados é composto por cinco entidades principais que representam a g
       "id": 1,
       "titulo": "Título da ocorrência",
       "descricao": "Descrição da ocorrência",
-      "status": "novo_status",
+      "status": "em analise",
       "userId": 123
     }
     ```
