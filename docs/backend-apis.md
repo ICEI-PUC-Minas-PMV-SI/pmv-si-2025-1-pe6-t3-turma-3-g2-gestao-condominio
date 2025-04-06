@@ -491,6 +491,106 @@ O modelo de dados é composto por cinco entidades principais que representam a g
     }
     ```
 
+## Endpoints de Autenticação
+
+### Endpoint 1: Registrar Usuário
+- Método: POST  
+- URL: `/auth/register`  
+- Autenticação: Não requer autenticação  
+- Parâmetros:
+  - `name` (body - string): Nome do usuário. **Obrigatório**
+  - `email` (body - string): E-mail do usuário. **Obrigatório**
+  - `password` (body - string): Senha do usuário. **Obrigatório**
+- Resposta:
+  - Sucesso (201 Created)
+    ```
+    {
+      "message": "Usuário cadastrado com sucesso",
+      "userId": 1
+    }
+    ```
+  - Erro (400 Bad Request)
+    ```
+    {
+      "message": "E-mail já cadastrado"
+    }
+    ```
+  - Erro (500 Internal Server Error)
+    ```
+    {
+      "message": "Erro ao registrar usuário",
+      "error": "Detalhes do erro"
+    }
+    ```
+
+---
+
+### Endpoint 2: Login de Usuário
+- Método: POST  
+- URL: `/auth/login`  
+- Autenticação: Não requer autenticação  
+- Parâmetros:
+  - `email` (body - string): E-mail do usuário. **Obrigatório**
+  - `password` (body - string): Senha do usuário. **Obrigatório**
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "message": "Login bem-sucedido",
+      "token": "jwt_token_aqui"
+    }
+    ```
+  - Erro (400 Bad Request)
+    ```
+    {
+      "message": "Usuário não encontrado"
+    }
+    ```
+    ou
+    ```
+    {
+      "message": "Senha incorreta"
+    }
+    ```
+  - Erro (500 Internal Server Error)
+    ```
+    {
+      "message": "Erro ao fazer login",
+      "error": "Detalhes do erro"
+    }
+    ```
+
+---
+
+### Endpoint 3: Verificar Token
+- Método: GET  
+- URL: `/auth/verify`  
+- Autenticação: Token JWT no cabeçalho `Authorization` **(Obrigatório)**  
+- Parâmetros: Nenhum  
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "message": "Token válido",
+      "userId": 1
+    }
+    ```
+  - Erro (401 Unauthorized)
+    ```
+    {
+      "message": "Acesso negado"
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Token inválido"
+    }
+    ```
+
+---
+
+
 
 
 ## Considerações de Segurança
