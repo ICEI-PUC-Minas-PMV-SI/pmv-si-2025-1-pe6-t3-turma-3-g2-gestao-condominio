@@ -991,6 +991,61 @@ O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e d
     - **Esperado:** 200 OK com mensagem de sucesso.
     ![Deletar morador - admin](imgservicomoradores/delete_morador_user_admin.png)
 
+### API de Autenticação
+
+### 1. Registrar Usuário  
+  - Método: **POST** `/auth/register`  
+  - Testes:
+
+  - ✅ **Registrar novo usuário com dados válidos**
+    - Enviar `name`, `email` e `password` válidos no corpo da requisição.
+    - **Esperado:** 201 Created e mensagem de sucesso com o `userId`.  
+    ![image](https://github.com/user-attachments/assets/41dc9a20-8339-4d4d-869e-67a69576df2f)
+
+  - ❌ **Registrar com e-mail já cadastrado**
+    - Enviar um e-mail já existente no banco.
+    - **Esperado:** 400 Bad Request.  
+    ![image](https://github.com/user-attachments/assets/ee417259-4a2b-4f44-95d3-948eb23ea303)
+
+### 2. Login de Usuário
+  - Método: **POST** `/auth/login`  
+  - Testes:
+
+  - ✅ **Login com credenciais válidas**
+    - Enviar `email` e `password` corretos.
+    - **Esperado:** 200 OK e retorno de um token JWT.  
+    ![image](https://github.com/user-attachments/assets/42da9925-94e0-45ea-929f-2f0492a98ec0)
+
+  - ❌ **Login com senha incorreta**
+    - Enviar `email` correto e `password` incorreto.
+    - **Esperado:** 400 Bad Request.  
+    ![image](https://github.com/user-attachments/assets/73bc6a06-d2cb-4930-8412-8b972406cad0)
+
+  - ❌ **Login com e-mail inexistente**
+    - Enviar `email` não cadastrado.
+    - **Esperado:** 400 Bad Request.  
+    ![image](https://github.com/user-attachments/assets/d84d2d96-889b-4dc3-a908-10cfdac88127)
+
+### 3. Verificar Token
+  - Método: **GET** `/auth/verify`  
+  - Testes:
+
+  - ✅ **Verificar token válido**
+    - Enviar token JWT válido no header `Authorization`.
+    - **Esperado:** 200 OK e resposta com o `userId`.  
+    ![image](https://github.com/user-attachments/assets/a28d9e80-6911-4afd-80b5-f22aa1c807a3)
+
+  - ❌ **Verificar sem token**
+    - Não enviar token no header.
+    - **Esperado:** 401 Unauthorized.  
+    ![image](https://github.com/user-attachments/assets/52035848-3ca5-4c32-a977-33b9c282b6ee)
+
+  - ❌ **Verificar com token inválido**
+    - Enviar token inválido ou expirado.
+    - **Esperado:** 403 Forbidden.  
+    ![image](https://github.com/user-attachments/assets/7510b9fa-a2c0-4b57-b4ef-2b27109750f6)
+
+
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
