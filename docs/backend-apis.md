@@ -345,6 +345,153 @@ O modelo de dados é composto por cinco entidades principais que representam a g
       "message": "Nenhuma reserva encontrada"
     }
     ```
+    
+### Endpoints do Serviço de Moradores
+
+### Endpoint 1: Criar Morador (usuário)
+- Método: POST  
+- URL: /api/moradores  
+- Autenticação: Token do usuário (`verifyToken`)  
+- Parâmetros (Body):
+  - `nome` (string): Nome do morador. **Obrigatório**
+  - `apartamento` (string): Número do apartamento. **Obrigatório**
+  - `bloco` (string): Bloco do apartamento. **Obrigatório**
+  - `contato` (string): Telefone de contato. **Obrigatório**
+
+- Resposta:
+  - Sucesso (201 Created)
+    ```json
+    {
+      "id": 1,
+      "nome": "João da Silva",
+      "apartamento": "101",
+      "bloco": "1",
+      "contato": "(11) 99999-9999",
+      "userId": 123,
+      "createdAt": "2025-04-06T00:00:00.000Z",
+      "updatedAt": "2025-04-06T00:00:00.000Z"
+    }
+    ```
+
+### Endpoint 2: Listar Todos os Moradores (admin)
+- Método: GET
+- URL: /api/moradores
+- Autenticação: Token do administrador (`verifyToken` + `isAdmin`)
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "nome": "João da Silva",
+        "apartamento": "101",
+        "bloco": "1",
+        "contato": "(11) 99999-9999",
+        "userId": 123,
+        "User": {
+          "id": 123,
+          "name": "Nome do Usuário",
+          "email": "email@example.com"
+        }
+      }
+    ]
+    ```
+
+### Endpoint 3: Obter Detalhes de um Morador
+- Método: GET
+- URL: /api/moradores/:id
+- Autenticação: Token do usuário (`verifyToken`)
+- Parâmetros:
+  - `id` (path): ID do morador. **Obrigatório**
+- Condições:
+  - O usuário pode ver apenas seu próprio morador, a não ser que seja admin.
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "nome": "João da Silva",
+      "apartamento": "101",
+      "bloco": "1",
+      "contato": "(11) 99999-9999",
+      "userId": 123
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Você não tem permissão para acessar este morador."
+    }
+    ```
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Morador não encontrado"
+    }
+    ```
+
+### Endpoint 4: Atualizar Morador
+- Método: PUT
+- URL: /api/moradores/:id
+- Autenticação: Token do usuário (`verifyToken`)
+- Parâmetros:
+  - `id` (path): ID do morador. **Obrigatório**
+- Body:
+  - `nome`, `apartamento`, `bloco`, `contato`: Novos dados do morador. **Obrigatório**
+- Condições:
+  - O usuário pode atualizar apenas seu próprio morador ou ser admin.
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "nome": "João Atualizado",
+      "apartamento": "102",
+      "bloco": "2",
+      "contato": "(11) 98888-8888",
+      "userId": 123
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Você não tem permissão para alterar este morador."
+    }
+    ```
+    - Erro (404 Not Found)
+    ```
+    {
+      "message": "Morador não encontrado"
+    }
+    ```
+
+### Endpoint 5: Deletar Morador (admin)
+- Método: DELETE
+- URL: /api/moradores/:id
+- Autenticação: Token do administrador (`verifyToken` + `isAdmin`)
+- Parâmetros:
+  - `id` (path): ID do morador. **Obrigatório**
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "message": "Morador excluído com sucesso."
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Permissão negada"
+    }
+    ```
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Morador não encontrado"
+    }
+    ```
+
+
 
 ## Considerações de Segurança
 
@@ -632,6 +779,119 @@ O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e d
     - **Esperado:** 404 Not Found.
     ![Nenhuma reserva encontrada](imgservicoreservas/historico_vazio.png)
 
+### Testes de API para Moradores
+
+# Testes de API - Serviço de Moradores
+
+### 1. Criar Morador
+- Método: POST /api/moradores
+- Testes:
+  - ✅ Criar morador com dados válidos
+    - Enviar nome, bloco, apartamento e contato válidos com token.
+    - **Esperado:** 201 Created com retorno do morador criado.
+    ![Criar morador válido](imgservicomoradores/create_morador_valida.png)
+
+  - ❌ Criar morador com dados inválidos
+    - Enviar campos faltando ou vazios.
+    - **Esperado:** 400 Bad Request.
+    ![Criar morador inválido](imgservicomoradores/create_morador_invalida.png)
+
+  - ❌ Criar morador sem token
+    - Não enviar token na requisição.
+    - **Esperado:** 401 Unauthorized.
+    ![Criar morador sem token](imgservicomoradores/create_morador_sem_token.png)
+
+### 2. Listar Moradores
+- Método: GET /api/moradores
+- Testes:
+  - ❌ Listar moradores sem token
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Listar moradores sem token](imgservicomoradores/listar_moradores_sem_token.png)
+
+  - ✅ Listar moradores com token de admin
+    - Enviar token do usuário admin.
+    - **Esperado:** 200 OK com a lista de moradores.
+    ![Listar moradores - admin](imgservicomoradores/listar_moradores_usuario_admin.png)
+
+  - ❌ Listar moradores com token de usuário não admin
+    - Enviar token de usuário comum.
+    - **Esperado:** 403 Forbidden.
+    ![Listar moradores - não admin](imgservicomoradores/listar_moradores_usuario_nao_admin.png)
+
+### 3. Buscar Morador por ID
+- Método: GET /api/moradores/:id
+- Testes:
+  - ✅ Buscar morador com o mesmo ID do usuário logado
+    - Token corresponde ao usuário dono do morador.
+    - **Esperado:** 200 OK com retorno do morador.
+    ![Buscar morador por ID - mesmo usuário](imgservicomoradores/buscar_morador_por_id_mesmo_user.png)
+
+  - ❌ Buscar morador com token de outro usuário
+    - Token de outro usuário sem permissão.
+    - **Esperado:** 403 Forbidden.
+    ![Buscar morador por ID - outro usuário](imgservicomoradores/buscar_morador_por_id_outro_user.png)
+
+- ❌ Buscar morador por id inexistente
+    - Passar um ID inválido ou que não existe.
+    - **Esperado:** 404 Not Found.
+    ![Buscar morador por ID - usuário inexistente](imgservicomoradores/buscar_morador_por_id_nao_existe.png)
+
+  - ✅ Buscar morador com token de admin
+    - Token do usuário admin.
+    - **Esperado:** 200 OK com retorno do morador.
+    ![Buscar morador por ID - admin](imgservicomoradores/buscar_morador_por_id_user_admin.png)
+
+### 4. Atualizar Morador
+- Método: PUT /api/moradores/:id
+- Testes:
+  - ✅ Atualizar morador sendo o mesmo usuário
+    - Enviar token correspondente ao morador.
+    - **Esperado:** 200 OK com morador atualizado.
+    ![Atualizar morador - mesmo usuário](imgservicomoradores/update_morador_mesmo_user.png)
+
+  - ❌ Atualizar morador de outro usuário
+    - Enviar token de usuário diferente.
+    - **Esperado:** 403 Forbidden.
+    ![Atualizar morador - outro usuário](imgservicomoradores/update_morador_outro_user.png)
+
+  - ❌ Atualizar morador sem token
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Atualizar morador - sem token](imgservicomoradores/update_morador_sem_token.png)
+
+- ❌ Atualizar morador inexistente
+    - Passar um ID inválido ou que não existe.
+    - **Esperado:** 404 Not Found.
+    ![Atualizar morador - usuário inexistente](imgservicomoradores/update_morador_nao_existe.png)
+
+  - ✅ Atualizar morador sendo admin
+    - Enviar token de usuário admin.
+    - **Esperado:** 200 OK com morador atualizado.
+    ![Atualizar morador - admin](imgservicomoradores/update_morador_user_admin.png)
+
+### 5. Deletar Morador
+- Método: DELETE /api/moradores/:id
+- Testes:
+  - ❌ Deletar morador sem token
+    - Não enviar token.
+    - **Esperado:** 401 Unauthorized.
+    ![Deletar morador - sem token](imgservicomoradores/delete_morador_sem_token.png)
+
+  - ❌ Deletar morador sendo usuário comum
+    - Token de usuário sem permissão de admin.
+    - **Esperado:** 403 Forbidden.
+    ![Deletar morador - usuário comum](imgservicomoradores/delete_morador_usuario_normal.png)
+
+- ❌ Deletar morador inexistente
+    - Passar um ID inválido ou que não existe.
+    - **Esperado:** 404 Not Found.
+    ![Deletar morador - usuário inexistente](imgservicomoradores/delete_morador_nao_existe.png)
+
+  - ✅ Deletar morador como admin
+    - Enviar token de admin.
+    - **Esperado:** 200 OK com mensagem de sucesso.
+    ![Deletar morador - admin](imgservicomoradores/delete_morador_user_admin.png)
 
 # Referências
 
