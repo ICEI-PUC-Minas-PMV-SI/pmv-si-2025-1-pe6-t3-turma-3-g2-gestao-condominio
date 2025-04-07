@@ -633,6 +633,153 @@ O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e d
     ![Nenhuma reserva encontrada](imgservicoreservas/historico_vazio.png)
 
 
+### Testes de API para Visitantes:
+
+### Endpoint 1: Criar Visitante
+- **Método**: POST
+- **URL**: /api/visitantes
+- **Autenticação**: Token do usuário (`verifyToken`)
+- **Parâmetros (Body)**:
+  - `nome` (string): Nome do visitante. **Obrigatório**
+  - `documento` (string): Documento do visitante. **Obrigatório** (único)
+  - `apartamento` (string): Número do apartamento do visitante. **Obrigatório**
+  - `dataVisita` (string, formato ISO 8601): Data e hora da visita. **Obrigatório**
+- **Resposta**:
+  - Sucesso (201 Created)
+    ```
+    {
+      "id": 1,
+      "nome": "João Silva",
+      "documento": "123456789",
+      "apartamento": "101",
+      "dataVisita": "2025-04-07T14:00:00.000Z",
+      "status": "pendente",
+      "userId": 123,
+      "createdAt": "2025-04-06T00:00:00.000Z",
+      "updatedAt": "2025-04-06T00:00:00.000Z"
+    }
+    ```
+
+### Endpoint 2: Listar Todos os Visitantes (admin)
+- **Método**: GET
+- **URL**: /api/visitantes
+- **Autenticação**: Token do administrador (`verifyToken` + `isAdmin`)
+- **Parâmetros**: Nenhum.
+- **Resposta**:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "nome": "João Silva",
+        "documento": "123456789",
+        "apartamento": "101",
+        "dataVisita": "2025-04-07T14:00:00.000Z",
+        "status": "pendente",
+        "userId": 123,
+        "User": {
+          "id": 123,
+          "name": "Nome do Usuário",
+          "email": "email@example.com"
+        }
+      }
+    ]
+    ```
+
+### Endpoint 3: Listar Visitantes do Usuário Autenticado
+- **Método**: GET
+- **URL**: /api/visitantes/meus
+- **Autenticação**: Token do usuário (`verifyToken`)
+- **Parâmetros**: Nenhum.
+- **Resposta**:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id": 1,
+        "nome": "João Silva",
+        "documento": "123456789",
+        "apartamento": "101",
+        "dataVisita": "2025-04-07T14:00:00.000Z",
+        "status": "pendente",
+        "userId": 123
+      }
+    ]
+    ```
+
+### Endpoint 4: Obter Detalhes de um Visitante
+- **Método**: GET
+- **URL**: /api/visitantes/:id
+- **Autenticação**: Token do usuário (`verifyToken`)
+- **Parâmetros**:
+  - `id` (path): ID do visitante. **Obrigatório**
+- **Resposta**:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "nome": "João Silva",
+      "documento": "123456789",
+      "apartamento": "101",
+      "dataVisita": "2025-04-07T14:00:00.000Z",
+      "status": "pendente",
+      "userId": 123
+    }
+    ```
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Visitante não encontrado"
+    }
+    ```
+
+### Endpoint 5: Atualizar Visitante
+- **Método**: PUT
+- **URL**: /api/visitantes/:id
+- **Autenticação**: Token do usuário (`verifyToken`)
+- **Parâmetros**:
+  - `id` (path): ID do visitante. **Obrigatório**
+- **Body**:
+  - `nome` (string): Novo nome do visitante. **Obrigatório**
+  - `documento` (string): Novo documento do visitante. **Obrigatório**
+  - `apartamento` (string): Novo número de apartamento do visitante. **Obrigatório**
+  - `dataVisita` (string, formato ISO 8601): Nova data e hora da visita. **Obrigatório**
+- **Resposta**:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id": 1,
+      "nome": "João Silva Atualizado",
+      "documento": "987654321",
+      "apartamento": "102",
+      "dataVisita": "2025-04-08T15:00:00.000Z",
+      "status": "pendente",
+      "userId": 123
+    }
+    ```
+  - Erro (403 Forbidden)
+    ```
+    {
+      "message": "Você não tem permissão para alterar este visitante."
+    }
+    ```
+
+### Endpoint 6: Deletar Visitante
+- **Método**: DELETE
+- **URL**: /api/visitantes/:id
+- **Autenticação**: Token do usuário (`verifyToken`)
+- **Parâmetros**:
+  - `id` (path): ID do visitante. **Obrigatório**
+- **Resposta**:
+  - Sucesso (200 OK): Sem corpo de resposta.
+  - Erro (404 Not Found)
+    ```
+    {
+      "message": "Visitante não encontrado"
+    }
+    ```
+
+
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
