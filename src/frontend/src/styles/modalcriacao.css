@@ -1,0 +1,85 @@
+.overlay-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.content-modal {
+    background: #fdf8e4; /* Cor de fundo */
+    padding: 2rem;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    text-align: left;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem; /* Espaçamento */
+}
+
+.form-modal {
+    display: flex;
+    flex-direction: column; /* Coluna para os itens */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.button-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #1e4d2b;
+}
+
+.button-close:hover {
+    color: #f44336; /* Cor ao passar o mouse */
+}
+
+.label-modal {
+    display: flex;
+    flex-direction: column; /* Alinha o texto e o input/textarea em coluna */
+    margin-bottom: 1rem; /* Espaçamento */
+    font-weight: bold; /* Negrito */
+    width: 100%; /* Para garantir que ocupem a mesma largura */
+}
+
+.input-modal,
+.textarea-modal {
+    width: 100%;
+    margin-top: 0.25rem; /* Espaçamento entre label e input */
+    padding: 0.5rem;
+    border-radius: 8px; /* Bordas arredondadas */
+    border: 1px solid #ccc;
+    background: #fdf8e4; /* Cor de fundo branca */
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+.textarea-modal {
+    resize: vertical; /* Redimensionamento vertical */
+    min-height: 100px; /* Altura mínima */
+}
+
+.button-create {
+    background: #1e4d2b; /* Cor do botão */
+    color: white;
+    padding: 0.50rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem; /* Tamanho da fonte */
+}
+
+.button-create:hover {
+    background: #155d1f; /* Cor ao passar o mouse */
+}
