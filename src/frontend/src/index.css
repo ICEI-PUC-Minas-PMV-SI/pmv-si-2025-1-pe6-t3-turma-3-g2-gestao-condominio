@@ -65,4 +65,89 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
+  /* Plano de fundo de toda a tela */
+body {
+  background-color: #FFF5E3;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Estilo da logo */
+img {
+  display: block;
+  margin: 0 auto 20px;
+  width: 120px; /* Tamanho da logo, ajuste se necessário */
+  border: none;
+}
+
+/* Estilo para os campos de input */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #ccc; /* Cor da borda quando selecionado */
+  outline: none;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 12px;
+  color: #333;
+}
+
+/* Estilo do label */
+label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #aaa;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+/* Estilo para os botões */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Ajustando a cor do tracinho de foco e do texto */
+input:focus {
+  border-color: white;
+}
+
+
 }
