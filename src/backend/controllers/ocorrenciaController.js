@@ -59,6 +59,26 @@ export const getOcorrenciaById = async (req, res) => {
     }
 };
 
+export const getOcorrenciaDetailsForAdmin = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const ocorrencia = await Ocorrencia.findByPk(id, {
+            include: {
+                model: User,
+                attributes: ['id', 'name', 'email'],
+            },
+        });
+
+        if (!ocorrencia) {
+            return res.status(404).json({ message: 'Ocorrência não encontrada.' });
+        }
+
+        res.status(200).json(ocorrencia);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 export const updateOcorrencia = async (req, res) => {
     try {
@@ -88,19 +108,28 @@ export const updateOcorrencia = async (req, res) => {
     }
 };
 
-
 export const updateOcorrenciaStatus = async (req, res) => {
     try {
         const { id } = req.params;
         const { status } = req.body;
+
         const ocorrencia = await Ocorrencia.findByPk(id);
-        if (ocorrencia) {
-            ocorrencia.status = status;
-            await ocorrencia.save();
-            res.status(200).json(ocorrencia);
-        } else {
-            res.status(404).json({ message: 'Ocorrência não encontrada' });
+
+        if (!ocorrencia) {
+            return res.status(404).json({ message: 'Ocorrência não encontrada' });
         }
+
+        ocorrencia.status = status;
+        await ocorrencia.save();
+
+        const ocorrenciaAtualizada = await Ocorrencia.findByPk(id, {
+            include: {
+                model: User,
+                attributes: ['id', 'name', 'email'],
+            },
+        });
+
+        res.status(200).json(ocorrenciaAtualizada);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createOcorrencia, getOcorrencias, getOcorrenciaById, updateOcorrencia, deleteOcorrencia, updateOcorrenciaStatus, getOcorrenciasByUser } from '../controllers/ocorrenciaController.js';
+import { createOcorrencia, getOcorrencias, getOcorrenciaById, updateOcorrencia, deleteOcorrencia, updateOcorrenciaStatus, getOcorrenciasByUser, getOcorrenciaDetailsForAdmin } from '../controllers/ocorrenciaController.js';
 import { verifyToken } from '../controllers/authController.js';
 import { isAdmin } from '../middleware/authMiddleware.js';
 
@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/ocorrencias', verifyToken, createOcorrencia);
 router.get('/listar/ocorrencias', verifyToken, isAdmin, getOcorrencias);
+router.get('/listar/ocorrencias/:id', verifyToken, isAdmin, getOcorrenciaDetailsForAdmin);
 router.get('/ocorrencias', verifyToken, getOcorrenciasByUser);
 router.get('/ocorrencias/:id', verifyToken, getOcorrenciaById);
 router.put('/ocorrencias/:id', verifyToken, updateOcorrencia);
