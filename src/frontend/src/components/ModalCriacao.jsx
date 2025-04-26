@@ -20,7 +20,7 @@ const ModalCriacao = ({ isOpen, onClose, onCreate }) => {
     <div className="overlay-modal">
       <div className="content-modal">
         <div className="header-modal">
-          <h2>CRIAR OCORRÊNCIA</h2>
+          <h2>Criar Ocorrência</h2>
           <button className="button-close" onClick={onClose}>
             <FaTimes />
           </button>

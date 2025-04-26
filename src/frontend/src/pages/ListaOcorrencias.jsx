@@ -148,6 +148,7 @@ const TelaOcorrencias = () => {
           padding: '20px',
         }}
       />
+    <div className="header">
 
       <h1>LISTAGEM DAS OCORRÊNCIAS</h1>
       <button
@@ -156,6 +157,7 @@ const TelaOcorrencias = () => {
       >
         CRIAR OCORRÊNCIA
       </button>
+      </div>
       <DataTable data={dados} columns={colunas} />
       <ModalCriacao
         isOpen={modalCriacaoOpen}

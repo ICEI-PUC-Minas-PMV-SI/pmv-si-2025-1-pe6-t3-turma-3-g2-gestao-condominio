@@ -108,7 +108,9 @@ const TelaOcorrenciasAdmin = () => {
             padding: '20px',
         }}
       />
+      <div className="header">
       <h1>LISTAGEM DAS OCORRÊNCIAS</h1>
+      </div>
       <DataTable data={dados} columns={colunas} />
 
       {selectedOcorrencia && (

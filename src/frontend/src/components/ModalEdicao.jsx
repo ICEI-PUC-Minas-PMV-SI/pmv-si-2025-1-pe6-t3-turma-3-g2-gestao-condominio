@@ -25,7 +25,7 @@ const ModalEdicao = ({ isOpen, onClose, onEdit, initialData }) => {
     <div className="overlay-modal">
       <div className="content-modal">
         <div className="header-modal">
-          <h2>EDITAR OCORRÊNCIA</h2>
+          <h2>Editar Ocorrência</h2>
           <button className="button-close" onClick={onClose}>
             <FaTimes />
           </button>

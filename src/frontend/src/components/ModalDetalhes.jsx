@@ -15,7 +15,7 @@ const ModalDetalhes = ({ isOpen, onClose, titulo, descricao }) => {
           </button>
         </div>
         <h3>{titulo}</h3>
-        <p>{descricao}</p>
+        <p><strong>Descrição:</strong> {descricao}</p>
       </div>
     </div>
   );
