@@ -1,14 +1,8 @@
 import React from 'react';
 import '../styles/modaldetalhes.css';
 import { FaTimes } from 'react-icons/fa';
-type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  titulo: string;
-  descricao: string;
-};
 
-const ModalDetalhes: React.FC<ModalProps> = ({ isOpen, onClose, titulo, descricao }) => {
+const ModalDetalhes = ({ isOpen, onClose, titulo, descricao }) => {
   if (!isOpen) return null;
 
   return (

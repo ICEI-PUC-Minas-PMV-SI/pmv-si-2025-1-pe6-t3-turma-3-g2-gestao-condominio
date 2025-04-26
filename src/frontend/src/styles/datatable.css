@@ -9,7 +9,7 @@
   text-align: center;
   padding: 2rem;
   font-family: 'Arial', sans-serif;
-  background-color: #fdf8e4;
+  background-color: #FFF5E3;
   min-height: 100vh;
   margin: 0 auto; /* Centraliza a container */
 }
@@ -55,7 +55,7 @@
 .datatable {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fdf8e4; /* Fundo original */
+  background-color: #FFF5E3; /* Fundo original */
   border: 2px solid #888888; /* Cor da borda clara */
   border-radius: 12px; /* Deixa as bordas arredondadas */
   font-family: 'Arial', sans-serif;

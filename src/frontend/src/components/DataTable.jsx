@@ -1,18 +1,7 @@
 import React from 'react';
 import '../styles/datatable.css';
 
-export type Column<T> = {
-  header: string;
-  accessor?: keyof T;
-  render?: (item: T) => React.ReactNode;
-};
-
-type DataTableProps<T> = {
-  data: T[];
-  columns: Column<T>[];
-};
-
-export function DataTable<T>({ data, columns }: DataTableProps<T>) {
+export function DataTable({ data, columns }) {
   return (
     <div className="datatable-container">
       <table className="datatable">
@@ -30,7 +19,7 @@ export function DataTable<T>({ data, columns }: DataTableProps<T>) {
                 <td key={colIdx}>
                   {col.render
                     ? col.render(item)
-                    : (item[col.accessor as keyof T] as React.ReactNode)}
+                    : item[col.accessor]}
                 </td>
               ))}
             </tr>

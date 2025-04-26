@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/modalcriacao.css';
 import { FaTimes } from 'react-icons/fa';
 
-type ModalEdicaoProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  onEdit: (titulo: string, descricao: string) => void;
-  initialData: { titulo: string; descricao: string };
-};
-
-const ModalEdicao: React.FC<ModalEdicaoProps> = ({ isOpen, onClose, onEdit, initialData }) => {
+const ModalEdicao = ({ isOpen, onClose, onEdit, initialData }) => {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
 
@@ -22,7 +15,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({ isOpen, onClose, onEdit, init
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onEdit(titulo, descricao);
     onClose();

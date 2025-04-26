@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
 import '../styles/datatable.css';
-import { DataTable, Column } from '../components/DataTable';
+import { DataTable } from '../components/DataTable';
 import { FaEdit, FaTrash, FaInfoCircle } from 'react-icons/fa';
 import ModalDetalhes from '../components/ModalDetalhes';
 import ModalCriacao from '../components/ModalCriacao';
 import ModalConfirmacao from '../components/ModalConfirmacao';
 import ModalEdicao from '../components/ModalEdicao';
 
-type Ocorrencia = {
-  titulo: string;
-  descricao: string;
-  status: string;
-};
-
-const truncateString = (str: string, maxLength: number) => {
+const truncateString = (str, maxLength) => {
   if (str.length > maxLength) {
     return str.slice(0, maxLength) + '...';
   }
   return str;
 };
 
-const dados: Ocorrencia[] = [
+const dados = [
   { titulo: 'Título 1', descricao: 'Descrição longa que deve ser truncada se ultrapassar um certo número de caracteres.', status: '' },
   { titulo: 'Título 2', descricao: 'Descrição 2', status: '' },
   { titulo: 'Título 3', descricao: 'Descrição 3', status: '' },
@@ -29,12 +23,12 @@ const dados: Ocorrencia[] = [
 
 const TelaOcorrencias = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedOcorrencia, setSelectedOcorrencia] = useState<Ocorrencia | null>(null);
+  const [selectedOcorrencia, setSelectedOcorrencia] = useState(null);
   const [modalConfirmacaoOpen, setModalConfirmacaoOpen] = useState(false);
   const [modalCriacaoOpen, setModalCriacaoOpen] = useState(false);
   const [modalEdicaoOpen, setModalEdicaoOpen] = useState(false);
 
-  const handleOpenModal = (ocorrencia: Ocorrencia) => {
+  const handleOpenModal = (ocorrencia) => {
     setSelectedOcorrencia(ocorrencia);
     setModalOpen(true);
   };
@@ -44,7 +38,7 @@ const TelaOcorrencias = () => {
     setSelectedOcorrencia(null);
   };
 
-  const handleOpenConfirmacao = (ocorrencia: Ocorrencia) => {
+  const handleOpenConfirmacao = (ocorrencia) => {
     setSelectedOcorrencia(ocorrencia);
     setModalConfirmacaoOpen(true);
   };
@@ -55,11 +49,11 @@ const TelaOcorrencias = () => {
     setSelectedOcorrencia(null);
   };
 
-  const handleCreateOcorrencia = (titulo: string, descricao: string) => {
+  const handleCreateOcorrencia = (titulo, descricao) => {
     console.log('Nova ocorrência criada:', { titulo, descricao });
   };
 
-  const handleEditOcorrencia = (titulo: string, descricao: string) => {
+  const handleEditOcorrencia = (titulo, descricao) => {
     if (selectedOcorrencia) {
       console.log('Ocorrência editada:', { titulo, descricao });
       // Aqui você pode atualizar a lista de ocorrências
@@ -68,7 +62,7 @@ const TelaOcorrencias = () => {
     setSelectedOcorrencia(null);
   };
 
-  const colunas: Column<Ocorrencia>[] = [
+  const colunas = [
     { header: 'TÍTULO', accessor: 'titulo' },
     {
       header: 'DESCRIÇÃO',

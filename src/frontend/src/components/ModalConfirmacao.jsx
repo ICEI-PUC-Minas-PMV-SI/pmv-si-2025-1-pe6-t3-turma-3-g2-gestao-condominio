@@ -1,14 +1,7 @@
 import React from 'react';
 import '../styles/modalconfirmacao.css';
 
-type ModalConfirmacaoProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  titulo: string;
-};
-
-const ModalConfirmacao: React.FC<ModalConfirmacaoProps> = ({
+const ModalConfirmacao = ({
   isOpen,
   onClose,
   onConfirm,
