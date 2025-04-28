@@ -64,15 +64,22 @@ function Login() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('https://nms39zvrw1.execute-api.us-east-2.amazonaws.com/api/auth/login', {
-        email,
-        password,
-      });
-
+      const response = await axios.post(
+        'https://nms39zvrw1.execute-api.us-east-2.amazonaws.com/api/auth/login',
+        { email, password },
+        {
+          headers: {
+            'Content-Type': 'application/json', // Garanta que o Content-Type esteja correto
+            // Se necessário, você pode adicionar cabeçalhos de autorização aqui
+          },
+        }
+      );
+    
       // Se o login for bem-sucedido, armazena o token no localStorage e redireciona
       localStorage.setItem('authToken', response.data.token);
       navigate('/home'); // Redireciona para a página inicial após o login
     } catch (error) {
+      console.error('Erro ao fazer login', error);
       setError(error.response?.data?.message || 'Erro ao fazer login');
     }
   };
