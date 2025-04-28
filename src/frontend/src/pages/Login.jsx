@@ -64,7 +64,7 @@ function Login() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/login', {
+      const response = await axios.post('https://nms39zvrw1.execute-api.us-east-2.amazonaws.com/api/auth/login', {
         email,
         password,
       });
