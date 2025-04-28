@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors({
-    origin: '*',  // Permite qualquer origem (para teste, mas pode ser mais restrito depois)
+    origin: 'https://nms39zvrw1.execute-api.us-east-2.amazonaws.com', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }));
