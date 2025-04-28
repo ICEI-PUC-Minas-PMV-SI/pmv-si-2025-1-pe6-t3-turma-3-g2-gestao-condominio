@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors({
-    origin: '*', 
+    origin: ['http://localhost:3000', 'http://habitare.duckdns.org'], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }));
