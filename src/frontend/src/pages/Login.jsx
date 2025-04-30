@@ -54,6 +54,19 @@ const styles = {
     },
   };
 
+function decodeToken(token) {
+  if (!token) return null;
+
+  try {
+    const payload = token.split('.')[1];
+    const decodedPayload = atob(payload);
+    return JSON.parse(decodedPayload);
+  } catch (error) {
+    console.error('Erro ao decodificar o token:', error);
+    return null;
+  }
+}
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,16 +75,25 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await axios.post('http://localhost:3000/api/auth/login', {
         email,
         password,
       });
 
-      // Se o login for bem-sucedido, armazena o token no localStorage e redireciona
-      localStorage.setItem('authToken', response.data.token);
-      navigate('/home'); // Redireciona para a página inicial após o login
+      const token = response.data.token;
+      localStorage.setItem('authToken', token);
+
+      const decoded = decodeToken(token);
+      const userId = decoded?.id;
+
+      // Redireciona de acordo com o tipo de usuário
+      if (userId === 1) {
+        navigate('/admin/ocorrencias');
+      } else {
+        navigate('/ocorrencias');
+      }
     } catch (error) {
       setError(error.response?.data?.message || 'Erro ao fazer login');
     }
