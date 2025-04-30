@@ -14,6 +14,7 @@ import {
 } from '../services/ocorrenciasService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from '../components/Sidebar';
 
 const truncateString = (str, maxLength) => {
   if (str.length > maxLength) {
@@ -140,6 +141,7 @@ const TelaOcorrencias = () => {
 
   return (
     <div className="container">
+    <Sidebar />
       <ToastContainer
         position="bottom-right"
         toastStyle={{
