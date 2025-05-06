@@ -26,6 +26,7 @@ export const register = async (req, res) => {
 
 // Login de usuário
 export const login = async (req, res) => {
+    console.log(' RECEBEU LOGIN:', req.body);  // ← Coloque aqui
     try {
         const { email, password } = req.body;
 

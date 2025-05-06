@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 import { connectDB as connectMySQL } from './database/mysqlConnection.js';
 import router from './routes/router.js';
 import { sequelize } from './database/mysqlConnection.js';
-
+import cors from 'cors';
 
 
 const app = express();
@@ -23,6 +23,12 @@ connectMySQL();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+  }));
 
 sequelize.sync({ alter: true }).then(() => {
     console.log('MySQL models synchronized');
