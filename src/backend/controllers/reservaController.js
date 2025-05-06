@@ -108,7 +108,7 @@ export const cancelarReserva = async (req, res) => {
       return res.status(403).json({ error: "Você não tem permissão para cancelar esta reserva." });
     }
 
-    reserva.status = "cancelado";
+    reserva.status = "Cancelado";
     await reserva.save();
 
     res.json(reserva);
@@ -116,6 +116,26 @@ export const cancelarReserva = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+export const cancelarReservasAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const reserva = await Reserva.findByPk(id);
+
+    if (!reserva) {
+      return res.status(404).json({ error: "Reserva não encontrada." });
+    }
+
+    reserva.status = "Cancelado";
+    await reserva.save();
+
+    res.json(reserva);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 export const historicoReservas = async (req, res) => {
   try {
