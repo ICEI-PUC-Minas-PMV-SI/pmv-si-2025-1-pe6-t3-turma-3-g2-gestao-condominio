@@ -26,6 +26,16 @@ export const listarReservas = async (req, res) => {
   }
 };
 
+export const listarReservasUser = async (req, res) => {
+  try {
+      const userId = req.userId;
+      const reservas = await Reserva.findAll({ where: { userId } });
+      res.status(200).json(reservas);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+};
+
 export const buscarReserva = async (req, res) => {
   try {
     const reserva = await Reserva.findByPk(req.params.id, {
@@ -64,6 +74,29 @@ export const atualizarReserva = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+export const atualizarReservaAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome, data, horario } = req.body;
+
+    const reserva = await Reserva.findByPk(id);
+
+    if (!reserva) {
+      return res.status(404).json({ error: "Reserva não encontrada." });
+    }
+
+    reserva.nome = nome;
+    reserva.data = data;
+    reserva.horario = horario;
+    await reserva.save();
+
+    res.json(reserva);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 export const cancelarReserva = async (req, res) => {
   try {
