@@ -2,14 +2,14 @@ import React from 'react';
 import '../styles/modaldetalhes.css';
 import { FaTimes } from 'react-icons/fa';
 
-const ModalDetalhes = ({ isOpen, onClose, titulo, descricao }) => {
+const ModalDetalhes = ({ isOpen, onClose, titulo, tituloHeader = 'Detalhes da Ocorrência', descricao }) => {
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
-          <h2>Detalhes da Ocorrência</h2>
+          <h2>{tituloHeader}</h2>
           <button className="close-button" onClick={onClose}>
             <FaTimes />
           </button>
