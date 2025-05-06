@@ -115,26 +115,31 @@ export const updateReserva = async (id, dadosAtualizados) => {
     }
   };    
 
-// Função para excluir uma reserva
-export const cancelarReserva = async (id) => {
-  const token = localStorage.getItem('authToken');
-  console.log('Token no frontend:', token); // Verifica o token recuperado
-
-  if (!token) {
-    toast.error('Usuário não autenticado.');
-    throw new Error('Usuário não autenticado.');
-  }
-
-  try {
-    const response = await api.delete(`/reservas/${id}`, {
-      headers: { Authorization: token },
-    });
-    toast.success('Reserva excluída com sucesso!');
-    return response.data;
-  } catch (error) {
-    const errorMessage =
-      error.response?.data?.message || 'Erro ao excluir reserva';
-    toast.error(errorMessage); // Exibe mensagem de erro para o usuário
-    throw new Error(errorMessage);
-  }
-};
+  export const cancelarReserva = async (id) => {
+    const token = localStorage.getItem('authToken');
+    console.log('Token no frontend:', token);
+  
+    if (!token) {
+      toast.error('Usuário não autenticado.');
+      throw new Error('Usuário não autenticado.');
+    }
+  
+    try {
+      const decoded = jwtDecode(token); // Decodifica o token
+      const isAdmin = decoded?.id === 1; // Verifica se é admin (ajuste conforme necessário)
+  
+      const url = isAdmin ? `/admin/reservas/${id}` : `/reservas/${id}`; // Define a URL com base no tipo de usuário
+  
+      const response = await api.delete(url, {
+        headers: { Authorization: token },
+      });
+  
+      toast.success('Reserva cancelada com sucesso!');
+      return response.data;
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || 'Erro ao cancelar reserva';
+      toast.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+  };

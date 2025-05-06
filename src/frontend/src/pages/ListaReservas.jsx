@@ -119,7 +119,7 @@ const TelaReservas = () => {
   };
 
   const handleOpenEdicao = (reserva) => {
-    if (reserva.status !== 'ativo') {
+    if (reserva.status !== 'Ativo') {
       toast.warning(
         'Não é possível editar uma reserva que não está com status ativo.'
       );
