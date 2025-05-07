@@ -46,8 +46,9 @@
   2. Acessar a rota `/ocorrencias`
   3. Clicar em "Detalhes" de uma ocorrência listada
 - **Verificações:** Modal renderiza corretamente, exibe título, descrição.
-- **Vídeo:**  
-  ![Detalhes da ocorrência](videoservicoocorrencias/detalhes_ocorrencias.mp4)
+    <video width="100%" controls>
+    <source src="videoservicoocorrencias/detalhes_ocorrencias.mp4" type="video/mp4">
+    </video>
 
 ### 2. Criar Ocorrência
 - **Objetivo:** Testar criação de nova ocorrência.
