@@ -95,7 +95,7 @@
 - **Passos:**
   1. Usuário tenta editar enquanto admin muda status
 - **Verificações:** Toast de erro.
-- **Vídeo:** [▶️ Ver vídeo]](videoservicoocorrencias/tentandoupdateparaocorrenciacomstatusalteradonomoment.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/tentandoupdateparaocorrenciacomstatusalteradonomoment.mp4)
 
 ### 8. Visualizar Detalhes da Ocorrência (Admin)
 - **Objetivo:** Admin vê detalhes completos de qualquer ocorrência.
