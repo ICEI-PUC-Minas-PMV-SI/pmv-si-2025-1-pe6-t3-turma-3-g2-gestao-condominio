@@ -46,9 +46,8 @@
   2. Acessar a rota `/ocorrencias`
   3. Clicar em "Detalhes" de uma ocorrência listada
 - **Verificações:** Modal renderiza corretamente, exibe título, descrição.
-    <video width="100%" controls>
-    <source src="videoservicoocorrencias/detalhes_ocorrencias.mp4" type="video/mp4">
-    </video>
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/detalhes_ocorrencias.mp4)
+
 
 ### 2. Criar Ocorrência
 - **Objetivo:** Testar criação de nova ocorrência.
@@ -57,8 +56,7 @@
   2. Ir para `/ocorrencias` clicar no botão de criar ocorrência
   3. Preencher formulário e criar
 - **Verificações:** Atualiza página, toast de sucesso, nova ocorrência na lista.
-- **Vídeo:**  
-  ![Criar ocorrência](videoservicoocorrencias/create_ocorrencias.mp4)
+ - **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/create_ocorrencias.mp4)
 
 ### 3. Editar Ocorrência
 - **Objetivo:** Usuário edita ocorrência em status "aberto".
@@ -67,8 +65,7 @@
   2. Acessar `/ocorrencias` clicar no icon de editar.
   3. Alterar e salvar
 - **Verificações:** Dados atualizados visíveis.
-- **Vídeo:**  
-  ![Ocorrência editada](videoservicoocorrencias/update_ocorrencias.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/update_ocorrencias.mp4)
 
 ### 4. Excluir Ocorrência
 - **Objetivo:** Usuário deleta ocorrência criada por ele.
@@ -76,16 +73,14 @@
   1. Login
   2. Clicar no icon “Excluir” e confirmar
 - **Verificações:** Toast e remoção da lista.
-- **Vídeo:**  
-  ![Ocorrência excluida](videoservicoocorrencias/excluir_ocorrencias.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/excluir_ocorrencias.mp4)
 
 ### 5. Tentar Editar Ocorrência com Status Não em Aberto
 - **Objetivo:** Garantir que usuário não pode editar ocorrência fechada ou em andamento.
 - **Passos:**
   1. Acessar `/ocorrencias` e clicar no icon de editar em uma ocorrência com status diferente de `aberto`
 - **Verificações:** Toast com mensagem explicativa.
-- **Vídeo:**  
-  ![Tentativa de editar ocorrência não aberta](videoservicoocorrencias/edit_status_nao_aberto_user.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/edit_status_nao_aberto_user.mp4)
 
 ### 6. Criar Ocorrência com Campos Vazios
 - **Objetivo:** Formulário deve validar campos obrigatórios.
@@ -93,16 +88,14 @@
   1. Login
   2. Acessar formulário e tentar enviar vazio
 - **Verificações:** Campos com erro, mensagem de validação.
-- **Vídeo:**  
-  ![Tentativa de criar ocorrência com campos vazios](videoservicoocorrencias/empty_fields.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/empty_fields.mp4)
 
 ### 7. Usuário Tentando Editar Ocorrência com Status Alterado no Momento por Admin
 - **Objetivo:** Simular conflito de edição entre usuário e admin.
 - **Passos:**
   1. Usuário tenta editar enquanto admin muda status
 - **Verificações:** Toast de erro.
-- **Vídeo:**  
-  ![Tentativa de editar status alterado no momento por admin](videoservicoocorrencias/tentandoupdateparaocorrenciacomstatusalteradonomoment.mp4)
+- **Vídeo:** [▶️ Ver vídeo]](videoservicoocorrencias/tentandoupdateparaocorrenciacomstatusalteradonomoment.mp4)
 
 ### 8. Visualizar Detalhes da Ocorrência (Admin)
 - **Objetivo:** Admin vê detalhes completos de qualquer ocorrência.
@@ -110,8 +103,7 @@
   1. Login como admin
   2. Acessar `/admin/ocorrencias`
 - **Verificações:** Dados visíveis corretamente.
-- **Vídeo:**  
-  ![Detalhes ocorrências admin](videoservicoocorrencias/detalhes_ocorrencias_admin.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/detalhes_ocorrencias_admin.mp4)
 
 ### 9. Editar Status da Ocorrência (Admin)
 - **Objetivo:** Admin altera status de ocorrência.
@@ -119,8 +111,7 @@
   1. Login admin
   2. Clicar para alterar status na tabela
 - **Verificações:** Status atualizado, mensagem de sucesso.
-- **Vídeo:**  
-  ![Editar status com admin](videoservicoocorrencias/edit_status_admin.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/edit_status_admin.mp4)
 
 ### 10. Admin Tentando Modificar Status de Ocorrência que foi Excluída
 - **Objetivo:** Admin tenta mudar status de ocorrência removida.
@@ -128,16 +119,14 @@
   1. Login como admin
   2. Acessar tela de listagem, tentar mudar status e ao confirmar receber uma mensagem informativa.
 - **Verificações:** Exibe mensagem “ocorrência não encontrada”.
-- **Vídeo:**  
-  ![Tentativa de modificação de status com ocorrência excluida admin](videoservicoocorrencias/admintentandomodificarstatusquefoiexcludonomoment.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/admintentandomodificarstatusquefoiexcludonomoment.mp4)
 
 ### 11. Acessar Rotas sem Token (Usuário/Admin)
 - **Objetivo:** Verificar que rotas protegidas bloqueiam acesso sem autenticação.
 - **Passos:**
   1. Acessar rotas como `/ocorrencias`, `/admin/ocorrencias` sem estar logado
 - **Verificações:** Usuário recebe tela sem dados e toast informativo.
-- **Vídeo:**  
-  ![Rotas sem token](videoservicoocorrencias/rotas_sem_token.mp4)
+- **Vídeo:** [▶️ Ver vídeo](videoservicoocorrencias/rotas_sem_token.mp4)
   
 [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
