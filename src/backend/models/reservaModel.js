@@ -17,7 +17,7 @@ const Reserva = sequelize.define("Reserva", {
     },
     status: {
         type: DataTypes.STRING,
-        defaultValue: "ativo", 
+        defaultValue: "Ativo", 
     },
     userId: {
         type: DataTypes.INTEGER,

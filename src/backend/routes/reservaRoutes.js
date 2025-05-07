@@ -1,15 +1,18 @@
 import express from 'express';
-import { criarReserva, listarReservas, buscarReserva, atualizarReserva, cancelarReserva, historicoReservas } from '../controllers/reservaController.js';
+import { criarReserva, listarReservas, buscarReserva, atualizarReserva, cancelarReserva, historicoReservas,listarReservasUser, atualizarReservaAdmin, cancelarReservasAdmin } from '../controllers/reservaController.js';
 import { verifyToken } from '../controllers/authController.js';
 import { isAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/reserva', verifyToken, criarReserva);
+router.post('/reservas', verifyToken, criarReserva);
 router.get('/reservas', verifyToken, isAdmin, listarReservas);
-router.get('/reserva/:id', verifyToken, buscarReserva);
-router.put('/reserva/:id', verifyToken, atualizarReserva);
-router.delete('/reserva/:id', verifyToken, cancelarReserva);
+router.get('/listar/reservas', verifyToken, listarReservasUser);
+router.get('/reservas/:id', verifyToken, buscarReserva);
+router.put('/reservas/:id', verifyToken, atualizarReserva);
+router.put('/admin/reservas/:id', verifyToken, atualizarReservaAdmin);
+router.delete('/reservas/:id', verifyToken, cancelarReserva);
+router.delete('/admin/reservas/:id', verifyToken, cancelarReservasAdmin);
 router.get('/historico', verifyToken, historicoReservas);
 
 export default router;
