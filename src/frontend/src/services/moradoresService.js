@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const api = axios.create({ baseURL: 'http://localhost:3000/api' });
 
 const getHeaders = () => {
@@ -26,7 +27,14 @@ export const deletarMorador = async (id) => {
   return res.data;
 };
 
-export const getMoradorDoUsuario = async (id) => {
-  const res = await api.get(`/moradores/${id}`, { headers: getHeaders() });
-  return res.data;
+export const getMoradorDoUsuario = async () => {
+  try {
+    const res = await api.get("/moradores/usuario", { 
+      headers: getHeaders() 
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Erro na chamada getMoradorDoUsuario:", error);
+    throw error; // Propaga o erro para ser tratado pelo componente
+  }
 };
