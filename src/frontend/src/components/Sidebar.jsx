@@ -43,7 +43,7 @@ function Sidebar() {
                 <Link to="/reservas">Reservas</Link>
               </li>
               <li>
-                <Link to="/moradores">Moradores</Link>
+                <Link to="/admin/moradores">Moradores</Link>
               </li>
               {/* <li><Link to="/listar/visitantes">Visitantes</Link></li> */}
             </>
