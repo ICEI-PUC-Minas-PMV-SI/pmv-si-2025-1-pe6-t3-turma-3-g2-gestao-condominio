@@ -121,7 +121,7 @@
 - **Vídeo:**  
   ![Editar status com admin](front-teste-servico-ocorrencias/edit_status_admin.mp4)
 
-### 10. Admin Tentando Modificar Status de Ocorrência que Foi Excluída
+### 10. Admin Tentando Modificar Status de Ocorrência que foi Excluída
 - **Objetivo:** Admin tenta mudar status de ocorrência removida.
 - **Passos:**
   1. Login como admin
