@@ -46,8 +46,6 @@
   2. Acessar a rota `/ocorrencias`
   3. Clicar em "Detalhes" de uma ocorrência listada
 - **Verificações:** Modal renderiza corretamente, exibe título, descrição.
-- **Imagem:** ![detalhesuser](imgservicocorrencias/detalhesuser.png)
-
 
 ### 2. Criar Ocorrência
 - **Objetivo:** Testar criação de nova ocorrência.
@@ -56,7 +54,6 @@
   2. Ir para `/ocorrencias` clicar no botão de criar ocorrência
   3. Preencher formulário e criar
 - **Verificações:** Atualiza página, toast de sucesso, nova ocorrência na lista.
-- **Imagem:** ![criando_ocorrencia](imgservicocorrencias/criando_ocorrencia.png)
 
 ### 3. Editar Ocorrência
 - **Objetivo:** Usuário edita ocorrência em status "aberto".
@@ -65,7 +62,6 @@
   2. Acessar `/ocorrencias` clicar no icon de editar.
   3. Alterar e salvar
 - **Verificações:** Dados atualizados visíveis.
-- **Imagem:** ![atualizando_nov](imgservicocorrencias/atualizando_nov.png)
 
 ### 4. Excluir Ocorrência
 - **Objetivo:** Usuário deleta ocorrência criada por ele.
@@ -73,14 +69,12 @@
   1. Login
   2. Clicar no icon “Excluir” e confirmar
 - **Verificações:** Toast e remoção da lista.
-- **Imagem:** ![delet_ocorrencia](imgservicocorrencias/delet_ocorrencia.png)
 
 ### 5. Tentar Editar Ocorrência com Status Não em Aberto
 - **Objetivo:** Garantir que usuário não pode editar ocorrência fechada ou em andamento.
 - **Passos:**
   1. Acessar `/ocorrencias` e clicar no icon de editar em uma ocorrência com status diferente de `aberto`
 - **Verificações:** Toast com mensagem explicativa.
-- **Imagem:** ![edit_nao_open](imgservicocorrencias/editnaoabre.png)
 
 ### 6. Criar Ocorrência com Campos Vazios
 - **Objetivo:** Formulário deve validar campos obrigatórios.
@@ -88,14 +82,12 @@
   1. Login
   2. Acessar formulário e tentar enviar vazio
 - **Verificações:** Campos com erro.
-- **Imagem:** ![empty_fields](imgservicocorrencias/emptyfieldsmodal.png)
 
 ### 7. Usuário Tentando Editar Ocorrência com Status Alterado no Momento por Admin
 - **Objetivo:** Simular conflito de edição entre usuário e admin.
 - **Passos:**
   1. Usuário tenta editar enquanto admin muda status
 - **Verificações:** Toast de erro.
-- **Imagem:** ![erraoatualizar](imgservicocorrencias/erraoatualizar.png)
 
 ### 8. Visualizar Detalhes da Ocorrência (Admin)
 - **Objetivo:** Admin vê detalhes completos de qualquer ocorrência.
@@ -103,7 +95,6 @@
   1. Login como admin
   2. Acessar `/admin/ocorrencias`
 - **Verificações:** Dados visíveis corretamente.
-- **Imagem:** ![detalhes_admin](imgservicocorrencias/detailsadmin.png)
 
 ### 9. Editar Status da Ocorrência (Admin)
 - **Objetivo:** Admin altera status de ocorrência.
@@ -111,7 +102,6 @@
   1. Login admin
   2. Clicar para alterar status na tabela
 - **Verificações:** Status atualizado, mensagem de sucesso.
-- **Imagem:** ![editstatusadmin](imgservicocorrencias/editstatusadmin.png)
 
 ### 10. Admin Tentando Modificar Status de Ocorrência que foi Excluída
 - **Objetivo:** Admin tenta mudar status de ocorrência removida.
@@ -119,14 +109,12 @@
   1. Login como admin
   2. Acessar tela de listagem, tentar mudar status e ao confirmar receber uma mensagem informativa.
 - **Verificações:** Exibe mensagem “ocorrência não encontrada”.
-- **Imagem:** ![notfound](imgservicocorrencias/toastnotfound.png)
 
 ### 11. Acessar Rotas sem Token (Usuário/Admin)
 - **Objetivo:** Verificar que rotas protegidas bloqueiam acesso sem autenticação.
 - **Passos:**
   1. Acessar rotas como `/ocorrencias`, `/admin/ocorrencias` sem estar logado
 - **Verificações:** Usuário recebe tela sem dados e toast informativo.
-- **Imagem:** ![semtoken](imgservicocorrencias/semtokensempermissao.png)
   
 [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
