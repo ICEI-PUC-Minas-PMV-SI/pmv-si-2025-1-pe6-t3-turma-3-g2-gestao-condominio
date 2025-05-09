@@ -87,3 +87,19 @@ export const deletarMorador = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+export const getMoradorDoUsuario = async (req, res) => {
+  try {
+    const morador = await Morador.findOne({
+      where: { userId: req.userId }
+    });
+
+    if (!morador) {
+      return res.status(404).json({ error: 'Morador não encontrado para este usuário.' });
+    }
+
+    res.json(morador);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
