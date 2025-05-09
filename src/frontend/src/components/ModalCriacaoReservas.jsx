@@ -11,7 +11,7 @@ const ModalCriacaoReservas = ({ isOpen, onClose, onCreate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCreate({nome, data, horario, status: 'ativo'} );
+    onCreate({ nome, data, horario, status: 'ativo' });
     setLocal('');
     setData('');
     setHorario('');
@@ -30,32 +30,36 @@ const ModalCriacaoReservas = ({ isOpen, onClose, onCreate }) => {
         <form onSubmit={handleSubmit} className="form-modal">
           <label className="label-modal">
             LOCAL
-            <input 
-              type="text" 
-              className="input-modal" 
-              value={nome} 
-              onChange={(e) => setLocal(e.target.value)} 
-              required 
-            />
+            <select
+              className="input-modal"
+              value={nome}
+              onChange={(e) => setLocal(e.target.value)}
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="Quadra">Quadra</option>
+              <option value="Salão de Festas">Salão de Festas</option>
+              <option value="Churrasqueira">Churrasqueira</option>
+            </select>
           </label>
           <label className="label-modal">
             DATA
-            <input 
-              type="date" 
-              className="input-modal" 
-              value={data} 
-              onChange={(e) => setData(e.target.value)} 
-              required 
+            <input
+              type="date"
+              className="input-modal"
+              value={data}
+              onChange={(e) => setData(e.target.value)}
+              required
             />
           </label>
           <label className="label-modal">
             HORÁRIO
-            <input 
-              type="time" 
-              className="input-modal" 
-              value={horario} 
-              onChange={(e) => setHorario(e.target.value)} 
-              required 
+            <input
+              type="time"
+              className="input-modal"
+              value={horario}
+              onChange={(e) => setHorario(e.target.value)}
+              required
             />
           </label>
           <button type="submit" className="button-create">CRIAR</button>
