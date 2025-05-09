@@ -6,15 +6,14 @@ const ModalEdicaoReservas = ({ isOpen, onClose, onEdit, initialData }) => {
   const [nome, setNome] = useState('');
   const [data, setData] = useState('');
   const [horario, setHorario] = useState('');
-  const [status, setStatus] = useState(''); // Adicionando o status no estado
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     if (isOpen) {
-      // Preenche os campos com os dados iniciais da reserva
       setNome(initialData.nome);
       setData(initialData.data);
       setHorario(initialData.horario);
-      setStatus(initialData.status); // Preserva o status
+      setStatus(initialData.status);
     }
   }, [isOpen, initialData]);
 
@@ -22,9 +21,8 @@ const ModalEdicaoReservas = ({ isOpen, onClose, onEdit, initialData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Chama a função de edição com os novos valores, incluindo o status
     onEdit(nome, data, horario, status);
-    onClose(); // Fecha o modal após a edição
+    onClose();
   };
 
   return (
@@ -39,13 +37,17 @@ const ModalEdicaoReservas = ({ isOpen, onClose, onEdit, initialData }) => {
         <form onSubmit={handleSubmit} className="form-modal">
           <label className="label-modal">
             LOCAL
-            <input
-              type="text"
+            <select
               className="input-modal"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
               required
-            />
+            >
+              <option value="">Selecione...</option>
+              <option value="Quadra">Quadra</option>
+              <option value="Salão de Festas">Salão de Festas</option>
+              <option value="Churrasqueira">Churrasqueira</option>
+            </select>
           </label>
           <label className="label-modal">
             DATA
