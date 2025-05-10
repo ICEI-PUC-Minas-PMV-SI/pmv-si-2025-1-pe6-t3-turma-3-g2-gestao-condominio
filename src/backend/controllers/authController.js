@@ -24,6 +24,84 @@ export const register = async (req, res) => {
     }
 };
 
+export const listarUsuarios = async (req, res) => {
+    try {
+        const usuarios = await User.findAll({ attributes: ['id', 'name', 'email'] }); // Evita retornar senhas
+        res.json(usuarios);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao buscar usuários', error });
+    }
+};
+
+// Atualização de usuário
+export const atualizarUsuario = async (req, res) => {
+    const { id } = req.params;  // Pega o ID do usuário que será atualizado
+    const { name, email, password } = req.body;  // Dados que serão atualizados
+
+    try {
+        // Verifica se o usuário existe
+        const user = await User.findOne({ where: { id } });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+
+        // Verifica se o email já está em uso por outro usuário
+        if (email && email !== user.email) {
+            const existingEmail = await User.findOne({ where: { email } });
+            if (existingEmail) {
+                return res.status(400).json({ message: 'E-mail já cadastrado' });
+            }
+        }
+
+        // Atualiza os dados do usuário
+        if (name) user.name = name;
+        if (email) user.email = email;
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            user.password = hashedPassword;
+        }
+
+        await user.save();  // Salva as alterações no banco de dados
+
+        res.status(200).json({ message: 'Usuário atualizado com sucesso' });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao atualizar usuário', error });
+    }
+};
+
+export const deletarUsuario = async (req, res) => {
+    const { id } = req.params;
+
+    console.log('🔎 Tentativa de excluir usuário ID:', id, 'por usuário autenticado ID:', req.userId); // 🛠 Depuração
+
+    try {
+        const user = await User.findOne({ where: { id } });
+        if (!user) {
+            console.log('🚫 Usuário não encontrado!');
+            return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+
+        // 🔥 Verifica se o usuário tem permissão
+        if (req.userId !== 1) {
+            console.log('⛔ Permissão negada! O usuário autenticado não é administrador.');
+            return res.status(403).json({ message: 'Permissão negada' });
+        }
+
+        await user.destroy();
+        console.log('✅ Usuário ID', id, 'deletado com sucesso!');
+        res.status(200).json({ message: 'Usuário deletado com sucesso' });
+    } catch (error) {
+        console.error('❌ Erro ao deletar usuário:', error);
+        res.status(500).json({ message: 'Erro ao deletar usuário', error });
+    }
+};
+
+
+
+
+
+
+
 // Login de usuário
 export const login = async (req, res) => {
     console.log(' RECEBEU LOGIN:', req.body);  // ← Coloque aqui
@@ -40,6 +118,7 @@ export const login = async (req, res) => {
 
         // Gerar Token JWT
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '2h' });
+        console.log('✅ Token gerado:', token);
 
         res.json({ message: 'Login bem-sucedido', token });
     } catch (error) {
@@ -47,15 +126,37 @@ export const login = async (req, res) => {
     }
 };
 
-// Verificação de Token (Proteção de Rotas)
 export const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+    let token = req.headers['authorization']; // ✅ Pegando do cabeçalho da requisição
 
-    if (!token) return res.status(401).json({ message: 'Acesso negado' });
+    console.log('🔥 Token recebido na API:', token);  // 🛠 Depuração
+
+    if (!token) {
+        console.log('🚫 Nenhum token foi enviado!');
+        return res.status(401).json({ message: 'Acesso negado' });
+    }
+
+    // 🔥 Remove "Bearer " se ele estiver presente
+    if (token.startsWith('Bearer ')) {
+        token = token.slice(7).trim();
+    }
+
+    console.log('🔍 Token processado:', token);  // 🛠 Depuração
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) return res.status(403).json({ message: 'Token inválido' });
+        if (err) {
+            console.log('⚠️ Token inválido!', err);
+            return res.status(403).json({ message: 'Token inválido' });
+        }
+
+        console.log('✅ Usuário autenticado com ID:', decoded.id);
         req.userId = decoded.id;
         next();
     });
 };
+
+
+
+
+
+

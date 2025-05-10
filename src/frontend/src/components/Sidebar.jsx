@@ -45,6 +45,9 @@ function Sidebar() {
               <li>
                 <Link to="/admin/moradores">Moradores</Link>
               </li>
+              <li>
+                <Link to="/register">Registrar</Link>
+              </li>
               {/* <li><Link to="/listar/visitantes">Visitantes</Link></li> */}
             </>
           ) : (
