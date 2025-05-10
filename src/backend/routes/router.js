@@ -11,6 +11,6 @@ router.use(ocorrenciaRoutes);
 router.use(reservaRoutes);  
 router.use(authRoutes);
 router.use('/moradores', moradorRoutes);
-router.use(visitanteRoutes); // Corrigido
+router.use(visitanteRoutes); 
 
 export default router;
