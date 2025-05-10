@@ -46,6 +46,10 @@ function Sidebar() {
                 <Link to="/admin/moradores">Moradores</Link>
               </li>
               <li>
+              <li>
+                <Link to="/register">Registrar</Link>
+              </li>
+              <li>
                 <Link to="/admin/visitantes">Visitantes</Link>
               </li>
             </>
