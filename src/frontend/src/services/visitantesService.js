@@ -6,10 +6,10 @@ const api = axios.create({
   baseURL: 'http://localhost:3000/api',
 });
 
-// Função para criar um novo visitante
+const getToken = () => localStorage.getItem('authToken');
+
 export const createVisitante = async (dadosVisitante) => {
-  const token = localStorage.getItem('authToken');
-  console.log('Token no frontend:', token); // Verifica o token recuperado
+  const token = getToken();
 
   if (!token) {
     toast.error('Usuário não autenticado.');
@@ -17,26 +17,20 @@ export const createVisitante = async (dadosVisitante) => {
   }
 
   try {
-    const response = await api.post(
-      '/visitantes', // A rota pode ser '/visitantes' ou outra, conforme a API
-      dadosVisitante,
-      {
-        headers: { Authorization: token },
-      }
-    );
+    const response = await api.post('/visitantes', dadosVisitante, {
+      headers: { Authorization: token },
+    });
     toast.success('Visitante criado com sucesso!');
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'Erro ao criar visitante';
-    toast.error(errorMessage); // Exibe mensagem de erro para o usuário
+    toast.error(errorMessage);
     throw new Error(errorMessage);
   }
 };
 
-// Função para buscar visitantes do usuário logado
 export const getVisitantes = async () => {
-  const token = localStorage.getItem('authToken');
-  console.log('Token no frontend:', token);
+  const token = getToken();
 
   if (!token) {
     toast.error('Usuário não autenticado.');
@@ -44,15 +38,12 @@ export const getVisitantes = async () => {
   }
 
   try {
-    const decoded = jwtDecode(token); // Decodifica o token
-    const isAdmin = decoded?.id === 1; // Considera se user admin id === 1
-
+    const decoded = jwtDecode(token);
+    const isAdmin = decoded?.id === 1;
     const url = isAdmin ? '/visitantes' : '/listar/visitantes';
 
     const response = await api.get(url, {
-      headers: {
-        Authorization: token,
-      },
+      headers: { Authorization: token },
     });
 
     return response.data;
@@ -63,10 +54,8 @@ export const getVisitantes = async () => {
   }
 };
 
-// Função para buscar um visitante por ID
 export const getVisitanteById = async (id) => {
-  const token = localStorage.getItem('authToken');
-  console.log('Token no frontend:', token); // Verifica o token recuperado
+  const token = getToken();
 
   if (!token) {
     toast.error('Usuário não autenticado.');
@@ -80,15 +69,13 @@ export const getVisitanteById = async (id) => {
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'Erro ao buscar visitante';
-    toast.error(errorMessage); // Exibe mensagem de erro para o usuário
+    toast.error(errorMessage);
     throw new Error(errorMessage);
   }
 };
 
-// Função para atualizar um visitante
 export const updateVisitante = async (id, dadosAtualizados) => {
-  const token = localStorage.getItem('authToken');
-  console.log('Token no frontend:', token);
+  const token = getToken();
 
   if (!token) {
     toast.error('Usuário não autenticado.');
@@ -96,10 +83,9 @@ export const updateVisitante = async (id, dadosAtualizados) => {
   }
 
   try {
-    const decoded = jwtDecode(token); // Decodifica o token
-    const isAdmin = decoded?.id === 1; // Verifica se é admin
-
-    const url = isAdmin ? `/admin/visitantes/${id}` : `/visitantes/${id}`; // Define a URL com base no tipo de usuário
+    const decoded = jwtDecode(token);
+    const isAdmin = decoded?.id === 1;
+    const url = isAdmin ? `/admin/visitantes/${id}` : `/visitantes/${id}`;
 
     const response = await api.put(url, dadosAtualizados, {
       headers: { Authorization: token },
@@ -108,17 +94,14 @@ export const updateVisitante = async (id, dadosAtualizados) => {
     toast.success('Visitante atualizado com sucesso!');
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error.response?.data?.message || 'Erro ao atualizar visitante';
+    const errorMessage = error.response?.data?.message || 'Erro ao atualizar visitante';
     toast.error(errorMessage);
     throw new Error(errorMessage);
   }
 };
 
-// Função para cancelar um visitante
 export const cancelarVisitante = async (id) => {
-  const token = localStorage.getItem('authToken');
-  console.log('Token no frontend:', token);
+  const token = getToken();
 
   if (!token) {
     toast.error('Usuário não autenticado.');
@@ -126,10 +109,9 @@ export const cancelarVisitante = async (id) => {
   }
 
   try {
-    const decoded = jwtDecode(token); // Decodifica o token
-    const isAdmin = decoded?.id === 1; // Verifica se é admin (ajuste conforme necessário)
-
-    const url = isAdmin ? `/admin/visitantes/${id}` : `/visitantes/${id}`; // Define a URL com base no tipo de usuário
+    const decoded = jwtDecode(token);
+    const isAdmin = decoded?.id === 1;
+    const url = isAdmin ? `/admin/visitantes/${id}` : `/visitantes/${id}`;
 
     const response = await api.delete(url, {
       headers: { Authorization: token },
@@ -138,8 +120,7 @@ export const cancelarVisitante = async (id) => {
     toast.success('Visitante cancelado com sucesso!');
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error.response?.data?.message || 'Erro ao cancelar visitante';
+    const errorMessage = error.response?.data?.message || 'Erro ao cancelar visitante';
     toast.error(errorMessage);
     throw new Error(errorMessage);
   }

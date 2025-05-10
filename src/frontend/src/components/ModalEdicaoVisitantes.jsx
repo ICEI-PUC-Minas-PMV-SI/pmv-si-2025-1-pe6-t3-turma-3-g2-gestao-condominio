@@ -3,17 +3,17 @@ import '../styles/modalcriacao.css';
 import { FaTimes } from 'react-icons/fa';
 
 const ModalEdicaoVisitantes = ({ isOpen, onClose, onEdit, initialData }) => {
-  const [apartamento, setApartamento] = useState('');  // Alterado para 'apartamento'
-  const [nome, setNome] = useState('');  // Alterado para 'nome'
+  const [nome, setNome] = useState('');
+  const [documento, setDocumento] = useState('');
+  const [apartamento, setApartamento] = useState('');
   const [data, setData] = useState('');
-  const [documento, setDocumento] = useState('');  // Alterado para 'documento'
 
   useEffect(() => {
     if (isOpen) {
-      setNome(initialData.nome);  // Alterado para 'nome'
-      setApartamento(initialData.apartamento);  // Alterado para 'apartamento'
-      setData(initialData.data);
-      setDocumento(initialData.documento);  // Alterado para 'documento'
+      setNome(initialData?.nome || '');
+      setDocumento(initialData?.documento || '');
+      setApartamento(initialData?.apartamento || '');
+      setData(initialData?.dataVisita || '');
     }
   }, [isOpen, initialData]);
 
@@ -21,7 +21,7 @@ const ModalEdicaoVisitantes = ({ isOpen, onClose, onEdit, initialData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onEdit(nome, apartamento, data, documento);  // Alterado para 'nome', 'apartamento', 'documento'
+    onEdit({ nome, documento, apartamento, data });
     onClose();
   };
 
@@ -40,37 +40,32 @@ const ModalEdicaoVisitantes = ({ isOpen, onClose, onEdit, initialData }) => {
             <input
               type="text"
               className="input-modal"
-              value={nome}  // Alterado para 'nome'
-              onChange={(e) => setNome(e.target.value)}  // Atualiza o estado de 'nome'
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
               required
-              placeholder="Digite o nome do visitante"
             />
           </label>
-
           <label className="label-modal">
             DOCUMENTO
             <input
               type="text"
               className="input-modal"
-              value={documento}  // Alterado para 'documento'
-              onChange={(e) => setDocumento(e.target.value)}  // Atualiza o estado de 'documento'
+              value={documento}
+              onChange={(e) => setDocumento(e.target.value)}
               required
-              placeholder="Digite o número do documento"
+              disabled
             />
           </label>
-
           <label className="label-modal">
             APARTAMENTO
             <input
               type="text"
               className="input-modal"
-              value={apartamento}  // Alterado para 'apartamento'
-              onChange={(e) => setApartamento(e.target.value)}  // Atualiza o estado de 'apartamento'
+              value={apartamento}
+              onChange={(e) => setApartamento(e.target.value)}
               required
-              placeholder="Digite o número do apartamento"
             />
           </label>
-
           <label className="label-modal">
             DATA
             <input
@@ -81,7 +76,6 @@ const ModalEdicaoVisitantes = ({ isOpen, onClose, onEdit, initialData }) => {
               required
             />
           </label>
-
           <button type="submit" className="button-create">EDITAR</button>
         </form>
       </div>

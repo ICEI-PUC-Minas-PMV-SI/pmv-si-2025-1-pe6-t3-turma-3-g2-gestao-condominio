@@ -3,20 +3,20 @@ import '../styles/modalcriacao.css';
 import { FaTimes } from 'react-icons/fa';
 
 const ModalCriacaoVisitantes = ({ isOpen, onClose, onCreate }) => {
-  const [apartamento, setApartamento] = useState('');  // Alterado para 'apartamento'
-  const [nome, setNome] = useState('');  // Novo campo para 'nome'
+  const [nome, setNome] = useState('');
+  const [documento, setDocumento] = useState('');
+  const [apartamento, setApartamento] = useState('');
   const [data, setData] = useState('');
-  const [documento, setDocumento] = useState('');  // Novo campo para 'documento'
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCreate({ nome, apartamento, data, documento, status: 'ativo' });  // Incluindo 'documento' no objeto
-    setNome('');  // Limpar o campo 'nome'
-    setApartamento('');  // Limpar o campo 'apartamento'
+    onCreate({ nome, documento, apartamento, data });
+    setNome('');
+    setDocumento('');
+    setApartamento('');
     setData('');
-    setDocumento('');  // Limpar o campo 'documento'
     onClose();
   };
 
@@ -35,37 +35,31 @@ const ModalCriacaoVisitantes = ({ isOpen, onClose, onCreate }) => {
             <input
               type="text"
               className="input-modal"
-              value={nome}  // Novo campo 'nome'
-              onChange={(e) => setNome(e.target.value)}  // Atualiza o estado do 'nome'
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
               required
-              placeholder="Digite o nome do visitante"
             />
           </label>
-
           <label className="label-modal">
             DOCUMENTO
             <input
               type="text"
               className="input-modal"
-              value={documento}  // Alterado para 'documento'
-              onChange={(e) => setDocumento(e.target.value)}  // Atualiza o estado do 'documento'
+              value={documento}
+              onChange={(e) => setDocumento(e.target.value)}
               required
-              placeholder="Digite o número do documento"
             />
           </label>
-
           <label className="label-modal">
             APARTAMENTO
             <input
               type="text"
               className="input-modal"
-              value={apartamento}  // Alterado para 'apartamento'
-              onChange={(e) => setApartamento(e.target.value)}  // Alterado para 'setApartamento'
+              value={apartamento}
+              onChange={(e) => setApartamento(e.target.value)}
               required
-              placeholder="Digite o número do apartamento"
             />
           </label>
-
           <label className="label-modal">
             DATA
             <input
@@ -76,7 +70,6 @@ const ModalCriacaoVisitantes = ({ isOpen, onClose, onCreate }) => {
               required
             />
           </label>
-
           <button type="submit" className="button-create">CRIAR</button>
         </form>
       </div>

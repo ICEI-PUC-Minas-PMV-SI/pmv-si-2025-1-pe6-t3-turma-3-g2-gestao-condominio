@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '../styles/datatable.css';
 import { DataTable } from '../components/DataTable';
 import { FaEdit, FaTimes, FaInfoCircle } from 'react-icons/fa';
-import ModalDetalhes from '../components/ModalDetalhes';
 import ModalCriacaoVisitantes from '../components/ModalCriacaoVisitantes';
 import ModalConfirmacao from '../components/ModalConfirmacao';
 import ModalEdicaoVisitantes from '../components/ModalEdicaoVisitantes';
+import ModalDetalhes from '../components/ModalDetalhes';
+import Sidebar from '../components/Sidebar';
 import {
   getVisitantes,
   createVisitante,
@@ -14,7 +15,6 @@ import {
 } from '../services/visitantesService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Sidebar from '../components/Sidebar';
 import { jwtDecode } from 'jwt-decode';
 
 const TelaVisitantes = () => {
@@ -38,12 +38,11 @@ const TelaVisitantes = () => {
 
     fetchVisitantes();
 
-    // Verifica se o usuário é admin com base no token
     const token = localStorage.getItem('authToken');
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        setIsAdmin(decoded?.id === 1); // ajuste aqui se tiver um campo como isAdmin
+        setIsAdmin(decoded?.id === 1);
       } catch (err) {
         console.error('Erro ao decodificar token:', err);
       }
@@ -68,10 +67,8 @@ const TelaVisitantes = () => {
   const handleConfirmacao = async () => {
     try {
       await cancelarVisitante(selectedVisitante.id);
-      setDados((prevDados) =>
-        prevDados.map((item) =>
-          item.id === selectedVisitante.id ? { ...item, documento: 'cancelado' } : item
-        )
+      setDados((prev) =>
+        prev.filter((item) => item.id !== selectedVisitante.id)
       );
       setModalConfirmacaoOpen(false);
       setSelectedVisitante(null);
@@ -80,60 +77,44 @@ const TelaVisitantes = () => {
     }
   };
 
-  const handleCreateVisitante = async (nome, apartamento, data, documento) => {
+  const handleCreateVisitante = async ({ nome, apartamento, data, documento }) => {
     try {
-      const novoVisitante = await createVisitante(nome, apartamento, data, documento);
-      setDados((prevDados) => [...prevDados, novoVisitante]);
+      const novo = await createVisitante({ nome, apartamento, dataVisita: data, documento });
+      setDados((prev) => [...prev, novo]);
       setModalCriacaoOpen(false);
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const handleEditVisitante = async (nome, apartamento, data, documento) => {
-    if (selectedVisitante) {
-      try {
-        const dadosAtualizados = {
-          nome,
-          apartamento,
-          data,
-          documento, // Alterado para 'documento'
-        };
-
-        const visitanteAtualizado = await updateVisitante(
-          selectedVisitante.id,
-          dadosAtualizados
-        );
-
-        setDados((prevDados) =>
-          prevDados.map((item) =>
-            item.id === selectedVisitante.id ? visitanteAtualizado : item
-          )
-        );
-        setModalEdicaoOpen(false);
-        setSelectedVisitante(null);
-      } catch (error) {
-        console.error('Erro ao atualizar visitante:', error.message);
-      }
+  const handleEditVisitante = async ({ nome, apartamento, data, documento }) => {
+    try {
+      const atualizado = await updateVisitante(selectedVisitante.id, {
+        nome,
+        apartamento,
+        dataVisita: data,
+        documento,
+      });
+      setDados((prev) =>
+        prev.map((item) => (item.id === atualizado.id ? atualizado : item))
+      );
+      setModalEdicaoOpen(false);
+      setSelectedVisitante(null);
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
   const handleOpenEdicao = (visitante) => {
-    if (visitante.documento !== 'Ativo') {  // Alterado para 'documento'
-      toast.warning(
-        'Não é possível editar um visitante que não está com documento ativo.'
-      );
-      return;
-    }
     setSelectedVisitante(visitante);
     setModalEdicaoOpen(true);
   };
 
   const colunas = [
     { header: 'NOME', accessor: 'nome' },
-    { header: 'DOCUMENTO', accessor: 'documento' },  // Alterado para 'documento'
-    { header: 'APARTAMENTO', accessor: 'apartamento' },  // Alterado para 'apartamento'
-    { header: 'DATA', accessor: 'data' },
+    { header: 'DOCUMENTO', accessor: 'documento' },
+    { header: 'APARTAMENTO', accessor: 'apartamento' },
+    { header: 'DATA', accessor: 'dataVisita' },
     {
       header: 'AÇÕES',
       render: (item) => (
@@ -155,14 +136,7 @@ const TelaVisitantes = () => {
   return (
     <div className="container">
       <Sidebar />
-      <ToastContainer
-        position="bottom-right"
-        toastStyle={{
-          fontSize: '18px',
-          width: '400px',
-          padding: '20px',
-        }}
-      />
+      <ToastContainer position="bottom-right" />
       <div className="header">
         <h1>LISTAGEM DE VISITANTES</h1>
         {!isAdmin && (
@@ -185,7 +159,12 @@ const TelaVisitantes = () => {
         onClose={() => setModalEdicaoOpen(false)}
         onEdit={handleEditVisitante}
         initialData={
-          selectedVisitante || { nome: '', apartamento: '', data: '', documento: '' }
+          selectedVisitante || {
+            nome: '',
+            apartamento: '',
+            data: '',
+            documento: '',
+          }
         }
       />
       {selectedVisitante && (
@@ -194,14 +173,14 @@ const TelaVisitantes = () => {
           onClose={handleCloseModal}
           tituloHeader="Detalhes do Visitante"
           titulo={selectedVisitante.nome}
-          descricao={`Data: ${selectedVisitante.data}, Apartamento: ${selectedVisitante.apartamento}`}
+          descricao={`Data: ${selectedVisitante.dataVisita}, Apartamento: ${selectedVisitante.apartamento}, Documento: ${selectedVisitante.documento}`}
         />
       )}
       <ModalConfirmacao
         isOpen={modalConfirmacaoOpen}
         onClose={() => setModalConfirmacaoOpen(false)}
         onConfirm={handleConfirmacao}
-        titulo={selectedVisitante ? selectedVisitante.nome : ''}
+        titulo={selectedVisitante?.nome || ''}
       />
     </div>
   );
