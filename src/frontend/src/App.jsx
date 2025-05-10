@@ -7,6 +7,7 @@ import TelaOcorrenciasAdmin from './pages/TelaOcorrenciasAdmin';
 import TelaMoradoresAdmin from './pages/TelaMoradoresAdmin';
 import TelaMoradorUsuario from './pages/TelaMoradorUsuario';
 import TelaReservas from './pages/ListaReservas';
+import TelaVisitantes from './pages/ListaVisitantes';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/moradores" element={<TelaMoradorUsuario />} />
         <Route path="/reservas" element={<TelaReservas />} />
         <Route path="/admin/reservas" element={<TelaReservas />} />
+        <Route path="/visitantes" element={<TelaVisitantes />} />
+        <Route path="/admin/visitantes" element={<TelaVisitantes />} />
       </Routes>
     </div>
   )

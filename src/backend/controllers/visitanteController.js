@@ -1,6 +1,6 @@
 import Visitante from '../models/visitanteModel.js';
 import { User } from '../models/user.js';
-import { validationResult } from 'express-validator';  
+import { validationResult } from 'express-validator';
 
 export const criarVisitante = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ export const criarVisitante = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { nome, documento, apartamento, dataVisita } = req.body;
+    const { nome, documento, apartamento, dataVisita } = req.body; // Ensure dataVisita is used
     const userId = req.userId;
 
     if (!nome || !documento || !apartamento || !dataVisita) {
@@ -34,13 +34,13 @@ export const listarVisitantes = async (req, res) => {
     const userId = req.userId;
 
     const visitantes = await Visitante.findAll({
-      where: { userId }, 
+      where: { userId },
       include: {
         model: User,
         attributes: ['id', 'name', 'email'],
       },
     });
-    
+
     res.status(200).json(visitantes);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -65,7 +65,7 @@ export const buscarVisitantePorId = async (req, res) => {
 export const atualizarVisitante = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nome, documento, apartamento, dataVisita } = req.body;
+    const { nome, documento, apartamento, dataVisita } = req.body; // Ensure 'dataVisita' is used
     const visitante = await Visitante.findByPk(id);
 
     if (!visitante) {
@@ -76,7 +76,7 @@ export const atualizarVisitante = async (req, res) => {
     visitante.documento = documento || visitante.documento;
     visitante.apartamento = apartamento || visitante.apartamento;
     visitante.dataVisita = dataVisita || visitante.dataVisita;
-    
+
     await visitante.save();
     res.status(200).json(visitante);
   } catch (error) {

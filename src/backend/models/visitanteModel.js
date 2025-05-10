@@ -26,7 +26,7 @@ const Visitante = sequelize.define('Visitante', {
       notEmpty: { msg: 'O apartamento é obrigatório.' },
     },
   },
-  dataVisita: {
+  data: {  
     type: DataTypes.DATE,
     allowNull: false,
     validate: {
