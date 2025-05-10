@@ -33,43 +33,20 @@ function Sidebar() {
         <ul>
           {isAdmin ? (
             <>
-              <li>
-                {/* <Link to="/home">Início</Link> */}
-              </li>
-              <li>
-                <Link to="/admin/ocorrencias">Ocorrências</Link>
-              </li>
-              <li>
-                <Link to="/reservas">Reservas</Link>
-              </li>
-              <li>
-                <Link to="/admin/moradores">Moradores</Link>
-              </li>
-              <li>
-              <li>
-                <Link to="/register">Registrar</Link>
-              </li>
-              <li>
-                <Link to="/admin/visitantes">Visitantes</Link>
-              </li>
+              {/* <li><Link to="/home">Início</Link></li> */}
+              <li><Link to="/admin/ocorrencias">Ocorrências</Link></li>
+              <li><Link to="/reservas">Reservas</Link></li>
+              <li><Link to="/admin/moradores">Moradores</Link></li>
+              <li><Link to="/register">Registrar</Link></li>
+              <li><Link to="/admin/visitantes">Visitantes</Link></li>
             </>
           ) : (
             <>
-              <li>
-                {/* <Link to="/home">Início</Link> */}
-              </li>
-              <li>
-                <Link to="/ocorrencias">Ocorrências</Link>
-              </li>
-              <li>
-                <Link to="/reservas">Reservas</Link>
-              </li>
-              <li>
-                <Link to="/moradores">Moradores</Link>
-              </li>
-              <li>
-                <Link to="/visitantes">Visitantes</Link>
-              </li>
+              {/* <li><Link to="/home">Início</Link></li> */}
+              <li><Link to="/ocorrencias">Ocorrências</Link></li>
+              <li><Link to="/reservas">Reservas</Link></li>
+              <li><Link to="/moradores">Moradores</Link></li>
+              <li><Link to="/visitantes">Visitantes</Link></li>
             </>
           )}
         </ul>
