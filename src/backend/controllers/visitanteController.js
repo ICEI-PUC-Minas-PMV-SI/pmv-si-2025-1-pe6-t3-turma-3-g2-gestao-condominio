@@ -1,4 +1,4 @@
-import Visitante from '../models/Visitante.js';
+import Visitante from '../models/visitanteModel.js';
 
 export const criarVisitante = async (req, res) => {
   try {
