@@ -1,4 +1,3 @@
-// routes/router.js
 import express from 'express';
 import ocorrenciaRoutes from './ocorrenciaRoutes.js';
 import reservaRoutes from './reservaRoutes.js';  
@@ -12,6 +11,6 @@ router.use(ocorrenciaRoutes);
 router.use(reservaRoutes);  
 router.use(authRoutes);
 router.use('/moradores', moradorRoutes);
-router.use('/visitantes', visitanteRoutes);  
+router.use(visitanteRoutes); // Corrigido
 
 export default router;
