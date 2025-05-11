@@ -51,7 +51,7 @@ function Sidebar() {
               <li><Link to="/admin/ocorrencias">Ocorrências</Link></li>
               <li><Link to="/reservas">Reservas</Link></li>
               <li><Link to="/admin/moradores">Moradores</Link></li>
-              <li><Link to="/register">Registrar</Link></li>
+              <li><Link to="/register">Usuarios</Link></li>
               <li><Link to="/admin/visitantes">Visitantes</Link></li>
             </>
           ) : (
