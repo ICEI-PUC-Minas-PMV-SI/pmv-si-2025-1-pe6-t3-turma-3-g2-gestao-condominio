@@ -123,9 +123,63 @@ A interface utiliza outros elementos gráficos de maneira sutil para garantir a 
 ## 🖋️ Marca
 - **Logo:** O logo “Habitare - Gestão de Condomínios” está presente nas telas principais e na tela de login, reforçando a identidade visual da aplicação. O design do logo é simples e direto, refletindo a seriedade e a funcionalidade da plataforma.
 
-## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+Fluxo de Dados da Aplicação:
+
+## 🔐 1. Autenticação e Autorização
+
+**Cadastro de Usuário**: O usuário realiza o cadastro fornecendo informações como nome, email e senha. Esses dados são enviados para o backend, onde são validados e armazenados no banco de dados.
+**Login**:
+ Ao efetuar o login, o usuário envia suas credenciais (email e senha) para o backend. Após validação, um token JWT é gerado e retornado ao cliente, sendo armazenado no localStorage para autenticação em requisições futuras.
+**Middleware de Autenticação**: 
+As rotas protegidas utilizam um middleware que verifica a presença e validade do token JWT. Caso o token seja válido, o userId é extraído e disponibilizado para as próximas operações.
+**Controle de Acesso**: 
+Determinadas rotas, como as de listagem de moradores e visitantes, são restritas a administradores. Isso é controlado por um middleware adicional que verifica se o userId corresponde ao de um administrador.
+
+## 🏠 2. Módulo de Moradores
+
+**Criação de Perfil de Morador**: 
+Usuários autenticados podem criar seu perfil de morador fornecendo dados como nome, apartamento, bloco e contato. O userId é associado ao perfil para identificação futura.
+**Listagem de Moradores**: 
+Administradores podem listar todos os moradores, com informações detalhadas, incluindo dados do usuário associado.
+**Visualização de Perfil**: 
+Usuários podem visualizar seu próprio perfil de morador. Administradores têm acesso a todos os perfis.
+**Atualização de Perfil**: 
+Usuários podem atualizar seu perfil de morador. Administradores podem atualizar qualquer perfil.
+**Exclusão de Perfil**: 
+Apenas administradores podem excluir perfis de moradores.
+
+## 🚶 3. Módulo de Visitantes
+
+**Registro de Visitante**: 
+Moradores podem registrar visitantes fornecendo informações como nome, documento e horário de visita. Esses dados são armazenados no banco de dados e associados ao userId do morador.
+**Listagem de Visitantes**: 
+Administradores podem listar todos os visitantes registrados, com detalhes completos. Moradores podem visualizar apenas os visitantes que eles registraram.
+**Atualização de Visitante**: 
+Moradores podem atualizar informações de seus próprios visitantes. Administradores podem atualizar qualquer registro de visitante.
+**Exclusão de Visitante**: 
+Moradores podem excluir seus próprios registros de visitantes. Administradores podem excluir qualquer registro.
+
+##  ⚠️ 4. Módulo de Ocorrências
+
+**Criação de Ocorrência**: 
+Moradores podem registrar ocorrências fornecendo título, descrição e categoria. O status inicial é definido como "aberto".
+**Listagem de Ocorrências**: 
+Moradores podem visualizar todas as ocorrências que registraram. Administradores têm acesso a todas as ocorrências do sistema.
+**Atualização de Ocorrência**: 
+Moradores podem atualizar suas próprias ocorrências enquanto o status estiver como "aberto". Administradores podem atualizar o status de qualquer ocorrência.
+**Exclusão de Ocorrência**: 
+Moradores podem excluir suas próprias ocorrências. Administradores podem excluir qualquer ocorrência.
+
+## 🔄 5. Interações Frontend-Backend
+
+**Requisições HTTP**: 
+O frontend realiza requisições HTTP para o backend utilizando a biblioteca Axios. Cada requisição inclui o token JWT no cabeçalho de autorização para autenticação.
+**Tratamento de Respostas**: 
+O frontend trata as respostas do backend, exibindo mensagens de sucesso ou erro utilizando a biblioteca React Toastify.
+**Atualização de Interface**: 
+Após operações como criação, atualização ou exclusão, o frontend atualiza a interface para refletir as mudanças, garantindo uma experiência de usuário fluida.
+
 
 ## Tecnologias Utilizadas
 
@@ -302,6 +356,75 @@ Implantação ainda não realizada.
 - **Resultado esperado**: 
   - Toast visível com fonte 18px e largura de 400px  
   - Posicionado no canto inferior direito
+
+
+## ✅ Casos de Teste – Tela de Visitantes
+
+## 1. Carregamento inicial
+**Descrição**: Verificar se os dados dos visitantes são carregados corretamente ao abrir a tela.
+**Pré-condição**: Usuário autenticado com token válido no localStorage.
+**Resultado esperado**: 
+A tabela é renderizada com os dados dos visitantes vindos da API.
+
+## 2. Verificação de URL correta
+**Descrição**: Verificar se a rota /visitantes está presente na URL ao acessar a tela.
+**Pré-condição**: Navegação para a tela de visitantes.
+**Resultado esperado**:
+ A URL deve conter /visitantes.
+
+## 3. Verificação de permissão de admin
+**Descrição**: Verificar se o botão "REGISTRAR VISITANTE" é exibido apenas para moradores e não para administradores.
+**Pré-condição**: Token com id === 1 (admin) ou diferente de 1 (morador).
+**Resultado esperado**:
+Se admin: botão não é exibido.
+Se morador: botão é exibido.
+
+## 4. Abertura do modal de criação
+**Descrição**: Verificar se o modal de criação de visitante abre ao clicar no botão "REGISTRAR VISITANTE".
+**Pré-condição**: Usuário morador.
+**Resultado esperado**: 
+ModalCriacaoVisitante abre corretamente.
+
+## 5. Registro de novo visitante
+**Descrição**: Registrar um novo visitante via modal e verificar se ele aparece na lista de visitantes.
+**Ações**: Preencher nome, documento, e horário de visita e clicar em "Criar".
+**Resultado esperado**:
+Visitante registrado com sucesso (chamada createVisitante)
+Modal fecha
+Novo visitante aparece na lista.
+
+## 6. Abertura do modal de detalhes
+**Descrição**: Ao clicar no ícone de informações (FaInfoCircle), o modal de detalhes do visitante deve abrir.
+**Resultado esperado**: ModalDetalhes mostra o nome, documento e horário de visita do visitante selecionado.
+
+## 7. Edição de visitante
+**Descrição**: Clicar no botão de editar (ícone FaEdit) em um visitante registrado.
+**Resultado esperado**:
+Modal de edição (ModalEdicaoVisitante) é aberto
+Campos preenchidos com os dados do visitante
+Após edição, os dados são atualizados na lista de visitantes.
+
+## 8. Tentativa de edição de visitante sem permissões
+**Descrição**: Clicar em editar um visitante registrado por outro morador (não o próprio).
+**Resultado esperado**:
+Modal não é aberto
+Toast de aviso exibido: "Você não tem permissão para editar este visitante."
+
+## 9. Exclusão de visitante
+**Descrição**: Clicar no ícone de excluir (FaTimes) e confirmar no modal.
+**Resultado esperado**:
+Modal de confirmação é aberto
+Após confirmação, o visitante é removido da lista.
+
+## 10. Fechamento dos modais
+**Descrição**: Verificar se os modais fecham corretamente ao clicar no botão de fechar (onClose).
+Resultado esperado: Todos os modais devem ser fechados corretamente sem erro.
+
+## 11. Toasts e feedbacks visuais
+**Descrição**: Verificar se os toasts aparecem com estilos personalizados ao executar ações como erro, aviso, etc.
+**Resultado esperado**:
+Toast visível com fonte 18px e largura de 400px
+Posicionado no canto inferior direito
 
 
 # Referências
