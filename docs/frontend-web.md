@@ -7,8 +7,10 @@
 [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
 ### Wireframes
-
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+![img1](imgwireframes/img1.png)
+![img1](imgwireframes/img2.png)
+![img1](imgwireframes/img3.png)
+![img1](imgwireframes/img4.png)
 
 ### Design Visual
 
@@ -116,13 +118,71 @@
   1. Acessar rotas como `/ocorrencias`, `/admin/ocorrencias` sem estar logado
 - **Verificações:** Usuário recebe tela sem dados e toast informativo.
   
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+# ✅ Casos de Teste – Tela de Reservas
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+## 🧪 1. Carregamento inicial
+- **Descrição**: Verificar se os dados são carregados corretamente ao abrir a tela.
+- **Pré-condição**: Usuário autenticado com token válido no `localStorage`.
+- **Resultado esperado**: A tabela é renderizada com os dados das reservas vindos da API.
+
+## 🧪 2. Verificação de URL correta
+- **Descrição**: Verificar se a rota `/reservas` está presente na URL ao acessar a tela.
+- **Pré-condição**: Navegação para a tela de reservas.
+- **Resultado esperado**: A URL deve conter `/reservas`.
+
+## 🧪 3. Verificação de permissão de admin
+- **Descrição**: Verificar se o botão "CRIAR RESERVA" é exibido apenas para usuários não-admin.
+- **Pré-condição**: Token com `id === 1` (admin) ou diferente de 1 (usuário comum).
+- **Resultado esperado**: 
+  - Se admin: botão **não** é exibido.  
+  - Se usuário comum: botão **é** exibido.
+
+## 🧪 4. Abertura do modal de criação
+- **Descrição**: Verificar se o modal de criação de reserva abre ao clicar no botão "CRIAR RESERVA".
+- **Pré-condição**: Usuário não-admin.
+- **Resultado esperado**: ModalCriacaoReservas abre corretamente.
+
+## 🧪 5. Criação de nova reserva
+- **Descrição**: Criar uma nova reserva via modal e verificar se ela aparece na tabela.
+- **Ações**: Preencher `nome`, `data` e `horário` e clicar em "Criar".
+- **Resultado esperado**: 
+  - Reserva criada com sucesso (chamada `createReserva`)  
+  - Modal fecha  
+  - Nova reserva aparece na lista
+  
+## 🧪 6. Abertura do modal de detalhes
+- **Descrição**: Ao clicar no ícone de **informações (FaInfoCircle)**, o modal de detalhes deve abrir.
+- **Resultado esperado**: ModalDetalhes mostra o `nome`, `data` e `horário` da reserva selecionada.
+
+## 🧪 7. Edição de reserva ativa
+- **Descrição**: Clicar no botão de editar (ícone FaEdit) em uma reserva com status **Ativo**.
+- **Resultado esperado**: 
+  - Modal de edição (`ModalEdicaoReservas`) é aberto  
+  - Campos preenchidos com os dados da reserva  
+  - Após edição, os dados são atualizados na tabela
+
+## 🧪 8. Tentativa de edição de reserva inativa
+- **Descrição**: Clicar em editar uma reserva **não ativa**.
+- **Resultado esperado**: 
+  - Modal **não** é aberto  
+  - Toast de aviso exibido: _"Não é possível editar uma reserva que não está com status ativo."_
+
+## 🧪 9. Cancelamento de reserva
+- **Descrição**: Clicar no ícone de cancelar (`FaTimes`) e confirmar no modal.
+- **Resultado esperado**: 
+  - Modal de confirmação é aberto  
+  - Após confirmação, `status` da reserva na tabela muda para `cancelado`
+
+## 🧪 10. Fechamento dos modais
+- **Descrição**: Verificar se os modais fecham corretamente ao clicar no botão de fechar (`onClose`).
+- **Resultado esperado**: Todos os modais devem ser fechados corretamente sem erro.
+
+## 🧪 11. Toasts e feedbacks visuais
+- **Descrição**: Verificar se os `toasts` aparecem com estilos personalizados ao executar ações como erro, aviso, etc.
+- **Resultado esperado**: 
+  - Toast visível com fonte 18px e largura de 400px  
+  - Posicionado no canto inferior direito
+
 
 # Referências
 
