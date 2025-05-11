@@ -124,9 +124,9 @@ A interface utiliza outros elementos gráficos de maneira sutil para garantir a 
 - **Logo:** O logo “Habitare - Gestão de Condomínios” está presente nas telas principais e na tela de login, reforçando a identidade visual da aplicação. O design do logo é simples e direto, refletindo a seriedade e a funcionalidade da plataforma.
 
 
-Fluxo de Dados da Aplicação:
+## Fluxo de Dados da Aplicação:
 
-## 🔐 1. Autenticação e Autorização
+### 🔐 1. Autenticação e Autorização
 
 **Cadastro de Usuário**: O usuário realiza o cadastro fornecendo informações como nome, email e senha. Esses dados são enviados para o backend, onde são validados e armazenados no banco de dados.
 **Login**:
@@ -136,7 +136,7 @@ As rotas protegidas utilizam um middleware que verifica a presença e validade d
 **Controle de Acesso**: 
 Determinadas rotas, como as de listagem de moradores e visitantes, são restritas a administradores. Isso é controlado por um middleware adicional que verifica se o userId corresponde ao de um administrador.
 
-## 🏠 2. Módulo de Moradores
+### 🏠 2. Módulo de Moradores
 
 **Criação de Perfil de Morador**: 
 Usuários autenticados podem criar seu perfil de morador fornecendo dados como nome, apartamento, bloco e contato. O userId é associado ao perfil para identificação futura.
@@ -149,7 +149,7 @@ Usuários podem atualizar seu perfil de morador. Administradores podem atualizar
 **Exclusão de Perfil**: 
 Apenas administradores podem excluir perfis de moradores.
 
-## 🚶 3. Módulo de Visitantes
+### 🚶 3. Módulo de Visitantes
 
 **Registro de Visitante**: 
 Moradores podem registrar visitantes fornecendo informações como nome, documento e horário de visita. Esses dados são armazenados no banco de dados e associados ao userId do morador.
@@ -160,7 +160,7 @@ Moradores podem atualizar informações de seus próprios visitantes. Administra
 **Exclusão de Visitante**: 
 Moradores podem excluir seus próprios registros de visitantes. Administradores podem excluir qualquer registro.
 
-##  ⚠️ 4. Módulo de Ocorrências
+###  ⚠️ 4. Módulo de Ocorrências
 
 **Criação de Ocorrência**: 
 Moradores podem registrar ocorrências fornecendo título, descrição e categoria. O status inicial é definido como "aberto".
@@ -171,7 +171,7 @@ Moradores podem atualizar suas próprias ocorrências enquanto o status estiver 
 **Exclusão de Ocorrência**: 
 Moradores podem excluir suas próprias ocorrências. Administradores podem excluir qualquer ocorrência.
 
-## 🔄 5. Interações Frontend-Backend
+### 🔄 5. Interações Frontend-Backend
 
 **Requisições HTTP**: 
 O frontend realiza requisições HTTP para o backend utilizando a biblioteca Axios. Cada requisição inclui o token JWT no cabeçalho de autorização para autenticação.
