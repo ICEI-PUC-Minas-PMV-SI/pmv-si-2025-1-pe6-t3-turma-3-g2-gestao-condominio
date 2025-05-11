@@ -238,31 +238,31 @@ Implantação ainda não realizada.
   1. Acessar rotas como `/ocorrencias`, `/admin/ocorrencias` sem estar logado
 - **Verificações:** Usuário recebe tela sem dados e toast informativo.
   
-# ✅ Casos de Teste – Tela de Reservas
+## ✅ Casos de Teste – Tela de Reservas
 
-## 🧪 1. Carregamento inicial
+### 1. Carregamento inicial
 - **Descrição**: Verificar se os dados são carregados corretamente ao abrir a tela.
 - **Pré-condição**: Usuário autenticado com token válido no `localStorage`.
 - **Resultado esperado**: A tabela é renderizada com os dados das reservas vindos da API.
 
-## 🧪 2. Verificação de URL correta
+### 2. Verificação de URL correta
 - **Descrição**: Verificar se a rota `/reservas` está presente na URL ao acessar a tela.
 - **Pré-condição**: Navegação para a tela de reservas.
 - **Resultado esperado**: A URL deve conter `/reservas`.
 
-## 🧪 3. Verificação de permissão de admin
+### 3. Verificação de permissão de admin
 - **Descrição**: Verificar se o botão "CRIAR RESERVA" é exibido apenas para usuários não-admin.
 - **Pré-condição**: Token com `id === 1` (admin) ou diferente de 1 (usuário comum).
 - **Resultado esperado**: 
   - Se admin: botão **não** é exibido.  
   - Se usuário comum: botão **é** exibido.
 
-## 🧪 4. Abertura do modal de criação
+### 4. Abertura do modal de criação
 - **Descrição**: Verificar se o modal de criação de reserva abre ao clicar no botão "CRIAR RESERVA".
 - **Pré-condição**: Usuário não-admin.
 - **Resultado esperado**: ModalCriacaoReservas abre corretamente.
 
-## 🧪 5. Criação de nova reserva
+### 5. Criação de nova reserva
 - **Descrição**: Criar uma nova reserva via modal e verificar se ela aparece na tabela.
 - **Ações**: Preencher `nome`, `data` e `horário` e clicar em "Criar".
 - **Resultado esperado**: 
@@ -270,34 +270,34 @@ Implantação ainda não realizada.
   - Modal fecha  
   - Nova reserva aparece na lista
   
-## 🧪 6. Abertura do modal de detalhes
+### 6. Abertura do modal de detalhes
 - **Descrição**: Ao clicar no ícone de **informações (FaInfoCircle)**, o modal de detalhes deve abrir.
 - **Resultado esperado**: ModalDetalhes mostra o `nome`, `data` e `horário` da reserva selecionada.
 
-## 🧪 7. Edição de reserva ativa
+### 7. Edição de reserva ativa
 - **Descrição**: Clicar no botão de editar (ícone FaEdit) em uma reserva com status **Ativo**.
 - **Resultado esperado**: 
   - Modal de edição (`ModalEdicaoReservas`) é aberto  
   - Campos preenchidos com os dados da reserva  
   - Após edição, os dados são atualizados na tabela
 
-## 🧪 8. Tentativa de edição de reserva inativa
+### 8. Tentativa de edição de reserva inativa
 - **Descrição**: Clicar em editar uma reserva **não ativa**.
 - **Resultado esperado**: 
   - Modal **não** é aberto  
   - Toast de aviso exibido: _"Não é possível editar uma reserva que não está com status ativo."_
 
-## 🧪 9. Cancelamento de reserva
+### 9. Cancelamento de reserva
 - **Descrição**: Clicar no ícone de cancelar (`FaTimes`) e confirmar no modal.
 - **Resultado esperado**: 
   - Modal de confirmação é aberto  
   - Após confirmação, `status` da reserva na tabela muda para `cancelado`
 
-## 🧪 10. Fechamento dos modais
+### 10. Fechamento dos modais
 - **Descrição**: Verificar se os modais fecham corretamente ao clicar no botão de fechar (`onClose`).
 - **Resultado esperado**: Todos os modais devem ser fechados corretamente sem erro.
 
-## 🧪 11. Toasts e feedbacks visuais
+### 11. Toasts e feedbacks visuais
 - **Descrição**: Verificar se os `toasts` aparecem com estilos personalizados ao executar ações como erro, aviso, etc.
 - **Resultado esperado**: 
   - Toast visível com fonte 18px e largura de 400px  
