@@ -1,10 +1,85 @@
 # Front-end Web
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+**Descrição do Projeto:**  
+O **Habitare - Gestão de Condomínios** é uma aplicação web projetada para facilitar a administração e a gestão de condomínios residenciais. A interface foi desenvolvida com foco na usabilidade e clareza, oferecendo aos administradores e moradores uma maneira simples e eficiente de interagir com informações relacionadas ao condomínio, como reservas, moradores, visitantes e ocorrências.
+
+**Objetivos do Projeto:**  
+- **Facilitar a gestão de condomínios** por meio de uma interface intuitiva e de fácil navegação.
+- **Proporcionar aos moradores e administradores ferramentas para o gerenciamento diário**, como cadastro de moradores, reservas de espaços e controle de visitantes.
+- **Otimizar o fluxo de trabalho dos administradores**, permitindo a atualização e gestão rápida das informações sem a necessidade de redirecionamentos.
+- **Garantir uma experiência responsiva e acessível**, adaptada tanto para dispositivos desktop quanto móveis.
 
 ## Projeto da Interface Web
 
-[Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+O projeto da interface web da aplicação **Habitare - Gestão de Condomínios** apresenta uma estrutura visual clara, organizada e voltada para a administração e usabilidade em ambientes residenciais, especialmente voltados à gestão condominial. Abaixo segue a descrição detalhada da interface:
+
+## 🖥️ Design Visual
+- **Paleta de Cores:** Tons suaves de bege como fundo com elementos em verde escuro transmitem seriedade, clareza e acolhimento, ideais para aplicações de gestão residencial.
+- **Tipografia:** Simples e legível, priorizando a usabilidade.
+- **Ícones:** Utilizados para ações como visualizar, editar e excluir, de forma intuitiva.
+- **Marca:** O logo “Habitare - Gestão de Condomínios” está presente nas telas principais e login, reforçando a identidade visual.
+
+## 📄 Layout das Páginas
+
+### 🔐 Tela de Login
+- Campos de E-mail e Senha
+- Botão de **Entrar**
+- Link para **recuperação de senha**
+- Versão responsiva (layout adaptado para mobile)
+
+### 👥 Moradores
+- **Listagem Admin:**  
+  Tabela com colunas: Nome, Apartamento, Bloco, Contato e Ações  
+  Botão **Adicionar Morador**  
+  Ações: visualizar detalhes, editar e excluir
+
+- **Meu Cadastro (Morador):**  
+  Mesma tabela, mas mostra apenas o cadastro do próprio morador
+
+- **Modais:**  
+  - Criar Morador  
+  - Detalhes do Morador  
+  - Editar Morador  
+  - Confirmação de Exclusão
+
+### 📅 Reservas
+- **Listagem:**  
+  Tabela com colunas: Nome, Local, Data, Status, Ações  
+  Botão **Criar Reserva**
+
+- **Modais:**  
+  - Criar reserva  
+  - Detalhes da reserva  
+  - Editar reserva  
+  - Confirmar exclusão
+
+### 🚪 Visitantes
+- **Listagem:**  
+  Tabela com colunas: Nome, Apartamento, Data, Status, Ações  
+  Botão **Adicionar Visitante**
+
+- **Modais:**  
+  - Criar visitante  
+  - Detalhes do visitante  
+  - Editar visitante  
+  - Confirmar exclusão
+
+### 📢 Ocorrências
+- **Listagem (Morador e Admin):**  
+  Colunas: Título, Descrição, Status, Email, Ações
+
+- **Modais:**  
+  - Criar ocorrência  
+  - Detalhes da ocorrência  
+  - Editar ocorrência  
+  - Excluir ocorrência  
+  - Admin: Modal extra para editar status
+
+## 🔁 Interações do Usuário
+- **CRUD Completo** (Criar, Ler, Atualizar, Excluir) para moradores, reservas, visitantes e ocorrências.
+- Modais flutuantes que evitam o redirecionamento de página, promovendo agilidade.
+- Botões de ação visualmente destacados.
+- Uso de ícones universais (lápis, olho, lixeira) facilita a compreensão sem depender de texto.
 
 ### Wireframes
 ![img1](imgwireframes/img1.png)
@@ -14,28 +89,73 @@
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+# Estilo Visual da Interface
+
+A interface da aplicação **Habitare - Gestão de Condomínios** foi projetada com foco na clareza, simplicidade e facilidade de uso. O estilo visual é pensado para transmitir seriedade, acolhimento e eficiência na gestão condominial. Abaixo, detalho os principais aspectos do design visual.
+
+## 🎨 Paleta de Cores
+A paleta de cores foi escolhida para proporcionar um ambiente visual calmo e profissional, com destaque para a clareza e a acessibilidade.
+
+- **Fundo:** Tons suaves de bege ou cinza claro para criar um ambiente tranquilo e limpo.
+- **Elementos principais:** Verde escuro para elementos de destaque, como botões e links, trazendo uma sensação de seriedade e confiança.
+- **Textos:** Tons de cinza escuro para garantir boa legibilidade e contraste com o fundo claro.
+
+## 🅰️ Tipografia
+A tipografia foi escolhida para priorizar a legibilidade e facilitar a leitura rápida das informações.
+
+- **Fonte primária:** Uma fonte sans-serif limpa e moderna, com espaçamento adequado entre letras e linhas.
+- **Cabeçalhos e títulos:** Fonte em negrito para garantir destaque e fácil identificação das seções.
+- **Texto do corpo:** Fonte regular com bom contraste e tamanho de letra confortável para leitura prolongada.
+
+## 🖼️ Ícones
+Os ícones são usados de forma estratégica para representar ações comuns, como editar, excluir ou visualizar informações, tornando a interface intuitiva e fácil de navegar.
+
+- **Ícones de ação:** Ícones simples e universais como o lápis para edição, o olho para visualização e a lixeira para exclusão.
+- **Ícones de status:** Ícones coloridos para indicar o status de itens, como verde para "ativo" e vermelho para "inativo", ajudando o usuário a identificar rapidamente o estado das informações.
+
+## 🧩 Outros Elementos Gráficos
+A interface utiliza outros elementos gráficos de maneira sutil para garantir a clareza e fluidez da navegação.
+
+- **Botões:** Os botões são destacados com cores fortes (como verde escuro) e possuem bordas arredondadas para um visual moderno. Ao passar o mouse sobre eles, há um efeito de hover que muda ligeiramente a cor, indicando que são interativos.
+- **Modais:** As janelas modais possuem bordas suaves e um fundo translúcido para dar destaque ao conteúdo e criar uma sensação de profundidade.
+- **Barras de navegação:** A barra superior tem um fundo em verde escuro com o logo do sistema, enquanto a navegação lateral (quando presente) é discreta, com ícones e texto, para facilitar a navegação entre as seções.
+
+## 🖋️ Marca
+- **Logo:** O logo “Habitare - Gestão de Condomínios” está presente nas telas principais e na tela de login, reforçando a identidade visual da aplicação. O design do logo é simples e direto, refletindo a seriedade e a funcionalidade da plataforma.
 
 ## Fluxo de Dados
 
 [Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+
+- **Node.js**: Plataforma para execução do JavaScript no servidor, oferecendo alta performance e grande ecossistema de bibliotecas.
+- **Express.js**: Framework web minimalista para Node.js, ideal para criação de APIs RESTful.
+- **JWT (JSON Web Token)**: Para autenticação segura baseada em tokens.
+- **Sequelize ORM**: Para abstração e manipulação de bancos de dados relacionais com JavaScript.
+- **RESTful API**: Arquitetura de API baseada em recursos e métodos HTTP (GET, POST, PUT, DELETE).
+- **MySQL**: Banco de dados relacional utilizado para armazenar de forma estruturada os dados manipulados pela API.
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+## 🔐 Autenticação
+A autenticação garante que apenas usuários autorizados possam acessar a aplicação. Para isso, as seguintes práticas devem ser adotadas:
+
+- **Autenticação baseada em token (JWT):** Utilizar tokens JWT para gerenciar sessões de usuários de forma segura, evitando problemas com sessões compartilhadas ou vazadas.
+- **Senhas fortes e criptografadas:** Exigir senhas complexas e garantir que todas as senhas sejam armazenadas de maneira segura utilizando algoritmos de hash (por exemplo, bcrypt).
+- **Controle de sessão:** Garantir que as sessões tenham expiração automática após um período de inatividade e possibilitar o logout remoto.
+
+## 🔑 Autorização
+A autorização garante que um usuário tenha acesso apenas às funcionalidades e dados que ele tem permissão para visualizar ou modificar.
+
+- **Controle de Acesso baseado em Funções (RBAC):** Definir permissões baseadas em papéis (como morador e administrador) para garantir que os usuários só possam acessar ou modificar as informações relevantes para seu papel.
+- **Acesso a recursos sensíveis:** Implementar verificações rigorosas para ações que envolvem dados sensíveis, como a exclusão de moradores ou alterações nas reservas. Apenas administradores devem poder executar essas ações.
+- **Segregação de responsabilidades:** Garantir que diferentes perfis de usuário (administradores e moradores) tenham visibilidade e controle diferentes sobre as informações. Por exemplo, moradores só podem acessar e editar seus próprios dados, enquanto administradores podem acessar e modificar dados de todos.
+
 
 ## Implantação
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
-
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+Implantação ainda não realizada.
 
 ## Testes
 
