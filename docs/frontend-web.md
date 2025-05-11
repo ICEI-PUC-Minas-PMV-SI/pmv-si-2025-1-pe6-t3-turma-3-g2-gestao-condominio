@@ -429,4 +429,56 @@ Posicionado no canto inferior direito
 
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+## Node.js
+**Documentação oficial do Node.js**:
+https://nodejs.org/en/docs/
+## Node.js Guide:
+https://nodejs.dev/learn
+
+## Express.js (Framework utilizado no seu backend)
+**Documentação oficial do Express**:
+https://expressjs.com/
+
+## JWT (JSON Web Tokens)
+**Introdução ao JWT**:
+https://jwt.io/introduction/
+**Como usar JWT no Node.js**:
+https://www.digitalocean.com/community/tutorials
+
+## React (Frontend do seu projeto)
+**Documentação oficial do React**:
+https://reactjs.org/docs/getting-started.html
+
+## Axios (Biblioteca de requisições HTTP)
+**Documentação do Axios**:
+https://axios-http.com/docs/intro
+
+## Bcrypt.js (Biblioteca para criptografia de senhas)
+**Documentação do Bcrypt.js**:
+https://www.npmjs.com/package/bcryptjs
+
+## Vite (Ferramenta de build e desenvolvimento)
+**Documentação oficial do Vite**:
+https://vitejs.dev/
+**Guia de Introdução ao Vite**:
+https://vitejs.dev/guide/
+
+## MySQL (Banco de Dados Relacional)
+**Documentação oficial do MySQL**:
+https://dev.mysql.com/doc/
+## MySQL no GitHub:
+https://github.com/mysql/mysql-server
+**Tutorial para começar com MySQL**:
+https://www.mysqltutorial.org/
+
+## Git e GitHub (Controle de versão e hospedagem de código)
+**Documentação do Git**:
+https://git-scm.com/doc
+**Documentação do GitHub**:
+https://docs.github.com/en
+
+## REST API (Para estruturação de rotas e comunicação)
+**Introdução ao REST**:
+https://restfulapi.net/
+
+
