@@ -357,6 +357,67 @@ Implantação ainda não realizada.
   - Toast visível com fonte 18px e largura de 400px  
   - Posicionado no canto inferior direito
 
+### ✅ Casos de Teste – Tela de Moradores
+### 1. Visualizar Detalhes do Morador (Usuário)
+- **Objetivo:** Usuário deve conseguir ver os detalhes completos do morador que ele cadastrou.
+- **Passos:**
+  1. Login como usuário
+  2. Acessar a rota `/moradores`
+  3. Clicar em "Detalhes"
+- **Verificações:** Modal renderiza corretamente com nome, bloco, apartamento e contato.
+
+### 2. Criar Morador (Usuário)
+- **Objetivo:** Permitir ao usuário criar seus próprios dados como morador.
+- **Passos:**
+  1. Login como usuário
+  2. Ir para `/moradores`
+  3. Clicar em "Criar Meus Dados", preencher e salvar
+- **Verificações:** Toast de sucesso, dados exibidos na lista.
+
+### 3. Editar Morador (Usuário)
+- **Objetivo:** Usuário atualiza os próprios dados.
+- **Passos:**
+  1. Login como usuário
+  2. Acessar `/moradores` e clicar em editar
+  3. Alterar e salvar
+- **Verificações:** Dados atualizados visivelmente.
+
+### 4. Visualizar Todos os Moradores (Admin)
+- **Objetivo:** Admin deve visualizar a lista de todos os moradores.
+- **Passos:**
+  1. Login como admin
+  2. Acessar `/moradores`
+- **Verificações:** Lista completa de moradores, com dados e e-mails dos usuários.
+
+### 5. Criar Morador (Admin)
+- **Objetivo:** Admin pode criar moradores associados a si mesmo (ou para gestão).
+- **Passos:**
+  1. Login como admin
+  2. Acessar `/moradores` e clicar em "Criar Morador"
+  3. Preencher e salvar
+- **Verificações:** Toast de sucesso, morador adicionado à lista.
+
+### 6. Editar Morador (Admin)
+- **Objetivo:** Admin edita qualquer morador.
+- **Passos:**
+  1. Login como admin
+  2. Acessar `/moradores`, clicar em editar
+  3. Alterar e salvar
+- **Verificações:** Toast de sucesso, dados atualizados.
+
+### 7. Excluir Morador (Admin)
+- **Objetivo:** Admin deleta morador.
+- **Passos:**
+  1. Login como admin
+  2. Acessar `/moradores`, clicar em excluir
+  3. Confirmar exclusão
+- **Verificações:** Toast de sucesso, morador removido da lista.
+
+### 8. Acessar /moradores sem Token
+- **Objetivo:** Verificar proteção das rotas.
+- **Passos:**
+  1. Acessar `/moradores` sem autenticação
+- **Verificações:** Não carrega dados, exibe toast.
 
 ## ✅ Casos de Teste – Tela de Visitantes
 
