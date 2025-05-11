@@ -238,7 +238,7 @@ Implantação ainda não realizada.
   1. Acessar rotas como `/ocorrencias`, `/admin/ocorrencias` sem estar logado
 - **Verificações:** Usuário recebe tela sem dados e toast informativo.
   
-## ✅ Casos de Teste – Tela de Reservas
+### ✅ Casos de Teste – Tela de Reservas
 
 ### 1. Carregamento inicial
 - **Descrição**: Verificar se os dados são carregados corretamente ao abrir a tela.
