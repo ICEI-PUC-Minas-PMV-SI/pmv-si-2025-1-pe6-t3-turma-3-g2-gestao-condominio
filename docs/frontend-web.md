@@ -426,6 +426,81 @@ Resultado esperado: Todos os modais devem ser fechados corretamente sem erro.
 Toast visível com fonte 18px e largura de 400px
 Posicionado no canto inferior direito
 
+## ✅ Casos de Teste - Autenticação - Usuário
+
+### 1. Login com Usuário Válido
+- **Objetivo:** Usuário deve conseguir fazer login com e-mail e senha corretos.
+- **Passos:**
+  1. Acessar tela de login
+  2. Inserir e-mail e senha válidos
+  3. Clicar em "Entrar"
+- **Verificações:** Redireciona para tela principal, toast de sucesso, token armazenado no `localStorage`.
+
+---
+
+### 2. Login com Usuário Inválido
+- **Objetivo:** Garantir que usuários com credenciais incorretas não consigam acessar.
+- **Passos:**
+  1. Acessar tela de login
+  2. Inserir e-mail ou senha incorretos
+  3. Clicar em "Entrar"
+- **Verificações:** Toast com mensagem de erro, nenhum redirecionamento, token **não** é armazenado.
+
+---
+
+### 3. Garantir Recebimento do Token
+- **Objetivo:** Confirmar que, após o login, o sistema armazena o token JWT.
+- **Passos:**
+  1. Fazer login com dados válidos
+- **Verificações:** Token é armazenado corretamente no `localStorage` e pode ser decodificado com dados do usuário.
+
+---
+
+### 4. Acesso Negado sem Token
+- **Objetivo:** Verificar se o sistema protege rotas sem autenticação.
+- **Passos:**
+  1. Acessar uma rota protegida sem estar logado (ex: `/ocorrencias`)
+- **Verificações:** Usuário é redirecionado para tela de login ou recebe aviso de acesso não autorizado.
+
+---
+
+### 5. Registrar Novo Usuário
+- **Objetivo:** Permitir que o admin cadastre novos usuários pela tela de registro.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar tela `/register`
+  3. Preencher formulário com nome, e-mail e senha
+  4. Clicar em "Registrar"
+- **Verificações:** Toast de sucesso, novo usuário adicionado à base de dados.
+
+---
+
+### 6. Editar Nome e E-mail de Usuário Existente
+- **Objetivo:** Garantir que seja possível editar o nome e e-mail de um usuário já registrado.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar a tela de edição de usuários
+  3. Clicar em "Editar" no usuário desejado
+  4. Alterar os campos e salvar
+- **Verificações:** Toast de sucesso, nome e e-mail atualizados na interface.
+
+---
+
+### 7. Login com Campos Vazios
+- **Objetivo:** Garantir que o formulário de login valide campos obrigatórios.
+- **Passos:**
+  1. Acessar tela de login
+  2. Clicar em "Entrar" sem preencher campos
+- **Verificações:** Mensagens de erro nos campos, envio bloqueado.
+
+---
+
+### 8. Logout e Redirecionamento
+- **Objetivo:** Garantir que o logout limpa o token e redireciona corretamente.
+- **Passos:**
+  1. Estar logado
+  2. Clicar em "Sair" na sidebar
+- **Verificações:** Token removido do `localStorage`, redirecionamento para página inicial, acesso às rotas protegidas bloqueado.
 
 # Referências
 
