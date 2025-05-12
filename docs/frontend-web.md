@@ -182,7 +182,7 @@ Após operações como criação, atualização ou exclusão, o frontend atualiz
 
 
 ## Tecnologias Utilizadas
-
+- **React.js**: Biblioteca JavaScript para construir interfaces de usuário reativas e componentizadas.
 - **Node.js**: Plataforma para execução do JavaScript no servidor, oferecendo alta performance e grande ecossistema de bibliotecas.
 - **Express.js**: Framework web minimalista para Node.js, ideal para criação de APIs RESTful.
 - **JWT (JSON Web Token)**: Para autenticação segura baseada em tokens.
