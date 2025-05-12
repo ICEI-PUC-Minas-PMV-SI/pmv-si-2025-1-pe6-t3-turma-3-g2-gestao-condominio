@@ -581,7 +581,7 @@ https://jwt.io/introduction/
 **Como usar JWT no Node.js**:
 https://www.digitalocean.com/community/tutorials
 
-## React (Frontend do seu projeto)
+## React (Frontend do projeto)
 **Documentação oficial do React**:
 https://reactjs.org/docs/getting-started.html
 
