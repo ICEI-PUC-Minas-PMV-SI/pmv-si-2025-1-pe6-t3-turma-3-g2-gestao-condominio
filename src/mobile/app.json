@@ -33,8 +33,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
+    "extra": {
+      "API_URL": ""
+    },
     "experiments": {
       "typedRoutes": true
     }
