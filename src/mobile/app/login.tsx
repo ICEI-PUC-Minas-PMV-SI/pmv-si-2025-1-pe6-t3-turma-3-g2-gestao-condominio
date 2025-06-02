@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { useRouter } from 'expo-router';
 import Constants from 'expo-constants';
 import { salvarToken } from '@/utils/auth';
+import { jwtDecode } from 'jwt-decode';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -30,8 +31,14 @@ export default function LoginScreen() {
 
       if (data.token) {
         await salvarToken(data.token);
-        console.log('Login realizado, redirecionando...');
-        router.replace('/(tabs)/ocorrencias');
+        const decoded = jwtDecode(data.token);
+        console.log('Usuário decodificado:', decoded);
+
+        if (decoded.id === 1) {
+          router.replace('/(tabs)/ocorrenciasAdmin');
+        } else {
+          router.replace('/(tabs)/ocorrencias');
+        }
       } else {
         Alert.alert('Erro', 'Token inválido ou ausente');
       }

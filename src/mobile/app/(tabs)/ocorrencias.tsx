@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -12,14 +11,18 @@ import { Feather } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import ListaDeItens from "@/components/ListaDeItens";
 import { useOcorrencias } from "@/hooks/useOcorrencias";
-import { useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
+import { useFocusEffect } from "@react-navigation/native";
+import { useExcluirOcorrencia } from "@/hooks/useExcluirOcorrencia";
 
 export default function OcorrenciasScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [ocorrenciaSelecionada, setOcorrenciaSelecionada] = useState(null);
   const router = useRouter();
   const { ocorrencias, loading, erro, refetch } = useOcorrencias();
+  const { excluir, loading: excluindo } = useExcluirOcorrencia(() => {
+    fecharModal();
+    refetch();
+  });
 
   useFocusEffect(
     useCallback(() => {
@@ -32,9 +35,14 @@ export default function OcorrenciasScreen() {
     setModalVisible(true);
   };
 
-  const excluirOcorrencia = () => {
-    console.log(`Excluindo ocorrência: ${ocorrenciaSelecionada?.titulo}`);
+  const fecharModal = () => {
     setModalVisible(false);
+    setOcorrenciaSelecionada(null);
+  };
+
+  const excluirOcorrencia = () => {
+    if (!ocorrenciaSelecionada?.id) return;
+    excluir(ocorrenciaSelecionada.id);
   };
 
   return (
@@ -55,8 +63,9 @@ export default function OcorrenciasScreen() {
               href={{
                 pathname: `/ocorrencias/detalhes`,
                 params: {
-                  titulo: ocorrencia.titulo,
-                  descricao: ocorrencia.descricao,
+                      id: ocorrencia.id
+                  // titulo: ocorrencia.titulo,
+                  // descricao: ocorrencia.descricao,
                 },
               }}
               asChild
@@ -71,7 +80,6 @@ export default function OcorrenciasScreen() {
                   >
                     <Text style={{ fontWeight: "bold" }}>Descrição:</Text> {ocorrencia.descricao}
                   </Text>
-        
                 </View>
               </TouchableOpacity>
             </Link>
@@ -87,6 +95,7 @@ export default function OcorrenciasScreen() {
                     router.push({
                       pathname: "/ocorrencias/editar",
                       params: {
+                        id: ocorrencia.id,
                         titulo: ocorrencia.titulo,
                         descricao: ocorrencia.descricao,
                       },
@@ -109,13 +118,13 @@ export default function OcorrenciasScreen() {
         visible={modalVisible}
         transparent
         animationType="fade"
-        onRequestClose={() => setModalVisible(false)}
+        onRequestClose={fecharModal}
       >
         <View style={styles.modalCenter}>
           <View style={styles.modalContainer}>
             <TouchableOpacity
               style={styles.closeButton}
-              onPress={() => setModalVisible(false)}
+              onPress={fecharModal}
             >
               <Feather name="x" size={24} color="#002C21" />
             </TouchableOpacity>
@@ -132,18 +141,23 @@ export default function OcorrenciasScreen() {
             <View style={styles.modalButtons}>
               <TouchableOpacity
                 style={[styles.modalButton, styles.cancelButton]}
-                onPress={() => setModalVisible(false)}
+                onPress={fecharModal}
               >
                 <Text style={{ color: "#002C21", fontWeight: "bold" }}>
                   CANCELAR
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.modalButton, styles.confirmButton]}
+                style={[
+                  styles.modalButton,
+                  styles.confirmButton,
+                  excluindo && { opacity: 0.6 },
+                ]}
                 onPress={excluirOcorrencia}
+                disabled={excluindo}
               >
                 <Text style={{ color: "#FFF", fontWeight: "bold" }}>
-                  CONFIRMAR
+                  {excluindo ? "EXCLUINDO..." : "CONFIRMAR"}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -159,7 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFDEB",
     paddingHorizontal: 16,
-    paddingTop: 40,
+    paddingTop: 30,
   },
   titulo: {
     fontSize: 24,
@@ -193,7 +207,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 10,
-    marginBottom: 16,
+    marginBottom: 16
   },
   tituloOcorrencia: {
     color: "#002C21",

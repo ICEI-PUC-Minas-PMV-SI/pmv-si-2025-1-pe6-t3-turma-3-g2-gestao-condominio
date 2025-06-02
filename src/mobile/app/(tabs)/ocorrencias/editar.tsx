@@ -1,26 +1,29 @@
-import { useState } from "react";
 import { SafeAreaView, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
+import { useEditarOcorrencia } from "@/hooks/useEditarOcorrencia";
 
 export default function EditarOcorrenciaScreen() {
   const router = useRouter();
-  const { titulo: tituloExistente, descricao: descricaoExistente } = useLocalSearchParams();
+  const { id, titulo: tituloExistente, descricao: descricaoExistente } = useLocalSearchParams();
 
-  const titulo = Array.isArray(tituloExistente) ? tituloExistente[0] : tituloExistente || "";
-  const descricao = Array.isArray(descricaoExistente) ? descricaoExistente[0] : descricaoExistente || "";
+  const {
+    novoTitulo,
+    setNovoTitulo,
+    novaDescricao,
+    setNovaDescricao,
+    atualizarOcorrencia,
+    loading,
+  } = useEditarOcorrencia(id as string);
 
-  const [novoTitulo, setNovoTitulo] = useState(titulo);
-  const [novaDescricao, setNovaDescricao] = useState(descricao);
-
-  const salvarAlteracoes = () => {
-    if (!novoTitulo || !novaDescricao) {
-      Alert.alert("Erro", "Preencha todos os campos!");
-      return;
+  useEffect(() => {
+    if (tituloExistente) {
+      setNovoTitulo(Array.isArray(tituloExistente) ? tituloExistente[0] : tituloExistente);
     }
-
-    Alert.alert("Sucesso", "Ocorrência editada com sucesso!");
-    router.push("/ocorrencias");
-  };
+    if (descricaoExistente) {
+      setNovaDescricao(Array.isArray(descricaoExistente) ? descricaoExistente[0] : descricaoExistente);
+    }
+  }, [tituloExistente, descricaoExistente]);
 
   return (
     <SafeAreaView
@@ -96,16 +99,20 @@ export default function EditarOcorrenciaScreen() {
 
       {/* Botão de Salvar */}
       <TouchableOpacity
-        onPress={salvarAlteracoes}
+        onPress={atualizarOcorrencia}
+        disabled={loading}
         style={{
           backgroundColor: "#002C21",
           paddingVertical: 12,
           borderRadius: 10,
           alignSelf: "center",
           width: "50%",
+          opacity: loading ? 0.6 : 1,
         }}
       >
-        <Text style={{ color: "#FFF", fontWeight: "bold", textAlign: "center" }}>SALVAR</Text>
+        <Text style={{ color: "#FFF", fontWeight: "bold", textAlign: "center" }}>
+          {loading ? "SALVANDO..." : "SALVAR"}
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
