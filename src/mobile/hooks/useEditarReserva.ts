@@ -7,14 +7,16 @@ import { obterToken } from "@/utils/auth";
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useEditarOcorrencia(id: string) {
-  const [novoTitulo, setNovoTitulo] = useState("");
-  const [novaDescricao, setNovaDescricao] = useState("");
+export function useEditarReserva(id: string) {
+  const [nome, setNome] = useState("");
+  const [data, setData] = useState("");
+  const [horario, setHorario] = useState("");
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const atualizarOcorrencia = async () => {
-    if (!novoTitulo.trim() || !novaDescricao.trim()) {
+  const atualizarReserva = async () => {
+    if (!nome.trim() || !data.trim() || !horario.trim()) {
       Alert.alert("Erro", "Preencha todos os campos!");
       return;
     }
@@ -30,30 +32,32 @@ export function useEditarOcorrencia(id: string) {
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/ocorrencias/${id}`, {
+      const response = await fetch(`${API_URL}/api/reservas/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          titulo: novoTitulo,
-          descricao: novaDescricao,
+          nome,
+          data,
+          horario,
+          status,
         }),
       });
 
-      const data = await response.json();
+      const dataResponse = await response.json();
 
       if (!response.ok) {
-        Alert.alert("Erro", data.message || "Erro ao atualizar ocorrência.");
+        Alert.alert("Erro", dataResponse.message || "Erro ao atualizar reserva.");
         setLoading(false);
         return;
       }
 
-      Alert.alert("Sucesso", "Ocorrência atualizada com sucesso!");
-      router.push("/ocorrencias");
+      Alert.alert("Sucesso", "Reserva atualizada com sucesso!");
+      router.push("/reservas");
     } catch (error) {
-      console.error("Erro ao atualizar ocorrência:", error);
+      console.error("Erro ao atualizar reserva:", error);
       Alert.alert("Erro", "Não foi possível conectar ao servidor.");
     } finally {
       setLoading(false);
@@ -61,11 +65,15 @@ export function useEditarOcorrencia(id: string) {
   };
 
   return {
-    novoTitulo,
-    setNovoTitulo,
-    novaDescricao,
-    setNovaDescricao,
-    atualizarOcorrencia,
+    nome,
+    setNome,
+    data,
+    setData,
+    horario,
+    setHorario,
+    status,
+    setStatus,
+    atualizarReserva,
     loading,
   };
 }

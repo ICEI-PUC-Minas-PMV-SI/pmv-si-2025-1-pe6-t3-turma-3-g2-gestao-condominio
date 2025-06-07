@@ -9,7 +9,8 @@ type Ocorrencia = {
 };
 
 export function useOcorrencias() {
-  const { API_URL } = Constants.expoConfig.extra;
+  const rawUrl = Constants.expoConfig?.extra?.API_URL;
+  const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
   const [ocorrencias, setOcorrencias] = useState<Ocorrencia[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState<string | null>(null);

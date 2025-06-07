@@ -3,7 +3,8 @@ import { Alert } from "react-native";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
 
-const API_URL = Constants.expoConfig.extra.API_URL;
+const rawUrl = Constants.expoConfig?.extra?.API_URL;
+const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
 export function useOcorrenciaDetalhes(id: string) {
   const [ocorrencia, setOcorrencia] = useState(null);
