@@ -6,7 +6,7 @@ import { obterToken } from "@/utils/auth";
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useExcluirOcorrencia(onSuccess?: () => void) {
+export function useExcluirReserva(onSuccess?: () => void) {
   const [loading, setLoading] = useState(false);
 
   const excluir = async (id: string) => {
@@ -20,7 +20,7 @@ export function useExcluirOcorrencia(onSuccess?: () => void) {
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/ocorrencias/${id}`, {
+      const response = await fetch(`${API_URL}/api/reservas/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -30,13 +30,13 @@ export function useExcluirOcorrencia(onSuccess?: () => void) {
       const data = await response.json();
 
       if (!response.ok) {
-        Alert.alert("Erro", data.message || "Erro ao excluir ocorrência.");
+        Alert.alert("Erro", data.message || "Erro ao excluir reserva.");
       } else {
-        Alert.alert("Sucesso", "Ocorrência excluída com sucesso!");
+        Alert.alert("Sucesso", "Reserva excluída com sucesso!");
         if (onSuccess) onSuccess();
       }
     } catch (error) {
-      console.error("Erro ao excluir ocorrência:", error);
+      console.error("Erro ao excluir reserva:", error);
       Alert.alert("Erro", "Erro na comunicação com o servidor.");
     } finally {
       setLoading(false);

@@ -3,7 +3,8 @@ import Constants from 'expo-constants';
 import { obterToken } from '@/utils/auth';
 
 export function useOcorrenciasAdmin() {
-  const { API_URL } = Constants.expoConfig.extra;
+  const rawUrl = Constants.expoConfig?.extra?.API_URL;
+  const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
   const [ocorrencias, setOcorrencias] = useState([]);
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState(null);

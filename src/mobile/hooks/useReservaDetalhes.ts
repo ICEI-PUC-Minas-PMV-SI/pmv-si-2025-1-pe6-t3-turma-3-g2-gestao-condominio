@@ -6,13 +6,24 @@ import { obterToken } from "@/utils/auth";
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useOcorrenciaDetalhesAdmin(id: string) {
-  const [ocorrencia, setOcorrencia] = useState(null);
+export function useReservaDetalhes(id: string) {
+  const [reserva, setReserva] = useState<{
+    nome: string;
+    data: string;
+    horario: string;
+    status: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
-  const [erro, setErro] = useState(null);
+  const [erro, setErro] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchOcorrenciaAdmin = async () => {
+    if (!id) {
+      setErro("ID da reserva não fornecido.");
+      setLoading(false);
+      return;
+    }
+
+    const fetchReserva = async () => {
       try {
         setLoading(true);
         const token = await obterToken();
@@ -23,24 +34,24 @@ export function useOcorrenciaDetalhesAdmin(id: string) {
           return;
         }
 
-       const response = await fetch(`${API_URL}/api/listar/ocorrencias/${id}`, {
+        const response = await fetch(`${API_URL}/api/reservas/${id}`, {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-          Alert.alert("Erro", data.message || "Erro ao carregar ocorrência (admin).");
-          setErro(data.message);
+          Alert.alert("Erro", data.message || "Erro ao carregar reserva.");
+          setErro(data.message || "Erro desconhecido");
           return;
         }
 
-        setOcorrencia(data);
-      } catch (err) {
-        console.error("Erro ao buscar detalhes (admin):", err);
+        setReserva(data);
+      } catch (err: any) {
+        console.error("Erro ao buscar detalhes da reserva:", err);
         Alert.alert("Erro", "Erro na comunicação com o servidor.");
         setErro(err.message);
       } finally {
@@ -48,8 +59,8 @@ export function useOcorrenciaDetalhesAdmin(id: string) {
       }
     };
 
-    if (id) fetchOcorrenciaAdmin();
+    fetchReserva();
   }, [id]);
 
-  return { ocorrencia, loading, erro };
+  return { reserva, loading, erro };
 }

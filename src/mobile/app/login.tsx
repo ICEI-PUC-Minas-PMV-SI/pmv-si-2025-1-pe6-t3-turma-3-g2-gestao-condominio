@@ -9,7 +9,7 @@ export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { API_URL } = Constants.expoConfig.extra;
+  const API_URL = Constants.expoConfig?.extra?.API_URL ?? 'http://localhost:3000';
 
   const handleLogin = async () => {
     try {
