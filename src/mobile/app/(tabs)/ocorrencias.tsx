@@ -10,9 +10,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import ListaDeItens from "@/components/ListaDeItens";
-import { useOcorrencias } from "@/hooks/useOcorrencias";
+import { useOcorrencias } from "@/hooks/ocorrencias/useOcorrencias";
 import { useFocusEffect } from "@react-navigation/native";
-import { useExcluirOcorrencia } from "@/hooks/useExcluirOcorrencia";
+import { useExcluirOcorrencia } from "@/hooks/ocorrencias/useExcluirOcorrencia";
 
 export default function OcorrenciasScreen() {
   const [modalVisible, setModalVisible] = useState(false);

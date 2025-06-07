@@ -8,7 +8,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { useCriarOcorrencia } from "@/hooks/useCriarOcorrencia";
+import { useCriarOcorrencia } from "@/hooks/ocorrencias/useCriarOcorrencia";
 
 export default function CriarOcorrenciaScreen() {
   const router = useRouter();

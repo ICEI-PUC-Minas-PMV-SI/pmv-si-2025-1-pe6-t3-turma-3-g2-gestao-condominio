@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet, ScrollView } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { useOcorrenciaDetalhesAdmin } from "@/hooks/useOcorrenciaDetalhesAdmin";
+import { useOcorrenciaDetalhesAdmin } from "@/hooks/ocorrencias/useOcorrenciaDetalhesAdmin";
 
 export default function DetalhesAdminScreen() {
   const router = useRouter();

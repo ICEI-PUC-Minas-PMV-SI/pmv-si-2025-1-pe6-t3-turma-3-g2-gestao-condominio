@@ -8,7 +8,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
 import ListaDeItens from "@/components/ListaDeItens";
-import { useOcorrenciasAdmin } from '@/hooks/useOcorrenciasAdmin';
+import { useOcorrenciasAdmin } from '@/hooks/ocorrencias/useOcorrenciasAdmin';
 import { useFocusEffect } from "@react-navigation/native";
 import { Feather } from '@expo/vector-icons';
 
@@ -25,7 +25,7 @@ export default function OcorrenciasAdminScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.titulo}>Listagem das ocorrências (Admin)</Text>
+      <Text style={styles.titulo}>Listagem das ocorrências</Text>
 
       <ListaDeItens
         dados={ocorrencias}

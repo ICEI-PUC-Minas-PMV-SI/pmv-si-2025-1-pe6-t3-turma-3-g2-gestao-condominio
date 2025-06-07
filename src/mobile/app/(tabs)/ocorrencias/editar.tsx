@@ -1,7 +1,7 @@
 import { SafeAreaView, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
-import { useEditarOcorrencia } from "@/hooks/useEditarOcorrencia";
+import { useEditarOcorrencia } from "@/hooks/ocorrencias/useEditarOcorrencia";
 
 export default function EditarOcorrenciaScreen() {
   const router = useRouter();

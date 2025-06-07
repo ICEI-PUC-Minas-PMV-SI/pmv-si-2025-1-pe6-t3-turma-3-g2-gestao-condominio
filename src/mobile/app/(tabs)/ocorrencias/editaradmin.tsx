@@ -2,14 +2,16 @@ import React from "react";
 import {
   View,
   Text,
+  Platform,
   StyleSheet,
   Button,
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { useAlterarStatusOcorrencia } from "@/hooks/useAlterarStatusOcorrencia";
+import { useAlterarStatusOcorrencia } from "@/hooks/ocorrencias/useAlterarStatusOcorrencia";
 import { Picker } from '@react-native-picker/picker';
+import '../../../styles/web-select.css'
 export default function EditarStatusOcorrenciaScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -40,7 +42,7 @@ export default function EditarStatusOcorrenciaScreen() {
         <Picker
           selectedValue={status}
           onValueChange={(value) => setStatus(value)}
-          style={styles.picker}
+          style={[styles.picker, Platform.OS === 'web' && { color: '#002C21', backgroundColor: '#FFFDEB' }]}
           dropdownIconColor="#002C21"
         >
           <Picker.Item label="Aberto" value="Aberto" />

@@ -4,7 +4,8 @@ import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
 
-const API_URL = Constants.expoConfig.extra.API_URL;
+const rawUrl = Constants.expoConfig?.extra?.API_URL;
+const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
 export function useAlterarStatusOcorrencia(id: string, statusInicial: string) {
   const [status, setStatus] = useState(statusInicial || "Aberto");

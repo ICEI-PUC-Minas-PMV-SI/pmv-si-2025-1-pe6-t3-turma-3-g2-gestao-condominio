@@ -1,6 +1,6 @@
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { SafeAreaView, Text, ActivityIndicator, View } from "react-native";
-import { useOcorrenciaDetalhes } from "@/hooks/useOcorrenciaDetalhes";
+import { useOcorrenciaDetalhes } from "@/hooks/ocorrencias/useOcorrenciaDetalhes";
 
 export default function DetalhesOcorrenciaScreen() {
   const router = useRouter();

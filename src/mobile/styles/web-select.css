@@ -1,0 +1,16 @@
+select {
+  background-color: #FFFDEB !important;
+  color: #002C21 !important;
+  border: 1px solid #002C21 !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+
+select option {
+  background-color: #FFFDEB !important;
+  color: #002C21 !important;
+}
