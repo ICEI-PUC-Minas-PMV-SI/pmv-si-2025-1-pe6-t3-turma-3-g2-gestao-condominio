@@ -35,11 +35,8 @@ export default function LoginScreen() {
         const decoded = jwtDecode(data.token);
         console.log('Usuário decodificado:', decoded);
 
-        if (decoded.id === 1) {
-          router.replace('/(tabs)/ocorrenciasAdmin');
-        } else {
-          router.replace('/(tabs)/ocorrencias');
-        }
+        router.replace('/menu');
+
       } else {
         Alert.alert('Erro', 'Token inválido ou ausente');
       }
