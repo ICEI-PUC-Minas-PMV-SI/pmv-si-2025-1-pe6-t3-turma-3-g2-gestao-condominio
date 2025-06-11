@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Alert } from "react-native";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -15,7 +16,7 @@ export function useExcluirOcorrencia(onSuccess?: () => void) {
       const token = await obterToken();
 
       if (!token) {
-        Alert.alert("Erro", "Usuário não autenticado.");
+        showToast("error", "Usuário não autenticado.");
         setLoading(false);
         return;
       }
@@ -30,14 +31,14 @@ export function useExcluirOcorrencia(onSuccess?: () => void) {
       const data = await response.json();
 
       if (!response.ok) {
-        Alert.alert("Erro", data.message || "Erro ao excluir ocorrência.");
+        showToast("error", data.message || "Erro ao excluir ocorrência.");
       } else {
-        Alert.alert("Sucesso", "Ocorrência excluída com sucesso!");
+        showToast("success", "Ocorrência excluída com sucesso!");
         if (onSuccess) onSuccess();
       }
     } catch (error) {
       console.error("Erro ao excluir ocorrência:", error);
-      Alert.alert("Erro", "Erro na comunicação com o servidor.");
+      showToast("error", "Erro na comunicação com o servidor.");
     } finally {
       setLoading(false);
     }

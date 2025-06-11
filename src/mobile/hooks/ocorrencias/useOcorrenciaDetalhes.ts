@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -18,7 +19,7 @@ export function useOcorrenciaDetalhes(id: string) {
         const token = await obterToken();
 
         if (!token) {
-          Alert.alert("Erro", "Usuário não autenticado.");
+          showToast("error", "Usuário não autenticado.");
           setErro("Sem token");
           return;
         }
@@ -33,7 +34,7 @@ export function useOcorrenciaDetalhes(id: string) {
         const data = await response.json();
 
         if (!response.ok) {
-          Alert.alert("Erro", data.message || "Erro ao carregar ocorrência.");
+          showToast("error", data.message || "Erro ao carregar ocorrência.");
           setErro(data.message);
           return;
         }
@@ -41,7 +42,7 @@ export function useOcorrenciaDetalhes(id: string) {
         setOcorrencia(data);
       } catch (err) {
         console.error("Erro ao buscar detalhes:", err);
-        Alert.alert("Erro", "Erro na comunicação com o servidor.");
+        showToast("error", "Erro na comunicação com o servidor.");
         setErro(err.message);
       } finally {
         setLoading(false);
