@@ -215,6 +215,8 @@ Implantação ainda não realizada.
 
 ### ✅ Casos de Teste - Serviço de Ocorrências 
 
+https://github.com/user-attachments/assets/5821d6a7-d7f3-4724-bdaa-310b93fbb4f1
+
 ### 1. Visualizar Detalhes da Ocorrência (Usuário)
 - **Objetivo:** Usuário deve conseguir ver os detalhes completos de uma ocorrência que criou.
 - **Passos:**
@@ -294,6 +296,8 @@ Implantação ainda não realizada.
   
 ### ✅ Casos de Teste – Tela de Reservas
 
+https://github.com/user-attachments/assets/c30944ef-46a1-4758-a0b9-e0e37af3d011
+
 ### 1. Carregamento inicial
 - **Descrição**: Verificar se os dados são carregados corretamente ao abrir a tela.
 - **Pré-condição**: Usuário autenticado com token válido no `localStorage`.
@@ -358,6 +362,9 @@ Implantação ainda não realizada.
   - Posicionado no canto inferior direito
 
 ### ✅ Casos de Teste – Tela de Moradores
+
+https://github.com/user-attachments/assets/80e2abd1-56e4-4698-90ac-735c032ab208
+
 ### 1. Visualizar Detalhes do Morador (Usuário)
 - **Objetivo:** Usuário deve conseguir ver os detalhes completos do morador que ele cadastrou.
 - **Passos:**
@@ -420,6 +427,12 @@ Implantação ainda não realizada.
 - **Verificações:** Não carrega dados, exibe toast.
 
 ## ✅ Casos de Teste – Tela de Visitantes
+
+
+
+https://github.com/user-attachments/assets/8f19bb31-c41a-487f-8135-27e4c6f48947
+
+
 
 ## 1. Carregamento inicial
 **Descrição**: Verificar se os dados dos visitantes são carregados corretamente ao abrir a tela.
@@ -488,6 +501,10 @@ Toast visível com fonte 18px e largura de 400px
 Posicionado no canto inferior direito
 
 ## ✅ Casos de Teste - Autenticação - Usuário
+
+
+https://github.com/user-attachments/assets/17f8388b-8c5e-41f9-8c26-8d83152ab655
+
 
 ### 1. Login com Usuário Válido
 - **Objetivo:** Usuário deve conseguir fazer login com e-mail e senha corretos.
