@@ -57,7 +57,7 @@
   3. Clicar em "Detalhes" de uma ocorrência listada
 - **Verificações:** Tela renderiza corretamente, exibe título, descrição.
 ![Detalhes Ocorrência - Usuário](testemobileocorrencias/detalhesocorrenciamobile.png)
-  ---
+---
 
 ### 3. Criar Ocorrência
 - **Objetivo:** Testar criação de nova ocorrência.
@@ -106,7 +106,7 @@
   1. Login
   2. Acessar formulário e tentar enviar vazio
 - **Verificações:** Campos com erro.
-![Criar com Erros](testemobileocorrencias/.png)
+![Criar com Erros](testemobileocorrencias/createocorrenciaemptycampo.png)
 ---
 
 ### 8. Listagem de Ocorrências (Admin)
