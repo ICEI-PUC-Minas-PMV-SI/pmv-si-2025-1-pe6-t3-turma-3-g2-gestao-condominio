@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
-import { useFocusEffect } from "@react-navigation/native";
 
 import ListaDeItens from "@/components/ListaDeItens";
 import { useUsuarios } from "@/hooks/usuarios/useUsuarios";
@@ -26,7 +25,6 @@ export default function UsuariosScreen() {
     fecharModal();
     refetch();
   });
-
 
   const abrirModal = (usuario) => {
     setUsuarioSelecionado(usuario);
@@ -45,13 +43,12 @@ export default function UsuariosScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
-        <Text
-                style={{ color: "#002C21", fontSize: 16, marginBottom: 20, marginLeft: 20 }}
-                onPress={() => router.back()}
-              >
-                ← Voltar
-              </Text>
+      <Text
+        style={{ color: "#002C21", fontSize: 16, marginBottom: 20, marginLeft: 20 }}
+        onPress={() => router.push("/menu")} // navega para menu.tsx
+      >
+        ← Voltar
+      </Text>
       <Text style={styles.titulo}>Listagem de Usuários</Text>
 
       <Link href="/usuarios/criarUsuario" asChild>
@@ -60,59 +57,77 @@ export default function UsuariosScreen() {
         </TouchableOpacity>
       </Link>
 
+      {/* Botão de Refresh */}
+      <TouchableOpacity
+        onPress={refetch}
+        style={{
+          backgroundColor: "#E0E0E0",
+          padding: 10,
+          borderRadius: 8,
+          alignSelf: "center",
+          marginBottom: 10,
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 8,
+        }}
+      >
+        <Feather name="refresh-cw" size={16} color="#002C21" />
+        <Text style={{ color: "#002C21", fontWeight: "bold" }}>
+          Atualizar Lista
+        </Text>
+      </TouchableOpacity>
+
       {loading ? (
         <ActivityIndicator size="large" color="#002C21" style={{ marginTop: 50 }} />
       ) : erro ? (
         <Text style={styles.erroTexto}>{erro}</Text>
       ) : (
         <ListaDeItens
-  dados={usuarios}
-  renderItem={(usuario) => (
-    <View style={styles.card} key={usuario.id}>
-      <Link
-        href={{
-          pathname: `/usuarios/detalhes`,
-          params: {
-            id: usuario.id,
-            name: usuario.name,
-            email: usuario.email,
-          },
-        }}
-        asChild
-      >
-        <TouchableOpacity>
-          <Text style={styles.idUsuario}>ID: {usuario.id}</Text>
-          <Text style={styles.nameUsuario}>{usuario.name}</Text>
-          <Text style={styles.emailUsuario}>{usuario.email}</Text>
-        </TouchableOpacity>
-      </Link>
+          dados={usuarios}
+          renderItem={(usuario) => (
+            <View style={styles.card} key={usuario.id}>
+              <Link
+                href={{
+                  pathname: `/usuarios/editarUsuario`,
+                  params: {
+                    id: usuario.id,
+                    name: usuario.name,
+                    email: usuario.email,
+                  },
+                }}
+                asChild
+              >
+                <TouchableOpacity>
+                  <Text style={styles.idUsuario}>ID: {usuario.id}</Text>
+                  <Text style={styles.nameUsuario}>{usuario.name}</Text>
+                  <Text style={styles.emailUsuario}>{usuario.email}</Text>
+                </TouchableOpacity>
+              </Link>
 
-      <View style={styles.rodapeCard}>
-        <View style={styles.icones}>
-          <TouchableOpacity
-            onPress={() =>
-              router.push({
-                pathname: "/usuarios/editar",
-                params: {
-                  id: usuario.id,
-                  name: usuario.name,
-                  email: usuario.email,
-                },
-              })
-            }
-          >
-            <Feather name="edit-3" size={16} color="#002C21" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => abrirModal(usuario)}>
-            <Feather name="trash" size={16} color="#002C21" />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  )}
-/>
-
-
+              <View style={styles.rodapeCard}>
+                <View style={styles.icones}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      router.push({
+                        pathname: "/usuarios/editarUsuario",
+                        params: {
+                          id: usuario.id,
+                          name: usuario.name,
+                          email: usuario.email,
+                        },
+                      })
+                    }
+                  >
+                    <Feather name="edit-3" size={16} color="#002C21" />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => abrirModal(usuario)}>
+                    <Feather name="trash" size={16} color="#002C21" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          )}
+        />
       )}
 
       <Modal
@@ -131,7 +146,7 @@ export default function UsuariosScreen() {
             <Text style={styles.modalDescription}>
               Você tem certeza que deseja excluir o usuário{" "}
               <Text style={{ fontWeight: "bold" }}>
-                {usuarioSelecionado?.name}
+                {usuarioSelecionado?.nome}
               </Text>
               ?
             </Text>
@@ -217,6 +232,11 @@ const styles = StyleSheet.create({
   emailUsuario: {
     color: "#002C21",
     fontStyle: "italic",
+  },
+  idUsuario: {
+    color: "#002C21",
+    fontSize: 12,
+    marginBottom: 4,
   },
   rodapeCard: {
     flexDirection: "row",

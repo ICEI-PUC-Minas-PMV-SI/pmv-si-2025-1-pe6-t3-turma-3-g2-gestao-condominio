@@ -1,5 +1,5 @@
-import React from "react";
-import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   SafeAreaView,
   Text,
@@ -11,23 +11,29 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { useCriarUsuario } from "@/hooks/usuarios/useCriarUsuario";
+import { useEditarUsuario } from "@/hooks/usuarios/useEditarUsuario";
 
-export default function CriarUsuarioScreen() {
+
+export default function EditarUsuarioScreen() {
   const router = useRouter();
+  const { id, name, email } = useLocalSearchParams();
 
   const {
-    nome,
-  setNome,
-  email,
-  setEmail,
-  senha,
-  setSenha,
-  criarUsuario,
+  novoNome,
+  setNovoNome,
+  novoEmail,
+  setNovoEmail,
+  novaSenha,
+  setNovaSenha,
+  editarUsuario,
   loading,
-  } = useCriarUsuario();
+} = useEditarUsuario(String(id));
 
-  
+  useEffect(() => {
+    if (name) setNovoNome(String(name));
+  if (email) setNovoEmail(String(email));
+  if (novaSenha) setNovaSenha(String(novaSenha));
+  }, [name, email]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -46,7 +52,7 @@ export default function CriarUsuarioScreen() {
           >
             ← Voltar
           </Text>
-          <Text style={styles.title}>Criar Usuário</Text>
+          <Text style={styles.title}>Editar Usuário</Text>
 
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Nome</Text>
@@ -54,8 +60,8 @@ export default function CriarUsuarioScreen() {
               style={styles.input}
               placeholder="Nome completo"
               placeholderTextColor="#888"
-              value={nome}
-              onChangeText={setNome}
+              value={novoNome}
+              onChangeText={setNovoNome}
               autoCapitalize="words"
             />
           </View>
@@ -66,8 +72,8 @@ export default function CriarUsuarioScreen() {
               style={styles.input}
               placeholder="Email"
               placeholderTextColor="#888"
-              value={email}
-              onChangeText={setEmail}
+              value={novoEmail}
+              onChangeText={setNovoEmail}
               keyboardType="email-address"
               autoCapitalize="none"
             />
@@ -77,21 +83,21 @@ export default function CriarUsuarioScreen() {
             <Text style={styles.label}>Senha</Text>
             <TextInput
               style={styles.input}
-              placeholder="Senha"
+              placeholder="Senha (opcional)"
               placeholderTextColor="#888"
-              value={senha}
-              onChangeText={setSenha}
+              value={novaSenha}
+              onChangeText={setNovaSenha}
               secureTextEntry
             />
           </View>
 
           <TouchableOpacity
             style={[styles.button, loading && { opacity: 0.7 }]}
-            onPress={criarUsuario}
+            onPress={() => editarUsuario(id)}
             disabled={loading}
           >
             <Text style={styles.buttonText}>
-              {loading ? "Salvando..." : "Salvar"}
+              {loading ? "Salvando..." : "Salvar Alterações"}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -142,7 +148,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 10,
     alignSelf: "center",
-    width: "50%",
+    width: "60%",
     marginBottom: 30,
   },
   buttonText: {
