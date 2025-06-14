@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -55,6 +56,7 @@ export function useEditarReserva(id: string) {
       }
 
       Alert.alert("Sucesso", "Reserva atualizada com sucesso!");
+      showToast("success", "Reserva atualizada com sucesso!");
       router.push("/reservas");
     } catch (error) {
       console.error("Erro ao atualizar reserva:", error);

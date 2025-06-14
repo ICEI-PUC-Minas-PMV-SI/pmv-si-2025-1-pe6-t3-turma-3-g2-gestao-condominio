@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -54,6 +55,7 @@ export function useCriarReserva() {
       }
 
       Alert.alert("Sucesso", "Reserva criada com sucesso!");
+      showToast("success", "Ocorrência criada com sucesso!");
       router.push("/reservas");
     } catch (error) {
       console.error("Erro ao salvar reserva:", error);

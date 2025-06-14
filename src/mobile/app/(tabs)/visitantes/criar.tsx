@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useCriarVisitante } from '@/hooks/useCriarVisitante';
+import { useCriarVisitante } from '@/hooks/visitantes/useCriarVisitante';
 
 export default function CriarVisitanteScreen() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import { SafeAreaView, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
-import { useEditarReserva } from "@/hooks/useEditarReserva";
+import { useEditarReserva } from "@/hooks/reservas/useEditarReserva";
 
 export default function EditarReservaScreen() {
   const router = useRouter();
