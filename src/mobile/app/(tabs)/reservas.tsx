@@ -11,9 +11,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import ListaDeItens from "@/components/ListaDeItens";
-import { useReservas } from "@/hooks/useReservas";
+import { useReservas } from "@/hooks/reservas/useReservas";
 import { useFocusEffect } from "@react-navigation/native";
-import { useExcluirReserva } from "@/hooks/useExcluirReserva";
+import { useExcluirReserva } from "@/hooks/reservas/useExcluirReserva";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {jwtDecode} from "jwt-decode";
 
@@ -27,7 +27,6 @@ interface Reserva {
 
 interface DecodedToken {
   id: number;
-  // Adicione outros campos se necessário
 }
 
 export default function ReservasScreen() {
@@ -92,6 +91,13 @@ export default function ReservasScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+
+      <Text
+                            style={{ color: "#002C21", fontSize: 16, marginBottom: 20, marginLeft: 20 }}
+                            onPress={() => router.replace('/menu')}
+                          >
+                            ← Voltar
+      </Text>
       {userId !== null && (
     <Text style={styles.titulo}>
       Listagem das reservas{userId === 1 ? " (Admin)" : ""}

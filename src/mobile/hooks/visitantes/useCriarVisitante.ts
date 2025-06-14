@@ -8,13 +8,13 @@ import { showToast } from '@/utils/toast';
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useCriarOcorrencia() {
+export function useCriarVisitante() {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const salvarOcorrencia = async () => {
+  const salvarVisitante = async () => {
     if (!titulo.trim() || !descricao.trim()) {
       showToast("error", "Preencha todos os campos!");
       return;
@@ -31,7 +31,7 @@ export function useCriarOcorrencia() {
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/ocorrencias`, {
+      const response = await fetch(`${API_URL}/api/visitantes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,9 +51,9 @@ export function useCriarOcorrencia() {
       }
 
       showToast("success", "Ocorrência criada com sucesso!");
-      router.push("/ocorrencias");
+      router.push("/visitantes");
     } catch (error) {
-      console.error("Erro no salvarOcorrencia:", error);
+      console.error("Erro no salvarVisitante:", error);
       showToast("error", "Não foi possível conectar ao servidor");
     } finally {
       setLoading(false);
@@ -65,7 +65,7 @@ export function useCriarOcorrencia() {
     setTitulo,
     descricao,
     setDescricao,
-    salvarOcorrencia,
+    salvarVisitante,
     loading,
   };
 }

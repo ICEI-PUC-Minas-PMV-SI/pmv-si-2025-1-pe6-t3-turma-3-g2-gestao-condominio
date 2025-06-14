@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Alert } from "react-native";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useExcluirReserva(onSuccess?: () => void) {
+export function useExcluirVisitante(onSuccess?: () => void) {
   const [loading, setLoading] = useState(false);
 
   const excluir = async (id: string) => {
@@ -15,12 +16,12 @@ export function useExcluirReserva(onSuccess?: () => void) {
       const token = await obterToken();
 
       if (!token) {
-        Alert.alert("Erro", "Usuário não autenticado.");
+        showToast("error", "Usuário não autenticado.");
         setLoading(false);
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/reservas/${id}`, {
+      const response = await fetch(`${API_URL}/api/visitantes/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -30,14 +31,14 @@ export function useExcluirReserva(onSuccess?: () => void) {
       const data = await response.json();
 
       if (!response.ok) {
-        Alert.alert("Erro", data.message || "Erro ao excluir reserva.");
+        showToast("error", data.message || "Erro ao excluir ocorrência.");
       } else {
-        Alert.alert("Sucesso", "Reserva excluída com sucesso!");
+        showToast("success", "Ocorrência excluída com sucesso!");
         if (onSuccess) onSuccess();
       }
     } catch (error) {
-      console.error("Erro ao excluir reserva:", error);
-      Alert.alert("Erro", "Erro na comunicação com o servidor.");
+      console.error("Erro ao excluir ocorrência:", error);
+      showToast("error", "Erro na comunicação com o servidor.");
     } finally {
       setLoading(false);
     }

@@ -8,18 +8,12 @@ import { showToast } from '@/utils/toast';
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useCriarOcorrencia() {
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
+export function useAlterarStatusVisitante(id: string, statusInicial: string) {
+  const [status, setStatus] = useState(statusInicial || "Aberto");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const salvarOcorrencia = async () => {
-    if (!titulo.trim() || !descricao.trim()) {
-      showToast("error", "Preencha todos os campos!");
-      return;
-    }
-
+  const alterarStatus = async () => {
     setLoading(true);
 
     try {
@@ -31,41 +25,37 @@ export function useCriarOcorrencia() {
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/ocorrencias`, {
-        method: "POST",
+      const response = await fetch(`${API_URL}/api/visitantes/status/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ titulo, descricao, status: "aberto" }),
+        body: JSON.stringify({ status }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        showToast("error", data.error || data.message || "Erro ao criar ocorrência");
-        setTitulo("");
-        setDescricao("");
+        showToast("error", data.message || "Erro ao atualizar status.");
         setLoading(false);
         return;
       }
 
-      showToast("success", "Ocorrência criada com sucesso!");
-      router.push("/ocorrencias");
+      showToast("success", "Status atualizado com sucesso!");
+      router.push("/visitantesAdmin");
     } catch (error) {
-      console.error("Erro no salvarOcorrencia:", error);
-      showToast("error", "Não foi possível conectar ao servidor");
+      console.error("Erro ao alterar status:", error);
+      showToast("error", "Não foi possível conectar ao servidor.");
     } finally {
       setLoading(false);
     }
   };
 
   return {
-    titulo,
-    setTitulo,
-    descricao,
-    setDescricao,
-    salvarOcorrencia,
+    status,
+    setStatus,
     loading,
+    alterarStatus,
   };
 }

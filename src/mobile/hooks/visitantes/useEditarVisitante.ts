@@ -8,14 +8,14 @@ import { showToast } from '@/utils/toast';
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useCriarOcorrencia() {
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
+export function useEditarVisitante(id: string) {
+  const [novoTitulo, setNovoTitulo] = useState("");
+  const [novaDescricao, setNovaDescricao] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const salvarOcorrencia = async () => {
-    if (!titulo.trim() || !descricao.trim()) {
+  const atualizarVisitante = async () => {
+    if (!novoTitulo.trim() || !novaDescricao.trim()) {
       showToast("error", "Preencha todos os campos!");
       return;
     }
@@ -31,41 +31,42 @@ export function useCriarOcorrencia() {
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/ocorrencias`, {
-        method: "POST",
+      const response = await fetch(`${API_URL}/api/visitantes/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({ titulo, descricao, status: "aberto" }),
+        body: JSON.stringify({
+          titulo: novoTitulo,
+          descricao: novaDescricao,
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        showToast("error", data.error || data.message || "Erro ao criar ocorrência");
-        setTitulo("");
-        setDescricao("");
+        showToast("error", data.message || "Erro ao atualizar ocorrência.");
         setLoading(false);
         return;
       }
 
-      showToast("success", "Ocorrência criada com sucesso!");
-      router.push("/ocorrencias");
+      showToast("success", "Ocorrência atualizada com sucesso!");
+      router.push("/visitantes");
     } catch (error) {
-      console.error("Erro no salvarOcorrencia:", error);
-      showToast("error", "Não foi possível conectar ao servidor");
+      console.error("Erro ao atualizar ocorrência:", error);
+      showToast("error", "Não foi possível conectar ao servidor.");
     } finally {
       setLoading(false);
     }
   };
 
   return {
-    titulo,
-    setTitulo,
-    descricao,
-    setDescricao,
-    salvarOcorrencia,
+    novoTitulo,
+    setNovoTitulo,
+    novaDescricao,
+    setNovaDescricao,
+    atualizarVisitante,
     loading,
   };
 }

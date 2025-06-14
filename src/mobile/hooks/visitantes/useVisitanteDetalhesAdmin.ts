@@ -7,13 +7,13 @@ import { showToast } from '@/utils/toast';
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
-export function useOcorrenciaDetalhesAdmin(id: string) {
-  const [ocorrencia, setOcorrencia] = useState(null);
+export function useVisitanteDetalhesAdmin(id: string) {
+  const [visitante, setVisitante] = useState(null);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(null);
 
   useEffect(() => {
-    const fetchOcorrenciaAdmin = async () => {
+    const fetchVisitanteAdmin = async () => {
       try {
         setLoading(true);
         const token = await obterToken();
@@ -24,7 +24,7 @@ export function useOcorrenciaDetalhesAdmin(id: string) {
           return;
         }
 
-       const response = await fetch(`${API_URL}/api/listar/ocorrencias/${id}`, {
+       const response = await fetch(`${API_URL}/api/listar/visitantes/${id}`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -39,7 +39,7 @@ export function useOcorrenciaDetalhesAdmin(id: string) {
           return;
         }
 
-        setOcorrencia(data);
+        setVisitante(data);
       } catch (err) {
         console.error("Erro ao buscar detalhes (admin):", err);
         showToast("error", "Erro na comunicação com o servidor.");
@@ -49,8 +49,8 @@ export function useOcorrenciaDetalhesAdmin(id: string) {
       }
     };
 
-    if (id) fetchOcorrenciaAdmin();
+    if (id) fetchVisitanteAdmin();
   }, [id]);
 
-  return { ocorrencia, loading, erro };
+  return { visitante, loading, erro };
 }

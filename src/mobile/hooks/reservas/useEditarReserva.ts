@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -14,6 +15,13 @@ export function useEditarReserva(id: string) {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  // Função para converter data de DD/MM/AAAA para YYYY-MM-DD
+  const formatarParaAmericano = (dataBr: string) => {
+    const [dia, mes, ano] = dataBr.split("/");
+    if (!dia || !mes || !ano) return dataBr;
+    return `${ano}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+  };
 
   const atualizarReserva = async () => {
     if (!nome.trim() || !data.trim() || !horario.trim()) {
@@ -40,7 +48,7 @@ export function useEditarReserva(id: string) {
         },
         body: JSON.stringify({
           nome,
-          data,
+          data: formatarParaAmericano(data), // <-- Aqui a conversão da data
           horario,
           status,
         }),
@@ -55,6 +63,7 @@ export function useEditarReserva(id: string) {
       }
 
       Alert.alert("Sucesso", "Reserva atualizada com sucesso!");
+      showToast("success", "Reserva atualizada com sucesso!");
       router.push("/reservas");
     } catch (error) {
       console.error("Erro ao atualizar reserva:", error);
