@@ -8,7 +8,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { useCriarReserva } from "@/hooks/useCriarReserva";
+import { useCriarReserva } from "@/hooks/reservas/useCriarReserva";
 
 export default function CriarReservaScreen() {
   const router = useRouter();
@@ -23,6 +23,15 @@ export default function CriarReservaScreen() {
     salvarReserva,
     loading,
   } = useCriarReserva();
+
+  const formatarData = (texto) => {
+    const cleaned = texto.replace(/\D/g, "");
+    const formatted = cleaned
+      .replace(/^(\d{2})(\d)/, "$1/$2")
+      .replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3")
+      .replace(/^(\d{2})\/(\d{2})\/(\d{4}).*/, "$1/$2/$3");
+    return formatted;
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,8 +60,10 @@ export default function CriarReservaScreen() {
           style={styles.input}
           placeholder="DD/MM/AAAA"
           placeholderTextColor="#888"
+          keyboardType="numeric"
+          maxLength={10}
           value={data}
-          onChangeText={setData}
+          onChangeText={(text) => setData(formatarData(text))}
         />
       </View>
 

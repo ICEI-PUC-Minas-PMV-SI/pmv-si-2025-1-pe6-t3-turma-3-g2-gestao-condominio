@@ -137,6 +137,94 @@
 ![Formulário Admin](testemobileocorrencias/editocorrenciastatusmobile.png)
 ![Editar Status Admin](testemobileocorrencias/editocorrenciadminalert.png)
 
+## ✅ Casos de Teste - Gerenciamento de Usuários (Mobile)
+
+https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
+
+### 1. Acesso ao Menu de Usuários (Admin)
+- **Objetivo:** Apenas o administrador pode visualizar e acessar o menu de "Usuários".
+- **Passos:**
+  1. Login como `admin`
+  2. Verificar a presença do menu `Usuários`
+- **Verificações:** O item "Usuários" aparece no menu apenas para administradores.
+![image](https://github.com/user-attachments/assets/7a211270-ee30-492c-8f62-08896f391aeb)
+![image](https://github.com/user-attachments/assets/38db5af8-273b-4d83-b4db-cb31b93ad2c6)
+---
+
+### 2. Acesso Restrito ao Menu de Usuários (Usuário Comum)
+- **Objetivo:** Usuário comum **não** deve ver nem acessar o menu de "Usuários".
+- **Passos:**
+  1. Login como `usuário`
+- **Verificações:** O item "Usuários" **não** aparece no menu.
+![image](https://github.com/user-attachments/assets/eac7d5d8-d88a-4178-9be9-c2c50a6f2e89)
+![image](https://github.com/user-attachments/assets/7a3b85c9-b299-407c-b005-65d614f4ea45)
+---
+
+### 3. Listagem de Usuários (Admin)
+- **Objetivo:** Admin visualiza todos os usuários cadastrados.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar o menu `Usuários`
+- **Verificações:** Lista contendo id, nome, email e botão de editar/excluir.
+  
+![image](https://github.com/user-attachments/assets/ba587e7b-4988-4091-b8da-ef08b9000c77)
+---
+
+### 4. Criar Novo Usuário (Admin)
+- **Objetivo:** Admin deve conseguir cadastrar um novo usuário.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar `/usuarios/criarUsuario`
+  3. Preencher nome, email, senha e clicar em "Salvar"
+- **Verificações:**
+  - Toast ou Alert de sucesso
+  - Novo usuário aparece na listagem
+  - Logs exibidos no console:
+    ```
+    Iniciando criação de usuário: { nome, email }
+    Resposta da API: { message, status }
+    ```
+![image](https://github.com/user-attachments/assets/98eaeb59-a7d0-44f1-96ff-cc5e5e6c91f1)
+![image](https://github.com/user-attachments/assets/68a2c706-129d-4e53-93be-c79faaa96168)
+---
+
+### 5. Editar Usuário (Admin)
+- **Objetivo:** Admin pode editar nome, email e senha de um usuário.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar `/usuarios`, clicar no botão de editar
+  3. Atualizar dados e salvar
+- **Verificações:**
+  - Toast ou Alert de sucesso
+  - Dados atualizados na lista
+  - Logs no console:
+    ```
+    Iniciando edição do usuário: { id, nome, email }
+    Enviando dados para API...
+    Resposta da API: { ... }
+    ```
+![image](https://github.com/user-attachments/assets/b9ca1724-82fc-4883-89ae-1c9116076c82)
+---
+
+### 6. Excluir Usuário (Admin)
+- **Objetivo:** Admin pode excluir qualquer usuário da lista.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar `/usuarios`, clicar em "Excluir" e confirmar
+- **Verificações:**
+  - Toast ou Alert de sucesso
+  - Usuário removido da lista
+  - Logs no console:
+    ```
+    Excluindo usuário: ID do usuário
+    Resposta da API: { message, status }
+    ```
+![image](https://github.com/user-attachments/assets/f5a56387-677e-4681-b926-319351ddd499)
+![image](https://github.com/user-attachments/assets/265349fc-a128-4f00-a09b-cd3326aab0ff)
+---
+
+
+
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
