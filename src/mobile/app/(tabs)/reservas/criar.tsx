@@ -44,7 +44,7 @@ export default function CriarReservaScreen() {
       <Text style={styles.title}>Criar Reserva</Text>
 
       <View style={styles.inputGroup}>
-        <Text style={styles.label}>Nome</Text>
+        <Text style={styles.label}>Nome do local</Text>
         <TextInput
           style={styles.input}
           placeholder="Nome"
