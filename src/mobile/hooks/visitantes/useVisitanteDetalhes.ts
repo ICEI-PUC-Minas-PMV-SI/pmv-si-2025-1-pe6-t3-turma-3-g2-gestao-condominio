@@ -1,49 +1,48 @@
 import { useEffect, useState } from "react";
-import { Alert } from "react-native";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
-import { showToast } from '@/utils/toast';
+import { showToast } from "@/utils/toast";
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
 export function useVisitanteDetalhes(id: string) {
-  const [visitante, setVisitante] = useState(null);
+  const [visitante, setVisitante] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [erro, setErro] = useState(null);
+  const [erro, setErro] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchVisitante = async () => {
       try {
         setLoading(true);
-        const token = await obterToken();
+        setErro(null);
 
+        const token = await obterToken();
         if (!token) {
           showToast("error", "Usuário não autenticado.");
-          setErro("Sem token");
+          setErro("Token ausente.");
           return;
         }
 
         const response = await fetch(`${API_URL}/api/visitantes/${id}`, {
-          method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-          showToast("error", data.message || "Erro ao carregar ocorrência.");
+          showToast("error", data.message || "Erro ao carregar visitante.");
           setErro(data.message);
           return;
         }
 
         setVisitante(data);
-      } catch (err) {
-        console.error("Erro ao buscar detalhes:", err);
-        showToast("error", "Erro na comunicação com o servidor.");
+      } catch (err: any) {
+        console.error("Erro ao buscar visitante:", err);
         setErro(err.message);
+        showToast("error", "Erro na comunicação com o servidor.");
       } finally {
         setLoading(false);
       }

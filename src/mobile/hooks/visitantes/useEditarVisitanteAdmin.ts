@@ -1,4 +1,6 @@
 import { useMutation } from 'react-query';
+import Constants from 'expo-constants';
+import { obterToken } from '@/utils/auth';
 
 interface VisitanteData {
   nome: string;
@@ -7,11 +9,18 @@ interface VisitanteData {
   dataVisita: string;
 }
 
+const rawUrl = Constants.expoConfig?.extra?.API_URL;
+const API_URL = (!rawUrl || rawUrl.trim() === '') ? 'http://localhost:3000' : rawUrl;
+
 export function useEditarVisitanteAdmin() {
   const mutation = useMutation(async ({ id, dados }: { id: string; dados: VisitanteData }) => {
-    const token = localStorage.getItem('token');
+    const token = await obterToken();
 
-    const response = await fetch(`http://localhost:3000/api/visitantes/${id}`, {
+    if (!token) {
+      throw new Error("Usuário não autenticado.");
+    }
+
+    const response = await fetch(`${API_URL}/api/visitantes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -20,12 +29,13 @@ export function useEditarVisitanteAdmin() {
       body: JSON.stringify(dados),
     });
 
+    const responseData = await response.json();
+
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Erro ao editar visitante');
+      throw new Error(responseData.message || 'Erro ao editar visitante');
     }
 
-    return response.json();
+    return responseData;
   });
 
   return mutation;

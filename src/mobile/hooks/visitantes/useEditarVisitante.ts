@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
-import { showToast } from '@/utils/toast';
+import { showToast } from "@/utils/toast";
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
 export function useEditarVisitante(id: string) {
-  const [novoTitulo, setNovoTitulo] = useState("");
-  const [novaDescricao, setNovaDescricao] = useState("");
+  const [nome, setNome] = useState("");
+  const [documento, setDocumento] = useState("");
+  const [apartamento, setApartamento] = useState("");
+  const [dataVisita, setDataVisita] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const atualizarVisitante = async () => {
-    if (!novoTitulo.trim() || !novaDescricao.trim()) {
+    if (!nome || !documento || !apartamento || !dataVisita) {
       showToast("error", "Preencha todos os campos!");
       return;
     }
@@ -35,26 +36,28 @@ export function useEditarVisitante(id: string) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          titulo: novoTitulo,
-          descricao: novaDescricao,
+          nome,
+          documento,
+          apartamento,
+          dataVisita: new Date(dataVisita).toISOString(),
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        showToast("error", data.message || "Erro ao atualizar ocorrência.");
+        showToast("error", data.message || "Erro ao atualizar visitante.");
         setLoading(false);
         return;
       }
 
-      showToast("success", "Ocorrência atualizada com sucesso!");
+      showToast("success", "Visitante atualizado com sucesso!");
       router.push("/visitantes");
     } catch (error) {
-      console.error("Erro ao atualizar ocorrência:", error);
+      console.error("Erro ao atualizar visitante:", error);
       showToast("error", "Não foi possível conectar ao servidor.");
     } finally {
       setLoading(false);
@@ -62,10 +65,14 @@ export function useEditarVisitante(id: string) {
   };
 
   return {
-    novoTitulo,
-    setNovoTitulo,
-    novaDescricao,
-    setNovaDescricao,
+    nome,
+    setNome,
+    documento,
+    setDocumento,
+    apartamento,
+    setApartamento,
+    dataVisita,
+    setDataVisita,
     atualizarVisitante,
     loading,
   };
