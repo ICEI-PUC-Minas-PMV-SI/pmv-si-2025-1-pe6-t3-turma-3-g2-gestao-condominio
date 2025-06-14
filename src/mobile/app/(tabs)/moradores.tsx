@@ -23,11 +23,21 @@ type DecodedToken = {
 
 export default function MoradoresScreen() {
   const router = useRouter();
-  const { moradores, loading, erro, refetch } = useMoradores();
+  const { moradores, loading, refetch } = useMoradores();
   const [userId, setUserId] = useState<number | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [moradorSelecionado, setMoradorSelecionado] = useState(null);
+  type Morador = {
+    id: number;
+    nome: string;
+    apartamento: string;
+    bloco: string;
+    contato: string;
+    userId: number;
+    // Adicione outros campos conforme necessário
+  };
+  
+  const [moradorSelecionado, setMoradorSelecionado] = useState<Morador | null>(null);
 
   const { excluir, loading: loadingExcluir } = useExcluirMorador(() => {
     refetch();
@@ -56,7 +66,7 @@ export default function MoradoresScreen() {
   useFocusEffect(
     useCallback(() => {
       refetch();
-    }, [])
+    }, [refetch])
   );
 
   const abrirModal = (morador: any) => {
@@ -66,21 +76,25 @@ export default function MoradoresScreen() {
 
   const excluirMorador = () => {
     if (moradorSelecionado) {
-      excluir(moradorSelecionado.id);
+      excluir(moradorSelecionado.id.toString());
     }
   };
 
-  // Determina o título baseado no tipo de usuário
   const titulo = isAdmin ? "Lista de Moradores" : "Meu Perfil de Morador";
-  
-  // Para usuários não-admin, verifica se já tem morador cadastrado
+
   const temMoradorCadastrado = !isAdmin && moradores.length > 0;
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text
+        style={{ color: "#002C21", fontSize: 16, marginBottom: 20 }}
+        onPress={() => router.back()}
+      >
+        ← Voltar
+      </Text>
+
       <Text style={styles.titulo}>{titulo}</Text>
 
-      {/* Botão de criar - Admin sempre vê, usuário normal só se não tiver morador */}
       {(isAdmin || (!isAdmin && !temMoradorCadastrado)) && (
         <Link href="/moradores/criar" asChild>
           <TouchableOpacity style={styles.botaoCriar}>
@@ -91,7 +105,6 @@ export default function MoradoresScreen() {
         </Link>
       )}
 
-      {/* Mensagem quando usuário não tem perfil cadastrado */}
       {!isAdmin && !temMoradorCadastrado && !loading && (
         <View style={styles.mensagemContainer}>
           <Text style={styles.mensagemTexto}>
@@ -131,9 +144,12 @@ export default function MoradoresScreen() {
                   >
                     <Feather name="edit-3" size={16} color="#002C21" />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => abrirModal(morador)}>
-                    <Feather name="x" size={16} color="#002C21" />
-                  </TouchableOpacity>
+
+                  {userId === 1 && (
+                    <TouchableOpacity onPress={() => abrirModal(morador)}>
+                      <Feather name="x" size={16} color="#002C21" />
+                    </TouchableOpacity>
+                  )}
                 </View>
               </View>
             )}

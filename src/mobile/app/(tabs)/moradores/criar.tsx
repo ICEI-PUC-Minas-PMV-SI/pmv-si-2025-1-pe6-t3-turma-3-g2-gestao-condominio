@@ -2,8 +2,10 @@ import React from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useCriarMorador } from "@/hooks/useCriarMorador";
+import { useRouter } from "expo-router";
 
 export default function CriarMoradorScreen() {
+  const router = useRouter();
   const {
     nome, setNome,
     apartamento, setApartamento,
@@ -13,8 +15,13 @@ export default function CriarMoradorScreen() {
     loading,
   } = useCriarMorador();
 
+  
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFDEB", paddingHorizontal: 16, paddingTop: 40 }}>
+      <Text style={{ color: "#002C21", fontSize: 16, marginBottom: 20 }} onPress={() => router.back()}>
+        ← Voltar
+      </Text>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Cadastrar Morador</Text>
 

@@ -8,11 +8,10 @@ const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : ra
 
 type DecodedToken = {
   id: number;
-  // coloque outros campos que precisar aqui
 };
 
 export function useMoradores() {
-  const [moradores, setMoradores] = useState([]);
+  const [moradores, setMoradores] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
 
@@ -39,14 +38,17 @@ export function useMoradores() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Erro ao buscar moradores");
 
-      // Se não for admin, garante que retorna um array com os dados do usuário
       if (!isAdmin) {
         setMoradores(Array.isArray(data) ? data : [data]);
       } else {
         setMoradores(data);
       }
     } catch (err) {
-      setErro(err.message);
+      if (err instanceof Error) {
+        setErro(err.message);
+      } else {
+        setErro(String(err));
+      }
     } finally {
       setLoading(false);
     }

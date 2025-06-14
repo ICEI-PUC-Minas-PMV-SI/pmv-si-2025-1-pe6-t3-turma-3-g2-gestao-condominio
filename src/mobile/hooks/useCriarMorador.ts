@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -17,7 +17,7 @@ export function useCriarMorador() {
 
   const salvarMorador = async () => {
     if (!nome.trim() || !apartamento.trim() || !bloco.trim() || !contato.trim()) {
-      Alert.alert("Erro", "Preencha todos os campos!");
+      showToast("error", "Preencha todos os campos!");
       return;
     }
 
@@ -27,7 +27,7 @@ export function useCriarMorador() {
       const token = await obterToken();
 
       if (!token) {
-        Alert.alert("Erro", "Usuário não autenticado. Faça login novamente.");
+        showToast("error", "Usuário não autenticado. Faça login novamente.");
         setLoading(false);
         return;
       }
@@ -49,16 +49,16 @@ export function useCriarMorador() {
       const dataResponse = await response.json();
 
       if (!response.ok) {
-        Alert.alert("Erro", dataResponse.error || "Erro ao criar morador.");
+        showToast("error", dataResponse.error || "Erro ao criar morador.");
         setLoading(false);
         return;
       }
 
-      Alert.alert("Sucesso", "Morador criado com sucesso!");
+      showToast("success", "Morador criado com sucesso!");
       router.push("/moradores");
     } catch (error) {
       console.error("Erro ao salvar morador:", error);
-      Alert.alert("Erro", "Erro de conexão com o servidor.");
+      showToast("error", "Erro de conexão com o servidor.");
     } finally {
       setLoading(false);
     }

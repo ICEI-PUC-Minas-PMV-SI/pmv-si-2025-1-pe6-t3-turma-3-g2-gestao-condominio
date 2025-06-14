@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -30,7 +30,7 @@ export function useEditarMorador(id: string) {
         setBloco(data.bloco);
         setContato(data.contato);
       } catch (error) {
-        Alert.alert("Erro", error.message);
+        showToast("error", error instanceof Error ? error.message : String(error));
       }
     };
 
@@ -39,7 +39,7 @@ export function useEditarMorador(id: string) {
 
   const salvarAlteracoes = async () => {
     if (!nome.trim() || !apartamento.trim() || !bloco.trim() || !contato.trim()) {
-      Alert.alert("Erro", "Preencha todos os campos!");
+      showToast("error", "Preencha todos os campos!");
       return;
     }
 
@@ -58,11 +58,11 @@ export function useEditarMorador(id: string) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Erro ao atualizar morador");
 
-      Alert.alert("Sucesso", "Morador atualizado com sucesso!");
+      showToast("success", "Morador atualizado com sucesso!");
       router.push("/moradores");
     } catch (error) {
       console.error(error);
-      Alert.alert("Erro", "Erro ao salvar alterações.");
+      showToast("error", "Erro ao salvar alterações.");
     } finally {
       setLoading(false);
     }
