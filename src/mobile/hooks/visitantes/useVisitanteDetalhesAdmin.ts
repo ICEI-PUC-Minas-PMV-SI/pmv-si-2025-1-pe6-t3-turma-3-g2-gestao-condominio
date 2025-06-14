@@ -6,8 +6,20 @@ import { showToast } from '@/utils/toast';
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
 
+interface Visitante {
+  _id: string;
+  nome: string;
+  documento: string;
+  apartamento: string;
+  dataVisita: string;
+  user?: {
+    _id: string;
+    nome: string;
+  };
+}
+
 export function useVisitanteDetalhesAdmin(id: string) {
-  const [visitante, setVisitante] = useState<any>(null);
+  const [visitante, setVisitante] = useState<Visitante | null>(null);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState<string | null>(null);
 
