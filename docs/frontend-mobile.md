@@ -223,6 +223,16 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
 ![image](https://github.com/user-attachments/assets/265349fc-a128-4f00-a09b-cd3326aab0ff)
 ---
 
+### ✅ Casos de Teste - Serviço de Reservas (Mobile)
+### 1. Criar Reserva
+- **Objetivo:** Testar criação de nova reserva.
+- **Passos:**
+  1. Login como `usuário`
+  2. Ir para `/reservas/criar` clicando no botão de criar reservas
+  3. Preencher formulário e criar
+- **Verificações:** Atualiza página, toast de sucesso, nova reserva na lista.
+![Formulário Criar](imgservicoreservas/criar_reserva.png)
+![Alerta Criar](imgservicoreservas/criar_reserva_sucess.png)
 
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
