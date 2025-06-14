@@ -233,13 +233,51 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
 - **Verificações:** Atualiza página, toast de sucesso, nova reserva na lista.
 ![Formulário Criar](imgservicoreservas/criar_reserva.png)
 ![Alerta Criar](imgservicoreservas/criar_reserva_sucess.png)
-
-
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+---
+### 2. Listagem de Reservas (Usuário)
+- **Objetivo:** Usuário visualiza apenas as ocorrências criadas por ele.
+- **Passos:**
+  1. Login como `usuário`
+  2. Acessar a rota `/reservas`
+- **Verificações:** Lista exibe somente reservas do usuário logado.
+![Listagem Usuário](imgservicoreservas/listagem_reservas_usuário.png)
+---
+### 3. Visualizar Detalhes da Ocorrência (Usuário)
+- **Objetivo:** Usuário deve conseguir ver os detalhes completos de uma ocorrência que criou.
+- **Passos:**
+  1. Login como `usuário`
+  2. Acessar a rota `/reservas`
+  3. Clicar em uma reserva listada
+- **Verificações:** Tela renderiza corretamente, exibe título, descrição.
+![Detalhes Ocorrência - Usuário](imgservicoreservas/detalhes_reserva.png)
+---
+### 4. Editar Reserva
+- **Objetivo:** Usuário edita reserva em status "aberto".
+- **Passos:**
+  1. Login
+  2. Acessar `/reservas/editar/id` clicar no icon de editar.
+  3. Alterar e salvar
+- **Verificações:** Dados atualizados visíveis.
+![Editar Formulário](imgservicoreservas/editar_reserva.png)
+![Editar Alerta](imgservicoreservas/editar_reserva_sucess.png)
+---
+### 5. Cancelar Reserva
+- **Objetivo:** Usuário cancela a reserva criada por ele.
+- **Passos:**
+  1. Login
+  2. Clicar no icon “Cancelar” e confirmar
+- **Verificações:** Toast e remoção da lista.
+![img](imgservicoreservas/cancelar_reserva.png)
+![img](imgservicoreservas/reserva_cancelada.png)
+---
+### 6. Listagem de Reservas (Admin)
+- **Objetivo:** Admin visualiza todas as reservas cadastradas no sistema.
+- **Passos:**
+  1. Login como admin
+  2. Acessar a rota `/reservas`
+- **Verificações:** Lista mostra todas as reservas existentes, independente do autor.
+![img](imgservicoreservas/listagem_reservas_admin.png)
+---
 
 # Referências
 
