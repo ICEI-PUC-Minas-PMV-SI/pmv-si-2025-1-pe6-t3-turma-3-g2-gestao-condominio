@@ -91,6 +91,13 @@ export default function ReservasScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+
+      <Text
+                            style={{ color: "#002C21", fontSize: 16, marginBottom: 20, marginLeft: 20 }}
+                            onPress={() => router.replace('/menu')}
+                          >
+                            ← Voltar
+      </Text>
       {userId !== null && (
     <Text style={styles.titulo}>
       Listagem das reservas{userId === 1 ? " (Admin)" : ""}
