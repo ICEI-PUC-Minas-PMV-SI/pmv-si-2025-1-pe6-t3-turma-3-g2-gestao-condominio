@@ -242,7 +242,7 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
 - **Verificações:** Lista exibe somente reservas do usuário logado.
 ![Listagem Usuário](imgservicoreservas/listagem_reservas_usuário.png)
 ---
-### 3. Visualizar Detalhes da Ocorrência (Usuário)
+### 3. Visualizar Detalhes da Reserva (Usuário)
 - **Objetivo:** Usuário deve conseguir ver os detalhes completos de uma ocorrência que criou.
 - **Passos:**
   1. Login como `usuário`
