@@ -268,7 +268,7 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
   2. Clicar no icon “Cancelar” e confirmar
 - **Verificações:** Toast e remoção da lista.
 ![img](imgservicoreservas/cancelar_reserva.png)
-![img](imgservicoreservas/reserva_cancelada.png)
+![img](imgservicoreservas/canceladar_reserva_sucesso.png)
 ---
 ### 6. Listagem de Reservas (Admin)
 - **Objetivo:** Admin visualiza todas as reservas cadastradas no sistema.
