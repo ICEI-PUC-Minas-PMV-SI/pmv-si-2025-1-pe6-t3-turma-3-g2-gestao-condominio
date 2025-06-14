@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { useCriarVisitante } from '@/hooks/visitantes/useCriarVisitante';
 import { useRouter } from 'expo-router';
+import { useVisitantesAdmin } from '@/hooks/visitantes/useVisitantesAdmin';
 
 export default function VisitantesAdminScreen() {
   const router = useRouter();
