@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
-import { useCriarVisitante } from '@/hooks/visitantes/useCriarVisitante';
+
+import React, { useState } from "react";
+import { Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
+import { useCriarVisitante } from "@/hooks/visitantes/useCriarVisitante";
 
 export default function CriarVisitanteScreen() {
   const router = useRouter();
   const criarVisitante = useCriarVisitante();
 
-  const [nome, setNome] = useState('');
-  const [documento, setDocumento] = useState('');
-  const [apartamento, setApartamento] = useState('');
-  const [dataVisita, setDataVisita] = useState('');
+  const [nome, setNome] = useState("");
+  const [documento, setDocumento] = useState("");
+  const [apartamento, setApartamento] = useState("");
+  const [dataVisita, setDataVisita] = useState("");
 
   const handleSubmit = async () => {
     try {
@@ -20,38 +22,94 @@ export default function CriarVisitanteScreen() {
         apartamento,
         dataVisita: new Date(dataVisita).toISOString(),
       });
-      Alert.alert('Sucesso', 'Visitante criado com sucesso');
-      router.push('/visitantes');
+      Alert.alert("Sucesso", "Visitante criado com sucesso");
+      router.push("/visitantes");
     } catch (error) {
-      Alert.alert('Erro', 'Não foi possível criar o visitante');
+      Alert.alert("Erro", "Não foi possível criar o visitante");
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Novo Visitante</Text>
-      <TextInput style={styles.input} placeholder="Nome" value={nome} onChangeText={setNome} />
-      <TextInput style={styles.input} placeholder="Documento" value={documento} onChangeText={setDocumento} />
-      <TextInput style={styles.input} placeholder="Apartamento" value={apartamento} onChangeText={setApartamento} />
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.voltar} onPress={() => router.replace('/menu')}>
+        ← Voltar
+      </Text>
+      <Text style={styles.titulo}>Novo Visitante</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        placeholderTextColor="#666"
+        value={nome}
+        onChangeText={setNome}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Documento"
+        placeholderTextColor="#666"
+        value={documento}
+        onChangeText={setDocumento}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Apartamento"
+        placeholderTextColor="#666"
+        value={apartamento}
+        onChangeText={setApartamento}
+      />
       <TextInput
         style={styles.input}
         placeholder="Data da visita (AAAA-MM-DD)"
+        placeholderTextColor="#666"
         value={dataVisita}
         onChangeText={setDataVisita}
       />
-      <Button title="Cadastrar" onPress={handleSubmit} />
-    </View>
+
+      <TouchableOpacity style={styles.botao} onPress={handleSubmit}>
+        <Text style={styles.textoBotao}>CADASTRAR</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, marginBottom: 20 },
+  container: {
+    flex: 1,
+    backgroundColor: "#FFFDEB",
+    paddingHorizontal: 20,
+    paddingTop: 30,
+  },
+  voltar: {
+    color: "#002C21",
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  titulo: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#002C21",
+    textAlign: "center",
+    marginBottom: 20,
+  },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    marginBottom: 15,
-    borderRadius: 5,
+    borderColor: "#002C21",
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 12,
+    backgroundColor: "#fff",
+    color: "#000",
+  },
+  botao: {
+    backgroundColor: "#002C21",
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  textoBotao: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useVisitanteDetalhes } from '@/hooks/visitantes/useVisitanteDetalhes';
 import { useEditarVisitante } from '@/hooks/visitantes/useEditarVisitante';
@@ -57,29 +57,81 @@ export default function EditarVisitanteScreen() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.voltar} onPress={() => router.replace('/visitantes')}>← Voltar</Text>
       <Text style={styles.title}>Editar Visitante</Text>
-      <TextInput style={styles.input} placeholder="Nome" value={nome} onChangeText={setNome} />
-      <TextInput style={styles.input} placeholder="Documento" value={documento} onChangeText={setDocumento} />
-      <TextInput style={styles.input} placeholder="Apartamento" value={apartamento} onChangeText={setApartamento} />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        value={nome}
+        onChangeText={setNome}
+        placeholderTextColor="#888"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Documento"
+        value={documento}
+        onChangeText={setDocumento}
+        placeholderTextColor="#888"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Apartamento"
+        value={apartamento}
+        onChangeText={setApartamento}
+        placeholderTextColor="#888"
+      />
       <TextInput
         style={styles.input}
         placeholder="Data da visita (AAAA-MM-DD)"
         value={dataVisita}
         onChangeText={setDataVisita}
+        placeholderTextColor="#888"
       />
-      <Button title="Salvar" onPress={handleSubmit} />
+
+      <TouchableOpacity style={styles.botao} onPress={handleSubmit}>
+        <Text style={styles.textoBotao}>SALVAR</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, marginBottom: 20 },
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFDEB',
+    padding: 20,
+  },
+  voltar: {
+    color: '#002C21',
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    color: '#002C21',
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
   input: {
+    backgroundColor: '#fff',
+    borderColor: '#002C21',
     borderWidth: 1,
-    borderColor: '#ccc',
     padding: 10,
-    marginBottom: 15,
-    borderRadius: 5,
+    marginBottom: 12,
+    borderRadius: 8,
+    color: '#000',
+  },
+  botao: {
+    backgroundColor: '#002C21',
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginTop: 10,
+  },
+  textoBotao: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
