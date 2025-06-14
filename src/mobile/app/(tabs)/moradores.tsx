@@ -66,7 +66,7 @@ export default function MoradoresScreen() {
   useFocusEffect(
     useCallback(() => {
       refetch();
-    }, [refetch])
+    }, [])
   );
 
   const abrirModal = (morador: any) => {
