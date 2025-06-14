@@ -16,6 +16,13 @@ export function useEditarReserva(id: string) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  // Função para converter data de DD/MM/AAAA para YYYY-MM-DD
+  const formatarParaAmericano = (dataBr: string) => {
+    const [dia, mes, ano] = dataBr.split("/");
+    if (!dia || !mes || !ano) return dataBr;
+    return `${ano}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+  };
+
   const atualizarReserva = async () => {
     if (!nome.trim() || !data.trim() || !horario.trim()) {
       Alert.alert("Erro", "Preencha todos os campos!");
@@ -41,7 +48,7 @@ export function useEditarReserva(id: string) {
         },
         body: JSON.stringify({
           nome,
-          data,
+          data: formatarParaAmericano(data), // <-- Aqui a conversão da data
           horario,
           status,
         }),
