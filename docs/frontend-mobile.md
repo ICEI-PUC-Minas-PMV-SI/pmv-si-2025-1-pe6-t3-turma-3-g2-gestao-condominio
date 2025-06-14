@@ -278,6 +278,7 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
 - **Verificações:** Lista mostra todas as reservas existentes, independente do autor.
 ![img](imgservicoreservas/listagem_reservas_admin.png)
 ---
+#### Teste telas do serviço de Reservas
 https://github.com/user-attachments/assets/b54e5f91-4dc6-41b7-9f75-43433177faef
 
 # Referências
