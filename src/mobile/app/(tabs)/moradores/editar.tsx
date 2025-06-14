@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { useEditarMorador } from "@/hooks/useEditarMorador";
 
 export default function EditarMoradorScreen() {
+  const router = useRouter();
   const { id } = useLocalSearchParams();
   const {
     nome, setNome,
@@ -16,7 +17,10 @@ export default function EditarMoradorScreen() {
   } = useEditarMorador(id as string);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFDEB", paddingHorizontal: 16, paddingTop: 40 }}>
+      <Text style={{ color: "#002C21", fontSize: 16, marginBottom: 20 }} onPress={() => router.back()}>
+        ← Voltar
+      </Text>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Editar Morador</Text>
 

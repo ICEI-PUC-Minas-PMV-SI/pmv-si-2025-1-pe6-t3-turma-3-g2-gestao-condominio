@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Alert } from 'react-native';
 import Constants from 'expo-constants';
 import { obterToken } from '@/utils/auth';
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -15,7 +15,7 @@ export function useExcluirMorador(onSuccess?: () => void) {
       const token = await obterToken();
 
       if (!token) {
-        Alert.alert("Erro", "Usuário não autenticado.");
+        showToast("error", "Usuário não autenticado.");
         setLoading(false);
         return;
       }
@@ -30,14 +30,14 @@ export function useExcluirMorador(onSuccess?: () => void) {
       const data = await response.json();
 
       if (!response.ok) {
-        Alert.alert("Erro", data.error || "Erro ao excluir morador.");
+        showToast("error", data.error || "Erro ao excluir morador.");
       } else {
-        Alert.alert("Sucesso", "Morador excluído com sucesso!");
+        showToast("success", "Morador excluído com sucesso!");
         if (onSuccess) onSuccess();
       }
     } catch (error) {
       console.error("Erro ao excluir morador:", error);
-      Alert.alert("Erro", "Erro na comunicação com o servidor.");
+      showToast("error", "Erro na comunicação com o servidor.");
     } finally {
       setLoading(false);
     }
