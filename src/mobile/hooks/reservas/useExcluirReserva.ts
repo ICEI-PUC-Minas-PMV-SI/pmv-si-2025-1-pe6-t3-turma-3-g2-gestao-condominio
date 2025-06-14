@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Alert } from "react-native";
 import Constants from "expo-constants";
 import { obterToken } from "@/utils/auth";
+import { showToast } from '@/utils/toast';
 
 const rawUrl = Constants.expoConfig?.extra?.API_URL;
 const API_URL = (!rawUrl || rawUrl.trim() === "") ? "http://localhost:3000" : rawUrl;
@@ -32,7 +33,8 @@ export function useExcluirReserva(onSuccess?: () => void) {
       if (!response.ok) {
         Alert.alert("Erro", data.message || "Erro ao excluir reserva.");
       } else {
-        Alert.alert("Sucesso", "Reserva excluída com sucesso!");
+        Alert.alert("Sucesso", "Reserva cancelada com sucesso!");
+        showToast("success", "Reserva cancelada com sucesso!");
         if (onSuccess) onSuccess();
       }
     } catch (error) {
