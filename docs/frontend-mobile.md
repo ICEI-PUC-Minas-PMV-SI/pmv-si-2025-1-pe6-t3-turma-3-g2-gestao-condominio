@@ -6,8 +6,11 @@ Este projeto consiste no desenvolvimento do aplicativo móvel do Habitare, siste
 [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
 ### Wireframes
-
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+![Captura de tela 1](https://github.com/user-attachments/assets/9397dc98-5aba-459a-900f-c9f94048368e)
+![Captura de tela 2](https://github.com/user-attachments/assets/a3fa6727-2a56-4b37-8e55-3b9c4e73064b)
+![Captura de tela 3](https://github.com/user-attachments/assets/5e847056-6115-4e0a-a80f-be1041bb6554)
+![Captura de tela 4](https://github.com/user-attachments/assets/facb52b4-5f9a-4298-b3e8-65c8dceebfe5)
+![Captura de tela 5](https://github.com/user-attachments/assets/810214cc-1543-491c-9610-c3cc360982dc)
 
 ### Design Visual
 
