@@ -1,6 +1,6 @@
 # Front-end Móvel
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+Este projeto consiste no desenvolvimento do aplicativo móvel do Habitare, sistema de gestão para condomínios, utilizando React Native. O objetivo principal é oferecer aos moradores uma interface intuitiva e acessível para facilitar a comunicação, reserva de espaços comuns, visualização de avisos e controle financeiro, tudo diretamente pelo celular. O app busca melhorar a experiência do usuário, trazendo mobilidade, agilidade e integração direta com o backend em Node.js, garantindo a sincronização dos dados em tempo real.
 
 ## Projeto da Interface
 [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
@@ -19,7 +19,11 @@
 
 ## Tecnologias Utilizadas
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- **React Native** — Framework para desenvolvimento mobile multiplataforma (iOS e Android).
+- **Expo** — Ferramenta para acelerar o desenvolvimento em React Native, com suporte a recursos nativos.
+- **React Navigation** — Biblioteca para gerenciamento de navegação entre telas.
+- **JWT (JSON Web Token)** — Para autenticação e controle de acesso.
+- **TypeScript** — Para tipagem estática e maior segurança no código.
 
 ## Considerações de Segurança
 
@@ -35,9 +39,7 @@
 4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
 
-## Testes
-
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+## Testes 
 ### ✅ Casos de Teste - Serviço de Ocorrências (Mobile)
 
 ### 1. Listagem de Ocorrências (Usuário)
