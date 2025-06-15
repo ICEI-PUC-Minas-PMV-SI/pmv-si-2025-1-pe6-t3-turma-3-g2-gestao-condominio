@@ -45,6 +45,18 @@ Este projeto consiste no desenvolvimento do aplicativo móvel do Habitare, siste
 ## Testes 
 ### ✅ Casos de Teste - Serviço de Ocorrências (Mobile)
 
+**Videos testes do serviço de ocorrências (usuário)**
+
+
+https://github.com/user-attachments/assets/cadea084-b8e5-4f74-99bc-4491b9ad020b
+
+
+**Videos testes do serviço de ocorrências (admin)**
+
+
+https://github.com/user-attachments/assets/14c720f8-917f-4f4f-966e-bff4a956c02d
+
+
 ### 1. Listagem de Ocorrências (Usuário)
 - **Objetivo:** Usuário visualiza apenas as ocorrências criadas por ele.
 - **Passos:**
@@ -141,6 +153,7 @@ Este projeto consiste no desenvolvimento do aplicativo móvel do Habitare, siste
 - **Verificações:** Status atualizado, mensagem de sucesso.
 ![Formulário Admin](testemobileocorrencias/editocorrenciastatusmobile.png)
 ![Editar Status Admin](testemobileocorrencias/editocorrenciadminalert.png)
+
 
 ## ✅ Casos de Teste - Gerenciamento de Usuários (Mobile)
 
