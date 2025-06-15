@@ -17,8 +17,60 @@ Este projeto consiste no desenvolvimento do aplicativo móvel do Habitare, siste
 [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
 
 ## Fluxo de Dados
+### 🔐 1. Autenticação e Autorização
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+**Cadastro de Usuário**: O usuário realiza o cadastro fornecendo informações como nome, email e senha. Esses dados são enviados para o backend, onde são validados e armazenados no banco de dados.
+**Login**:
+ Ao efetuar o login, o usuário envia suas credenciais (email e senha) para o backend. Após validação, um token JWT é gerado e retornado ao cliente, sendo armazenado no localStorage para autenticação em requisições futuras.
+**Middleware de Autenticação**: 
+As rotas protegidas utilizam um middleware que verifica a presença e validade do token JWT. Caso o token seja válido, o userId é extraído e disponibilizado para as próximas operações.
+**Controle de Acesso**: 
+Determinadas rotas, como as de listagem de moradores e visitantes, são restritas a administradores. Isso é controlado por um middleware adicional que verifica se o userId corresponde ao de um administrador.
+
+### 🏠 2. Módulo de Moradores
+
+**Criação de Perfil de Morador**: 
+Usuários autenticados podem criar seu perfil de morador fornecendo dados como nome, apartamento, bloco e contato. O userId é associado ao perfil para identificação futura.
+**Listagem de Moradores**: 
+Administradores podem listar todos os moradores, com informações detalhadas, incluindo dados do usuário associado.
+**Visualização de Perfil**: 
+Usuários podem visualizar seu próprio perfil de morador. Administradores têm acesso a todos os perfis.
+**Atualização de Perfil**: 
+Usuários podem atualizar seu perfil de morador. Administradores podem atualizar qualquer perfil.
+**Exclusão de Perfil**: 
+Apenas administradores podem excluir perfis de moradores.
+
+### 🚶 3. Módulo de Visitantes
+
+**Registro de Visitante**: 
+Moradores podem registrar visitantes fornecendo informações como nome, documento e horário de visita. Esses dados são armazenados no banco de dados e associados ao userId do morador.
+**Listagem de Visitantes**: 
+Administradores podem listar todos os visitantes registrados, com detalhes completos. Moradores podem visualizar apenas os visitantes que eles registraram.
+**Atualização de Visitante**: 
+Moradores podem atualizar informações de seus próprios visitantes. Administradores podem atualizar qualquer registro de visitante.
+**Exclusão de Visitante**: 
+Moradores podem excluir seus próprios registros de visitantes. Administradores podem excluir qualquer registro.
+
+###  ⚠️ 4. Módulo de Ocorrências
+
+**Criação de Ocorrência**: 
+Moradores podem registrar ocorrências fornecendo título, descrição e categoria. O status inicial é definido como "aberto".
+**Listagem de Ocorrências**: 
+Moradores podem visualizar todas as ocorrências que registraram. Administradores têm acesso a todas as ocorrências do sistema.
+**Atualização de Ocorrência**: 
+Moradores podem atualizar suas próprias ocorrências enquanto o status estiver como "aberto". Administradores podem atualizar o status de qualquer ocorrência.
+**Exclusão de Ocorrência**: 
+Moradores podem excluir suas próprias ocorrências. Administradores podem excluir qualquer ocorrência.
+
+### 📆 5. Módulo de Reservas 
+**Listagem de Reservas**: 
+Moradores podem visualizar todas as reservas que registraram. Administradores têm acesso a todas as reservas do sistema.
+**Criação de Reservas**: 
+Moradores podem registrar reservas fornecendo local, data e horário. O status inicial é definido como "ativo".
+**Atualização de Reservas**: 
+Moradores podem atualizar suas próprias reservas enquanto o status estiver como "ativo". Administradores podem atualizar qualquer registro de reserva.
+**Cancelamento de Reservas**: 
+Moradores podem cancelar suas próprias reservas. Administradores podem cancelar qualquer reserva.
 
 ## Tecnologias Utilizadas
 
