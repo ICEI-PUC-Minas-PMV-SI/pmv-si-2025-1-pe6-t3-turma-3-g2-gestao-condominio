@@ -281,6 +281,72 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
 #### Teste telas do serviço de Reservas
 https://github.com/user-attachments/assets/b54e5f91-4dc6-41b7-9f75-43433177faef
 
+### ✅ Casos de Teste - Serviço de Moradores (Mobile)
+
+### 1. Criar Morador
+- **Objetivo:** Testar criação de novo morador.
+- **Passos:**
+  1. Login como `admin`
+  2. Ir para `/moradores/criar`
+  3. Preencher formulário e clicar em "Salvar"
+- **Verificações:** Toast de sucesso, novo morador aparece em `/moradores`
+![Criar Morador](imgservicomoradores/mobile_criar_morador.png)
+![Criar Morador](imgservicomoradores/mobile_criar_morador_sucesso.png)
+---
+
+### 2. Listagem de Moradores (Admin)
+- **Objetivo:** Admin visualiza todos os moradores cadastrados.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar `/moradores`
+- **Verificações:** Lista completa exibida com nome, bloco, apartamento, contato, e botões de editar/excluir
+![Listar Moradores Admin](imgservicomoradores/mobile_listar_moradores_admin.png) 
+
+---
+
+### 3. Listagem de Morador (Usuário Comum)
+- **Objetivo:** Usuário comum vê seu próprio perfil de morador (caso tenha criado).
+- **Passos:**
+  1. Login como `usuário`
+  2. Acessar `/moradores`
+- **Verificações:**
+  - Se tiver perfil: exibe dados e botão de editar
+  - Se não tiver: mostra mensagem e botão "Criar Perfil"
+![Listar Usuario](imgservicomoradores/mobile_listar_moradores_user.png)
+![Listar Usuario Sem Perfil](imgservicomoradores/mobile_listar_moradores_user_sem_perfil.png)
+---
+
+### 4. Editar Morador
+- **Objetivo:** Testar edição de dados do morador.
+- **Passos:**
+  1. Login como admin ou usuário com morador criado
+  2. Acessar `/moradores/editar?id=<id>`
+  3. Editar campos e salvar
+- **Verificações:** Toast de sucesso, dados atualizados exibidos
+![Editar Morador](imgservicomoradores/mobile_editar_morador.png)
+![Editar Morador](imgservicomoradores/mobile_editar_morador_sucesso.png)
+
+---
+
+### 5. Excluir Morador
+- **Objetivo:** Admin pode excluir moradores da lista.
+- **Passos:**
+  1. Login como `admin`
+  2. Acessar `/moradores`, clicar no ícone de excluir e confirmar
+- **Verificações:** Toast de sucesso, morador removido da lista
+![Excluir Morador](imgservicomoradores/mobile_excluir_morador.png) 
+![Excluir Morador](imgservicomoradores/mobile_excluir_morador_sucesso.png)
+
+---
+
+### 6. Visualizar Detalhes do Morador
+- **Objetivo:** Ver os dados completos de um morador específico
+- **Passos:**
+  1. Login como admin ou usuário
+  2. Acessar `/moradores/detalhes?id=<id>`
+- **Verificações:** Nome, apartamento, bloco e contato exibidos corretamente
+![Detalhes Morador](imgservicomoradores/mobile_detalhes_morador.png)
+
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
