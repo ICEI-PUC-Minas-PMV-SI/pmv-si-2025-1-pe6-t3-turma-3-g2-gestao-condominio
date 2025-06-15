@@ -417,6 +417,12 @@ https://github.com/user-attachments/assets/b54e5f91-4dc6-41b7-9f75-43433177faef
 - **Verificações:** Nome, apartamento, bloco e contato exibidos corretamente
 ![Detalhes Morador](imgservicomoradores/mobile_detalhes_morador.png)
 
+#### Teste telas do serviço de Moradores
+
+https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
+
+
+
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
