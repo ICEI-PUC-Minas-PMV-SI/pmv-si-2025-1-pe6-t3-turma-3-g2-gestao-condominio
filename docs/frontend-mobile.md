@@ -82,7 +82,46 @@ Moradores podem cancelar suas próprias reservas. Administradores podem cancelar
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+
+Esta aplicação distribuída utiliza práticas modernas de segurança para proteger os dados dos usuários e controlar o acesso às funcionalidades do sistema. Abaixo estão as principais medidas aplicadas:
+
+---
+
+### ✅ Autenticação com JWT (JSON Web Token)
+
+- A autenticação de usuários é realizada através de tokens JWT.
+- Após o login, o servidor emite um token que é armazenado localmente no dispositivo do usuário.
+- Esse token é incluído no cabeçalho de todas as requisições protegidas no formato:  
+  `Authorization: Bearer <token>`.
+- O servidor valida o token antes de permitir acesso às rotas protegidas.
+
+---
+
+### ✅ Autorização baseada em ID's
+
+- A aplicação utiliza um sistema de autorização com base em ID's
+- Existem dois perfis de usuários:
+  - `admin`: pode visualizar, criar, editar e excluir usuários.
+  - `usuário`: pode apenas acessar funcionalidades básicas do sistema.
+- O menu "Usuários" no aplicativo é exibido somente para quem possui o papel `admin`.
+- O backend reforça essa regra, garantindo que usuários comuns não possam acessar rotas de administração mesmo via requisição direta.
+
+---
+
+### ✅ Validação de Token
+
+- Todas as requisições a rotas privadas requerem um token JWT válido.
+- Tokens expirados ou inválidos resultam em erro 401 (Unauthorized).
+- Ao receber erro de autenticação, o usuário é redirecionado para a tela de login.
+
+---
+
+### ✅ Proteção contra acesso não autorizado
+
+- O backend verifica a presença e validade do token antes de responder a qualquer rota protegida.
+- As permissões de cada usuário são validadas no servidor com base no token enviado.
+- Requisições sem token, ou com token inválido, não conseguem acessar nem manipular dados protegidos.
+
 
 ## Implantação
 
