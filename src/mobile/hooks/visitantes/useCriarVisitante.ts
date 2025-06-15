@@ -49,31 +49,26 @@ export function useCriarVisitante() {
       const data = await response.json();
 
       if (!response.ok) {
-        showToast("error", data.error || data.message || "Erro ao criar visitante");
+        showToast("error", data.message || "Erro ao criar visitante");
         setLoading(false);
         return;
       }
 
       showToast("success", "Visitante criado com sucesso!");
-      router.push("/visitantes");
+      router.back();
     } catch (error) {
       console.error("Erro ao criar visitante:", error);
-      showToast("error", "Não foi possível conectar ao servidor");
+      showToast("error", "Erro ao criar visitante");
     } finally {
       setLoading(false);
     }
   };
 
   return {
-    nome,
-    setNome,
-    documento,
-    setDocumento,
-    apartamento,
-    setApartamento,
-    dataVisita,
-    setDataVisita,
-    salvarVisitante,
-    loading,
+    nome, setNome,
+    documento, setDocumento,
+    apartamento, setApartamento,
+    dataVisita, setDataVisita,
+    salvarVisitante, loading,
   };
 }

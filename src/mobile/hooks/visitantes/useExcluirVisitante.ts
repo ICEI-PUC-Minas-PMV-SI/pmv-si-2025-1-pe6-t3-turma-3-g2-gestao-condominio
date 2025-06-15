@@ -22,7 +22,7 @@ export function useExcluirVisitante(onSuccess?: () => void) {
       const response = await fetch(`${API_URL}/api/visitantes/${id}`, {
         method: "DELETE",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 

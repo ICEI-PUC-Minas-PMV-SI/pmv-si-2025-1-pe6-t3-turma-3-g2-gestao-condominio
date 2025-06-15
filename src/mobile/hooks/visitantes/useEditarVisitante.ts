@@ -55,25 +55,20 @@ export function useEditarVisitante(id: string) {
       }
 
       showToast("success", "Visitante atualizado com sucesso!");
-      router.push("/visitantes");
+      router.back();
     } catch (error) {
       console.error("Erro ao atualizar visitante:", error);
-      showToast("error", "Não foi possível conectar ao servidor.");
+      showToast("error", "Erro ao atualizar visitante");
     } finally {
       setLoading(false);
     }
   };
 
   return {
-    nome,
-    setNome,
-    documento,
-    setDocumento,
-    apartamento,
-    setApartamento,
-    dataVisita,
-    setDataVisita,
-    atualizarVisitante,
-    loading,
+    nome, setNome,
+    documento, setDocumento,
+    apartamento, setApartamento,
+    dataVisita, setDataVisita,
+    atualizarVisitante, loading,
   };
 }
