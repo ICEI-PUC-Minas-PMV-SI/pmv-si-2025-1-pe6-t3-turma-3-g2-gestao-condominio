@@ -571,7 +571,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   2. Ir pra lista de visitantes
   3. Clicar em “Detalhes” de um item.
 - **Verificações:** Tela mostrando nome, documento, data da visita, etc.
-![Detalhes Visitante - Usuário](testemobilevisitantes/detalhesvisitante.png)
+![Detalhes Visitante - Usuário](testemobilevisitantes/detalhevisitante.png)
 ---
 
 ### 3.  Cadastrar novo visitante
@@ -602,7 +602,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   2. Clicar no ícone de excluir e confirmar
 - **Verificações:** Toast de confirmação e visitante sai da lista.
 
-![Deletar Visitantes](testemobilevisitantes/excluirvisitanteconfirmacao.png)
+![Deletar Visitantes](testemobilevisitantes/excluivisitanteconfirmacao.png)
 
 ---
 
@@ -630,7 +630,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   1. Login como admin
   2. Acessar /visitantes/detalhesadmin/id
 - **Verificações:** Detalhes do visitante renderizam corretamente.
-![Listar Visitantes Admin](testemobilevisitantes/detalhesvisitante.png)
+![Listar Visitantes Admin](testemobilevisitantes/detalhevisitante.png)
 ---
 
 ### 9. Alterar Status do Visitante (Admin)
