@@ -3,7 +3,106 @@
 Este projeto consiste no desenvolvimento do aplicativo móvel do Habitare, sistema de gestão para condomínios, utilizando React Native. O objetivo principal é oferecer aos moradores uma interface intuitiva e acessível para facilitar a comunicação, reserva de espaços comuns, visualização de avisos e controle financeiro, tudo diretamente pelo celular. O app busca melhorar a experiência do usuário, trazendo mobilidade, agilidade e integração direta com o backend em Node.js, garantindo a sincronização dos dados em tempo real.
 
 ## Projeto da Interface
-[Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+## Habitare - Gestão de Condomínios (Aplicativo Mobile)
+
+O aplicativo mobile da plataforma **Habitare - Gestão de Condomínios**, desenvolvido em **React Native**, foi pensado para proporcionar uma experiência otimizada, intuitiva e prática para usuários em dispositivos móveis (iOS e Android). A proposta mantém a essência da interface web, porém, adaptada para navegação touch, com foco em acessibilidade, agilidade e praticidade no dia a dia dos moradores e administradores de condomínios.
+
+---
+
+## 🎨 Design Visual Mobile  
+
+- **Paleta de Cores:** Tons suaves de bege no fundo, com elementos em verde escuro, preservando a identidade visual da versão web e garantindo uma navegação confortável em telas menores.  
+- **Tipografia:** Adaptação da fonte para tamanhos legíveis em dispositivos móveis, priorizando boa leitura sem poluição visual.  
+- **Ícones:** Ícones interativos, intuitivos e adaptados para toque, representando ações como visualizar, editar, excluir, adicionar e status.   
+
+---
+
+## 🗺️ Estrutura de Navegação  
+
+- Utilização do **React Navigation**, com navegação do tipo **Stack Navigator** e **Tab Navigator**, proporcionando uma experiência fluida e nativa.  
+- A navegação é intuitiva, com menus para acesso rápido às principais seções:  
+  - **Início (Dashboard)**  
+  - **Moradores**  
+  - **Reservas**  
+  - **Visitantes**  
+  - **Ocorrências**  
+  - **Meu Perfil**  
+
+---
+
+## 📄 Layout das Telas  
+
+### 🔐 Tela de Login  
+- Campos de **E-mail** e **Senha**  
+- Botão **Entrar**  
+
+---
+
+### 👥 Moradores  
+- **Para Administrador:**  
+  - Lista em formato de **cards roláveis** com informações: **Nome, Apartamento, Bloco, Contato**.  
+  - Botão para **Criar Morador**.  
+  - Ações em cada card: **Visualizar detalhes**, **Editar**, **Excluir**.  
+
+- **Para Morador:**  
+  - Tela exibe apenas os dados do próprio morador em formato de card.  
+
+- **Modais/Telas:**  
+  - **Criar Morador**  
+  - **Visualizar Detalhes**  
+  - **Editar Morador**  
+  - **Confirmação de Exclusão**  
+
+---
+
+### 📅 Reservas  
+- Lista de reservas em formato de **cards** com informações: **Local, Data, Status**.  
+- Botão para **Criar Reserva**.  
+- Ações: **Visualizar**, **Editar**, **Excluir**.  
+
+- **Modais/Telas:**  
+  - **Criar Reserva**  
+  - **Detalhes da Reserva**  
+  - **Editar Reserva**  
+  - **Confirmar Exclusão**  
+
+---
+
+### 🚪 Visitantes  
+- Listagem de visitantes em **cards** com: **Nome, Apartamento, Número Documento**.  
+- Botão **Criar Visitante**.  
+- Ações rápidas no card: **Visualizar**, **Editar**, **Excluir**.  
+
+- **Modais/Telas:**  
+  - **Criar Visitante**  
+  - **Detalhes do Visitante**  
+  - **Editar Visitante**  
+  - **Confirmar Exclusão**  
+
+---
+
+### 📢 Ocorrências  
+- Lista de ocorrências em **cards**: **Título, Descrição, Status**.  
+- Ações disponíveis: **Visualizar**, **Editar**, **Excluir**.  
+- **Admin:** Pode visualizar o  **E-mail** na lista e editar o **Status** após clicar no botão de edição do card.  
+
+- **Modais/Telas:**  
+  - **Criar Ocorrência**  
+  - **Detalhes da Ocorrência**  
+  - **Editar Ocorrência**  
+  - **Confirmar Exclusão**  
+
+---
+
+## 🔁 Interações do Usuário Mobile  
+- Funcionalidades de **CRUD completo** (Criar, Ler, Atualizar, Excluir) para **Moradores, Reservas, Visitantes e Ocorrências**.  
+- Interface com botões para ações de adicionar, proporcionando facilidade no uso com uma mão.  
+- **Ícones grandes e áreas de toque ampliadas**, otimizadas para dispositivos móveis.  
+- Uso de **Bottom Sheets** e **Modal Views** ao invés de janelas pop-up, garantindo uma navegação mobile-friendly.  
+- **Feedback visual** com toasts, loaders e confirmações de ação.  
+
+---
+
 
 ### Wireframes
 ![Captura de tela 1](https://github.com/user-attachments/assets/9397dc98-5aba-459a-900f-c9f94048368e)
