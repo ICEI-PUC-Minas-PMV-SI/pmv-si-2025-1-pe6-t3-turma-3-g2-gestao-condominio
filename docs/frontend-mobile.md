@@ -587,7 +587,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
 - Documentação oficial do TypeScript:  
 🔗 [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/)  
 
-### Git e GitHub (Controle de versão e hospedagem)  
+### Git e GitHub   
 - Documentação do Git:  
 🔗 [https://git-scm.com/doc](https://git-scm.com/doc)  
 - Documentação do GitHub:  
