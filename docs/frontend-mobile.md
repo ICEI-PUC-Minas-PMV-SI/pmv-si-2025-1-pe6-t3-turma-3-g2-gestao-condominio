@@ -9,14 +9,6 @@ O aplicativo mobile da plataforma **Habitare - Gestão de Condomínios**, desenv
 
 ---
 
-## 🎨 Design Visual Mobile  
-
-- **Paleta de Cores:** Tons suaves de bege no fundo, com elementos em verde escuro, preservando a identidade visual da versão web e garantindo uma navegação confortável em telas menores.  
-- **Tipografia:** Adaptação da fonte para tamanhos legíveis em dispositivos móveis, priorizando boa leitura sem poluição visual.  
-- **Ícones:** Ícones interativos, intuitivos e adaptados para toque, representando ações como visualizar, editar, excluir, adicionar e status.   
-
----
-
 ## 🗺️ Estrutura de Navegação  
 
 - Utilização do **React Navigation**, com navegação do tipo **Stack Navigator** e **Tab Navigator**, proporcionando uma experiência fluida e nativa.  
@@ -113,7 +105,9 @@ O aplicativo mobile da plataforma **Habitare - Gestão de Condomínios**, desenv
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+- **Paleta de Cores:** Tons suaves de bege no fundo, com elementos em verde escuro, preservando a identidade visual da versão web e garantindo uma navegação confortável em telas menores.  
+- **Tipografia:** Adaptação da fonte para tamanhos legíveis em dispositivos móveis, priorizando boa leitura sem poluição visual.  
+- **Ícones:** Ícones interativos, intuitivos e adaptados para toque, representando ações como visualizar, editar, excluir, adicionar e status.
 
 ## Fluxo de Dados
 ### 🔐 1. Autenticação e Autorização
