@@ -97,6 +97,57 @@ export const deletarUsuario = async (req, res) => {
 };
 
 
+export const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(200).json({ message: 'Se o e-mail existir, enviaremos instruções para redefinir a senha.' });
+    }
+
+    const resetToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '15m' });
+
+    // Enviar o token por e-mail (pode usar o Nodemailer aqui)
+    console.log(`Token de redefinição para ${email}: ${resetToken}`);
+
+    res.status(200).json({ 
+      message: 'Instruções de redefinição enviadas para o e-mail.', 
+      token: resetToken // ✅ Agora retorna o token corretamente!
+    });
+  } catch (error) {
+    console.error('Erro ao processar solicitação de redefinição:', error);
+    res.status(500).json({ message: 'Erro ao processar solicitação de redefinição de senha', error });
+  }
+};
+
+
+export const resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  console.log('Token recebido:', token);
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log('Token decodificado:', decoded);
+
+    const user = await User.findOne({ where: { id: decoded.id } });
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: 'Senha atualizada com sucesso' });
+  } catch (error) {
+    console.error('Erro ao redefinir senha:', error);
+    res.status(500).json({ message: 'Erro ao atualizar a senha', error });
+  }
+};
+
+
 
 
 
