@@ -571,7 +571,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   2. Ir pra lista de visitantes
   3. Clicar em “Detalhes” de um item.
 - **Verificações:** Tela mostrando nome, documento, data da visita, etc.
-[Detalhes Visitante - Usuário](testemobilevisitantes/detalhesvisitante.png)
+![Detalhes Visitante - Usuário](testemobilevisitantes/detalhesvisitante.png)
 ---
 
 ### 3.  Cadastrar novo visitante
@@ -581,7 +581,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   2. Ir em /visitantes/criar
   3. Preencher os dados e clicar pra salvar
 - **Verificações:** Aparece toast de sucesso e visitante entra na lista.
-[Formulário para criar](testemobilevisitantes/criarvisitanteconcluido.png)
+![Formulário para criar](testemobilevisitantes/criarvisitanteconcluido.png)
 
 ---
 
@@ -592,7 +592,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   2. Ir em /visitantes/editar/id e tocar no ícone de editar
   3. Alterar os campos e salvar
 - **Verificações:** Toast de sucesso e dados atualizados na lista.
-[Editar Formulário](testemobilevisitantes/editarvisitante.png)
+![Editar Formulário](testemobilevisitantes/editarvisitante.png)
 
 
 ### 5. Excluir Visitante
@@ -602,7 +602,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   2. Clicar no ícone de excluir e confirmar
 - **Verificações:** Toast de confirmação e visitante sai da lista.
 
-[Deletar Visitantes](testemobilevisitantes/excluirvisitanteconfirmacao.png)
+![Deletar Visitantes](testemobilevisitantes/excluirvisitanteconfirmacao.png)
 
 ---
 
@@ -612,7 +612,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   1. Login
   2. Ir no formulário e tentar criar sem preencher
 - **Verificações:** Mensagens de erro nos campos.
-[Editar Ocorrência Em Andamento](testemobilevisitantes/criarvisitantecampovazio.png)
+![Editar Ocorrência Em Andamento](testemobilevisitantes/criarvisitantecampovazio.png)
 ---
 
 ### 7. Listagem de Visitantes (Admin)
@@ -621,7 +621,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   1. Login como admin
   2. Acessar /visitantesAdmin
 - **Verificações:** Lista com todos os visitantes cadastrados por qualquer usuário.
-[Listar Visitantes Admin](testemobilevisitantes/listagemvisitante.png)
+![Listar Visitantes Admin](testemobilevisitantes/listagemvisitante.png)
 ---
 
 ### 8. Ver Detalhes do Visitante (Admin)
@@ -630,7 +630,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   1. Login como admin
   2. Acessar /visitantes/detalhesadmin/id
 - **Verificações:** Detalhes do visitante renderizam corretamente.
-[Listar Visitantes Admin](testemobilevisitantes/detalhesvisitante.png)
+![Listar Visitantes Admin](testemobilevisitantes/detalhesvisitante.png)
 ---
 
 ### 9. Alterar Status do Visitante (Admin)
@@ -638,7 +638,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
 - **Passos:**
   1. Login como adminClicar no botão de status e escolher novo status
 - **Verificações:** Status muda e aparece toast de confirmação.
-[Detalhes Admin](testemobilevisitantes/editarvisitantesadminmobile.png)
+![Detalhes Admin](testemobilevisitantes/editarvisitantesadminmobile.png)
 ---
 
 # Referências
