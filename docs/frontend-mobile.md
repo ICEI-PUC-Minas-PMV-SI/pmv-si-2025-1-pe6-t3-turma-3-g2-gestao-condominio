@@ -563,8 +563,6 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
 
 # Referências
 
-# 📚 Referências — Aplicativo Mobile
-
 ### Microfundamentos PUC
 
 - Microfundamento: Desenvolvimento de Aplicações Móveis
