@@ -563,4 +563,45 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
 
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+# 📚 Referências — Aplicativo Mobile
+
+### Microfundamentos PUC
+
+- Microfundamento: Desenvolvimento de Aplicações Móveis
+
+### React Native (Framework Mobile)  
+- Documentação oficial do React Native:  
+🔗 [https://reactnative.dev/docs](https://reactnative.dev/docs)  
+
+### Expo (Framework para acelerar o desenvolvimento mobile)  
+- Documentação oficial do Expo:  
+🔗 [https://docs.expo.dev/](https://docs.expo.dev/)  
+
+### React Navigation (Navegação no App)  
+- Documentação oficial do React Navigation:  
+🔗 [https://reactnavigation.org/docs/getting-started](https://reactnavigation.org/docs/getting-started)  
+
+### Axios (Requisições HTTP)  
+- Documentação do Axios:  
+🔗 [https://axios-http.com/docs/intro](https://axios-http.com/docs/intro)  
+
+### JWT (JSON Web Tokens) — Autenticação  
+- Introdução ao JWT:  
+🔗 [https://jwt.io/introduction/](https://jwt.io/introduction/)  
+- Como usar JWT com React Native (Exemplos aplicáveis ao front-end e backend):  
+🔗 [https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs](https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs)  
+
+### TypeScript
+- Documentação oficial do TypeScript:  
+🔗 [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/)  
+
+### Git e GitHub (Controle de versão e hospedagem)  
+- Documentação do Git:  
+🔗 [https://git-scm.com/doc](https://git-scm.com/doc)  
+- Documentação do GitHub:  
+🔗 [https://docs.github.com/en](https://docs.github.com/en)  
+
+### REST API (Consumo das APIs)  
+- Introdução ao REST API:  
+🔗 [https://restfulapi.net/](https://restfulapi.net/)  
+
