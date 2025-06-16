@@ -50,6 +50,7 @@
     "react-native-toast-message": "^2.3.0",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
+    "react-query": "^3.39.3",
     "tailwindcss-react-native": "^1.7.10"
   },
   "devDependencies": {

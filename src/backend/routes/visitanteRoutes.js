@@ -8,25 +8,28 @@ import {
   deletarVisitante,
 } from '../controllers/visitanteController.js';
 import { verifyToken } from '../controllers/authController.js';
-import { isAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
+// Todas as rotas exigem autenticação
 router.use(verifyToken);
 
+// Rota para criar visitante
+router.post('/', criarVisitante);
 
-router.post('/visitantes', criarVisitante);
+// Listar todos (somente admin no controller)
+router.get('/', listarVisitantes);
 
-router.get('/visitantes', isAdmin, listarVisitantes);
-router.get('/listar/visitantes', listarVisitantesUsuario);
+// Listar apenas visitantes do usuário autenticado
+router.get('/usuario', listarVisitantesUsuario);
 
+// Buscar visitante por ID (com validação no controller)
+router.get('/:id', buscarVisitantePorId);
 
-router.get('/visitantes/:id', buscarVisitantePorId);
+// Atualizar visitante
+router.put('/:id', atualizarVisitante);
 
-router.put('/visitantes/:id', atualizarVisitante);
-router.put('/admin/visitantes/:id', isAdmin, atualizarVisitante);
-
-router.delete('/visitantes/:id', atualizarVisitante); 
-router.delete('/admin/visitantes/:id', isAdmin, deletarVisitante); 
+// Deletar visitante
+router.delete('/:id', deletarVisitante);
 
 export default router;
