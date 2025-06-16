@@ -561,7 +561,7 @@ https://github.com/user-attachments/assets/6303a4cd-7977-46d6-bcb2-a092879a2f98
   1. Fazer login com um usuário normal
   2. Ir para a tela de visitantes (/visitantes)
 - **Verificações:** A lista só deve mostrar os visitantes desse usuário.
-[Listagem Usuário](testemobilevisitantes/listagemvisitante.png)
+!Listagem Usuário](testemobilevisitantes/listagemvisitante.png)
 ---
 
 ### 2. Visualizar Detalhes de Visitantes (Usuário)
