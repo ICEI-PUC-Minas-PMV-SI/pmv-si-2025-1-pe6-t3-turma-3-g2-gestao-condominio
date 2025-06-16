@@ -7,10 +7,10 @@ import visitanteRoutes from './visitanteRoutes.js';
 
 const router = express.Router();
 
-router.use('/ocorrencias', ocorrenciaRoutes);
-router.use('/reservas', reservaRoutes);  
-router.use('/auth', authRoutes);
+router.use(ocorrenciaRoutes);
+router.use(reservaRoutes);  
+router.use(authRoutes);
 router.use('/moradores', moradorRoutes);
-router.use('/visitantes', visitanteRoutes); 
+router.use(visitanteRoutes); 
 
 export default router;
