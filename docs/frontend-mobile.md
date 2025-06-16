@@ -143,6 +143,107 @@
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
 
+
+VISITANTES:
+
+
+### 1. Listagem de Visitantes (Usuário)
+- **Objetivo:** Checar se o usuário só vê os visitantes que ele mesmo cadastrou.
+- **Passos:**
+  1. Fazer login com um usuário normal
+  2. Ir para a tela de visitantes (/visitantes)
+- **Verificações:** A lista só deve mostrar os visitantes desse usuário.
+[Listagem Usuário](testemobilevisitantes/listagemvisitantes.png)
+---
+
+### 2. Visualizar Detalhes de Visitantes (Usuário)
+- **Objetivo:** Garantir que o usuário consegue ver os dados completos de um visitante que ele criou.
+- **Passos:**
+  1. Estar logado como usuario
+  2. Ir pra lista de visitantes
+  3. Clicar em “Detalhes” de um item.
+- **Verificações:** Tela mostrando nome, documento, data da visita, etc.
+[Detalhes Visitante - Usuário](testemobilevisitantes/detalhesvisitantes.png)
+---
+
+### 3.  Cadastrar novo visitante
+- **Objetivo:** Testar se dá pra cadastrar um novo visitante.
+- **Passos:**
+  1. Login como usuário
+  2. Ir em /visitantes/criar
+  3. Preencher os dados e clicar pra salvar
+- **Verificações:** Aparece toast de sucesso e visitante entra na lista.
+[Formulário para criar](testemobilevisitantes/cadastrarvisitantes.png)
+
+---
+
+### 4. Editar Visitante
+- **Objetivo:** Usuário consegue atualizar dados do visitante.
+- **Passos:**
+  1. Login
+  2. Ir em /visitantes/editar/id e tocar no ícone de editar
+  3. Alterar os campos e salvar
+- **Verificações:** Toast de sucesso e dados atualizados na lista.
+[Editar Formulário](testemobilevisitantes/editarvisitantemobile.png)
+
+
+### 5. Excluir Visitante
+- **Objetivo:** O usuário consegue apagar um visitante cadastrado por ele.
+- **Passos:**
+  1. Login
+  2. Clicar no ícone de excluir e confirmar
+- **Verificações:** Toast de confirmação e visitante sai da lista.
+
+[Deletar Visitantes](testemobilevisitantes/excluirvisitantes.png)
+
+---
+
+### 6. Tentar Cadastrar com Campos Vazios
+- **Objetivo:** Formulário não pode deixar cadastrar sem preencher tudo.
+- **Passos:**
+  1. Login
+  2. Ir no formulário e tentar criar sem preencher
+- **Verificações:** Mensagens de erro nos campos.
+[Editar Ocorrência Em Andamento](testemobilevisitantes/cadastrarvisitantesempty.png)
+---
+
+### 7. Listagem de Visitantes (Admin)
+- **Objetivo:** O admin vê todos os visitantes do sistema.
+- **Passos:**
+  1. Login como admin
+  2. Acessar /visitantesAdmin
+- **Verificações:** Lista com todos os visitantes cadastrados por qualquer usuário.
+[Listar Visitantes Admin](testemobilevisitantes/listarvisitantesvazio.png)
+---
+
+### 8. Ver Detalhes do Visitante (Admin)
+- **Objetivo:** Admin pode abrir qualquer visitante e ver os dados completos.
+- **Passos:**
+  1. Login como admin
+  2. Acessar /visitantes/detalhesadmin/id
+- **Verificações:** Detalhes do visitante renderizam corretamente.
+
+[Lista Admin](testemobilevisitantes/listagemvisitantesadminmobile.png)
+---
+
+### 9. Alterar Status do Visitante (Admin)
+- **Objetivo:** Admin altera status do visitante (ex: liberado, barrado).
+- **Passos:**
+  1. Login como adminClicar no botão de status e escolher novo status
+- **Verificações:** Status muda e aparece toast de confirmação.
+[Detalhes Admin](testemobilevisitantes/editarvisitantesadminmobile.png)
+---
+
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+1. App feito em React Native com Expo, então usamos a documentação oficial do Expo pra configurar no mobile.
+
+2. Pra conectar com o backend, nos baseamos nos exemplos da própria documentação do fetch.
+
+3. Algumas validações e mensagens de erro foram inspiradas em artigos no Stack Overflow, principalmente sobre como tratar resposta de API.
+
+4. Analisamos como apps parecidos funcionam, tipo sistemas de portaria, pra ter ideia de como organizar os processos.
+
+5. O backend foi baseado no modelo que nós já vinhamos usando no projeto, com Node, Express e Sequelize.
+
+6. As imagens dos testes foram tiradas diretamente do app rodando no celular/emulador pra mostrar o que acontece na prática.
