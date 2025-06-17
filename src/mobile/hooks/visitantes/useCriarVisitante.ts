@@ -15,8 +15,18 @@ export function useCriarVisitante() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const salvarVisitante = async () => {
-    if (!nome || !documento || !apartamento || !dataVisita) {
+  const salvarVisitante = async (dados?: {
+    nome?: string;
+    documento?: string;
+    apartamento?: string;
+    dataVisita?: string;
+  }) => {
+    const nomeFinal = dados?.nome ?? nome;
+    const documentoFinal = dados?.documento ?? documento;
+    const apartamentoFinal = dados?.apartamento ?? apartamento;
+    const dataVisitaFinal = dados?.dataVisita ?? dataVisita;
+
+    if (!nomeFinal || !documentoFinal || !apartamentoFinal || !dataVisitaFinal) {
       showToast("error", "Preencha todos os campos!");
       return;
     }
@@ -28,7 +38,6 @@ export function useCriarVisitante() {
 
       if (!token) {
         showToast("error", "Usuário não autenticado. Faça login novamente.");
-        setLoading(false);
         return;
       }
 
@@ -39,10 +48,10 @@ export function useCriarVisitante() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          nome,
-          documento,
-          apartamento,
-          dataVisita: new Date(dataVisita).toISOString()
+          nome: nomeFinal,
+          documento: documentoFinal,
+          apartamento: apartamentoFinal,
+          dataVisita: dataVisitaFinal,
         }),
       });
 
@@ -50,12 +59,11 @@ export function useCriarVisitante() {
 
       if (!response.ok) {
         showToast("error", data.message || "Erro ao criar visitante");
-        setLoading(false);
         return;
       }
 
       showToast("success", "Visitante criado com sucesso!");
-      router.back();
+      router.push("/visitantes");
     } catch (error) {
       console.error("Erro ao criar visitante:", error);
       showToast("error", "Erro ao criar visitante");
