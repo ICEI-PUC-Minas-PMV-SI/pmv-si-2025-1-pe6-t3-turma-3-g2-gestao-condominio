@@ -1,29 +1,26 @@
-
-import React, { useState } from "react";
+import React from "react";
 import { Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { useCriarVisitante } from "@/hooks/visitantes/useCriarVisitante";
 
 export default function CriarVisitanteScreen() {
-  const router = useRouter();
-  const criarVisitante = useCriarVisitante();
+  const {
+    nome, setNome,
+    documento, setDocumento,
+    apartamento, setApartamento,
+    dataVisita, setDataVisita,
+    salvarVisitante
+  } = useCriarVisitante();
 
-  const [nome, setNome] = useState("");
-  const [documento, setDocumento] = useState("");
-  const [apartamento, setApartamento] = useState("");
-  const [dataVisita, setDataVisita] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async () => {
     try {
-      await criarVisitante({
-        nome,
-        documento,
-        apartamento,
-        dataVisita: new Date(dataVisita).toISOString(),
-      });
-      Alert.alert("Sucesso", "Visitante criado com sucesso");
-      router.push("/visitantes");
+      const [dia, mes, ano] = dataVisita.split("/");
+      const dataFormatada = `${ano}-${mes}-${dia}`;
+      setDataVisita(dataFormatada);
+      await salvarVisitante();
     } catch (error) {
       Alert.alert("Erro", "Não foi possível criar o visitante");
     }
@@ -59,7 +56,7 @@ export default function CriarVisitanteScreen() {
       />
       <TextInput
         style={styles.input}
-        placeholder="Data da visita (AAAA-MM-DD)"
+        placeholder="Data da visita (DD/MM/AAAA)"
         placeholderTextColor="#666"
         value={dataVisita}
         onChangeText={setDataVisita}
