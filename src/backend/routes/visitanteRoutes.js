@@ -14,19 +14,17 @@ const router = express.Router();
 
 router.use(verifyToken);
 
-
 router.post('/visitantes', criarVisitante);
 
 router.get('/visitantes', isAdmin, listarVisitantes);
 router.get('/listar/visitantes', listarVisitantesUsuario);
-
 
 router.get('/visitantes/:id', buscarVisitantePorId);
 
 router.put('/visitantes/:id', atualizarVisitante);
 router.put('/admin/visitantes/:id', isAdmin, atualizarVisitante);
 
-router.delete('/visitantes/:id', atualizarVisitante); 
-router.delete('/admin/visitantes/:id', isAdmin, deletarVisitante); 
+router.delete('/visitantes/:id', deletarVisitante);
+router.delete('/admin/visitantes/:id', isAdmin, deletarVisitante);
 
 export default router;
