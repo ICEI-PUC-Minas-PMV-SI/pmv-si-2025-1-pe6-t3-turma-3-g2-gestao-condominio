@@ -17,11 +17,23 @@ export default function CriarVisitanteScreen() {
 
   const handleSubmit = async () => {
     try {
+      if (!dataVisita.includes("/")) {
+        Alert.alert("Erro", "A data precisa estar no formato DD/MM/AAAA");
+        return;
+      }
+
       const [dia, mes, ano] = dataVisita.split("/");
-      const dataFormatada = `${ano}-${mes}-${dia}`;
-      setDataVisita(dataFormatada);
-      await salvarVisitante();
+      const dataFormatada = `${ano}-${mes}-${dia}T00:00:00.000Z`;
+
+      await salvarVisitante({
+        nome,
+        documento,
+        apartamento,
+        dataVisita: dataFormatada,
+      });
+
     } catch (error) {
+      console.error("Erro ao salvar visitante:", error);
       Alert.alert("Erro", "Não foi possível criar o visitante");
     }
   };
