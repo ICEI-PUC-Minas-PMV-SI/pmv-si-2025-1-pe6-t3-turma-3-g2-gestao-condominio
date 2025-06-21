@@ -246,99 +246,135 @@ https://github.com/user-attachments/assets/14c720f8-917f-4f4f-966e-bff4a956c02d
 
 
 ### 1. Listagem de Ocorrências (Usuário)
-- **Objetivo:** Usuário visualiza apenas as ocorrências criadas por ele.
+- **Objetivo:** Garantir que o usuário veja apenas as ocorrências criadas por ele.
 - **Passos:**
-  1. Login como `usuário`
-  2. Acessar a rota `/ocorrencias`
-- **Verificações:** Lista exibe somente ocorrências do usuário logado.
+  1. Login como `usuário`.
+  2. Acessar a rota `/ocorrencias`.
+- **Verificações:**
+- Lista exibe somente os cards de ocorrências do usuário logado.
+- Cada ocorrência deve ser renderizada em um card contendo, obrigatoriamente: Título da ocorrência, Descrição, Status atual da ocorrência (ex: Aberto, Em andamento, Fechado).
+- Verificar que ocorrências de outros usuários não aparecem.
 ![Listagem Usuário](testemobileocorrencias/listagemocorrenciasuser.png)
 ---
 
 ### 2. Visualizar Detalhes da Ocorrência (Usuário)
-- **Objetivo:** Usuário deve conseguir ver os detalhes completos de uma ocorrência que criou.
+- **Objetivo:** Verificar se o usuário pode acessar os detalhes completos de uma ocorrência criada por ele.
 - **Passos:**
-  1. Login como `usuário`
-  2. Acessar a rota `/ocorrencias`
-  3. Clicar em "Detalhes" de uma ocorrência listada
-- **Verificações:** Tela renderiza corretamente, exibe título, descrição.
+  1. Login como `usuário`.
+  2. Acessar a rota `/ocorrencias`.
+  3. Clicar em um card de uma ocorrência listada.
+- **Verificações:**
+- Tela de detalhes abre corretamente.
+- Tela renderiza corretamente, exibe título, descrição.
+- Garantir que não seja possível acessar detalhes de ocorrências de outros usuários.
 ![Detalhes Ocorrência - Usuário](testemobileocorrencias/detalhesocorrenciamobile.png)
 ---
 
 ### 3. Criar Ocorrência
-- **Objetivo:** Testar criação de nova ocorrência.
+- **Objetivo:** Validar a criação de uma nova ocorrência pelo usuário.
 - **Passos:**
-  1. Login como `usuário`
-  2. Ir para `/ocorrencias/criar` clicar no botão de criar ocorrência
-  3. Preencher formulário e criar
-- **Verificações:** Atualiza página, toast de sucesso, nova ocorrência na lista.
+  1. Login como `usuário`.
+  2. Ir para `/ocorrencias/criar` ao clicar no botão de criar ocorrência.
+  3. Preencher todos os campos obrigatórios do formulário.
+  4. Clicar em “Salvar”.
+- **Verificações:**
+- Exibe toast de sucesso ao salvar.
+- Nova ocorrência aparece na listagem.
 ![Formulário Criar](testemobileocorrencias/createocorrenciamobile.png)
 ![Alerta ao Criar](testemobileocorrencias/createnovaocorrenciaalert.png)
 ---
 
 ### 4. Editar Ocorrência
-- **Objetivo:** Usuário edita ocorrência em status "aberto".
+- **Objetivo:** Permitir que o usuário edite uma ocorrência com status "Aberto".
 - **Passos:**
-  1. Login
-  2. Acessar `/ocorrencias/editar/id` clicar no icon de editar.
-  3. Alterar e salvar
-- **Verificações:** Dados atualizados visíveis.
+  1. Login como `usuário`.
+  2. Clicar no ícone de “Editar” em uma ocorrência com status Aberto.
+  3. Acessar `/ocorrencias/editar/id.
+  4. Alterar os campos do formulário.
+  5. Clicar em “Salvar”.
+- **Verificações:**
+- Exibe toast de sucesso.
+- Dados atualizados aparecem na listagem e nos detalhes da ocorrência.
 ![Editar Formulário](testemobileocorrencias/editarnovaocorrenciamobile.png)
 ![Editar Alerta](testemobileocorrencias/editarnovaocorrenciaalert.png)
 ---
 
 ### 5. Excluir Ocorrência
-- **Objetivo:** Usuário deleta ocorrência criada por ele.
+- **Objetivo:** Validar que o usuário pode excluir uma ocorrência criada por ele.
 - **Passos:**
-  1. Login
-  2. Clicar no icon “Excluir” e confirmar
-- **Verificações:** Toast e remoção da lista.
-
+  1. Login como `usuário`.
+  2. Acessar listagem na rota de `/ocorrencias`.
+  3. Clicar no ícone “Excluir” em uma ocorrência.
+  4. Confirmar a exclusão no modal.
+- **Verificações:**
+- Exibe modal de confirmação.
+- Exibe toast de sucesso ao confirmar exclusão.
+- Ocorrência é removida da listagem.
+- Não permitir excluir ocorrências de outros usuários.
 ![Modal Deletar](testemobileocorrencias/modaldeletemobile.png)
 ![Confirmação](testemobileocorrencias/deletealertmobile.png)
 ---
 
-### 6. Tentar Editar Ocorrência com Status Não em Aberto
-- **Objetivo:** Garantir que usuário não pode editar ocorrência fechada ou em andamento.
+### 6.  Impedir Edição de Ocorrência com Status Diferente de "Aberto"
+- **Objetivo:** Garantir que ocorrências com status “Fechado” ou “Em andamento” não possam ser editadas.
 - **Passos:**
-  1. Acessar `/ocorrencias/editar/id` e clicar no icon de editar em uma ocorrência com status diferente de `aberto`, alterar os campos e confirmar.
-- **Verificações:** Toast com mensagem explicativa.
+  1. Login como `usuário`.
+  2.  Acessar listagem em `/ocorrencias`.
+  3. Clicar no icon de "Editar".
+  4. Tentar editar ocorrência com status ≠ Aberto.
+- **Verificações:**
+- Exibe toast informando que edição não é permitida.
+- Não atualiza dados.
+- Garantir que alterações em status diferente de "Aberto" sejam bloqueadas.
 ![Editar Ocorrência Em Andamento](testemobileocorrencias/editarocorrenciaemandamentoalert.png)
 ---
 
 ### 7. Criar Ocorrência com Campos Vazios
-- **Objetivo:** Formulário deve validar campos obrigatórios.
+- **Objetivo:** Verificar que o formulário de criação possui validação de campos obrigatórios.
 - **Passos:**
-  1. Login
-  2. Acessar formulário e tentar enviar vazio
-- **Verificações:** Campos com erro.
+  1. Login como `usuário`.
+  2. Acessar formulário de criação de ocorrência.
+  3. Submeter formulário vazio.
+- **Verificações:**
+- Exibe toast informando que os devem ser preenchidos campos.
+- Bloqueia envio com campos vazios.
 ![Criar com Erros](testemobileocorrencias/createocorrenciaemptycampo.png)
 ---
 
 ### 8. Listagem de Ocorrências (Admin)
-- **Objetivo:** Admin visualiza todas as ocorrências cadastradas no sistema.
+- **Objetivo:** Validar que o admin pode visualizar todas as ocorrências do sistema.
 - **Passos:**
-  1. Login como admin
-  2. Acessar a rota `/ocorrenciasAdmin`
-- **Verificações:** Lista mostra todas as ocorrências existentes, independente do autor.
+  1. Login como `admin`.
+  2. Acessar a rota `/ocorrenciasAdmin`.
+- **Verificações:**
+- Lista mostra todas as ocorrências existentes, independente do autor.
+- Cada ocorrência deve ser renderizada em um card contendo, obrigatoriamente: Título da ocorrência, Descrição, Status atual da ocorrência (ex: Aberto, Em andamento, Fechado) e Email do usuário autor da ocorrência.
 
 ![Listagem Admin](testemobileocorrencias/listagemocorrenciasadminmobile.png)
 ---
 
 ### 9. Visualizar Detalhes da Ocorrência (Admin)
-- **Objetivo:** Admin vê detalhes completos de qualquer ocorrência.
+- **Objetivo:** Permitir que o admin visualize os detalhes de qualquer ocorrência.
 - **Passos:**
-  1. Login como admin
-  2. Acessar `ocorrencias/detalhesadmin/id`
-- **Verificações:** Dados visíveis corretamente.
+  1. Login como `admin`.
+  2. Acessar a rota `/ocorrenciasAdmin`.
+  3. Clicar em um card de uma ocorrência listada.
+- **Verificações:**
+- Tela de detalhes renderiza corretamente, exibe título, descrição, status e email do autor.
+- Exibe corretamente os dados da ocorrência, independente do criador.
 ![Detalhes Admin](testemobileocorrencias/detalhesocorrenciadminmobile.png)
 ---
 
 ### 10. Editar Status da Ocorrência (Admin)
-- **Objetivo:** Admin altera status de ocorrência.
+- **Objetivo:** Validar que o admin consegue alterar o status de uma ocorrência.
 - **Passos:**
-  1. Login admin
-  2. Clicar para alterar status
-- **Verificações:** Status atualizado, mensagem de sucesso.
+  1. Login `admin`.
+  2. Acessar `/ocorrenciasAdmin`.
+  3. Clicar no icone de “Editar” de uma ocorrência.
+  4. Selecionar novo status e clicar em salvar.
+- **Verificações:**
+- Exibe toast de sucesso.
+- Status atualizado corretamente na listagem e nos detalhes.
 ![Formulário Admin](testemobileocorrencias/editocorrenciastatusmobile.png)
 ![Editar Status Admin](testemobileocorrencias/editocorrenciadminalert.png)
 
