@@ -429,55 +429,99 @@ https://github.com/user-attachments/assets/f9c96687-dec6-4a6f-9b6a-9d181c3ff645
 ### 1. Criar Reserva
 - **Objetivo:** Testar criação de nova reserva.
 - **Passos:**
-  1. Login como `usuário`
-  2. Ir para `/reservas/criar` clicando no botão de criar reservas
-  3. Preencher formulário e criar
-- **Verificações:** Atualiza página, toast de sucesso, nova reserva na lista.
+  1. Login como `usuário`.
+  2. Ir para `/reservas` e clicar no botão **"Criar Reserva"**.
+  3. Verificar se o formulário é carregado corretamente.
+  4. Preencher todos os campos obrigatórios:
+     - Espaço (ex.: Salão de Festas)
+     - Data
+     - Hora início e fim
+     - Observações (opcional)
+  5. Testar campos vazios → Deve exibir erro de validação.
+  6. Inserir horário inválido (ex.: início maior que fim) → Deve bloquear.
+  7. Testar sobreposição de horários → Deve impedir salvar.
+  8. Preencher corretamente e clicar em **“Salvar”**.
+  9. Verificar se aparece **toast de sucesso**.
+  10. Conferir se redireciona para a listagem e se a nova reserva aparece na lista.
+- **Verificações:** 
+  - Toast de sucesso.
+  - Atualização da listagem com nova reserva.
+  - Validação de conflitos de horário e campos obrigatórios.
 ![Formulário Criar](imgservicoreservas/criar_reserva.png)
 ![Alerta Criar](imgservicoreservas/criar_reserva_sucess.png)
+
 ---
+
 ### 2. Listagem de Reservas (Usuário)
-- **Objetivo:** Usuário visualiza apenas as ocorrências criadas por ele.
+- **Objetivo:** Usuário visualiza apenas as reservas criadas por ele.
 - **Passos:**
-  1. Login como `usuário`
-  2. Acessar a rota `/reservas`
-- **Verificações:** Lista exibe somente reservas do usuário logado.
+  1. Login como `usuário`.
+  2. Acessar a rota `/reservas`.
+- **Verificações:** 
+  - Lista exibe apenas reservas do usuário logado.
+  - Verificar que não aparecem reservas de outros usuários.
 ![Listagem Usuário](imgservicoreservas/listagem_reservas_usuário.png)
+
 ---
+
 ### 3. Visualizar Detalhes da Reserva (Usuário)
-- **Objetivo:** Usuário deve conseguir ver os detalhes completos de uma ocorrência que criou.
+- **Objetivo:** Usuário deve conseguir visualizar os detalhes completos de uma reserva criada por ele.
 - **Passos:**
-  1. Login como `usuário`
-  2. Acessar a rota `/reservas`
-  3. Clicar em uma reserva listada
-- **Verificações:** Tela renderiza corretamente, exibe título, descrição.
+  1. Login como `usuário`.
+  2. Acessar `/reservas`.
+  3. Clicar em uma reserva listada.
+- **Verificações:** 
+  - Tela de detalhes abre corretamente.
+  - Exibe dados: espaço, data, horário, status e observações.
+  - Verificar também se não permite acesso aos detalhes de reservas de outros usuários.
 ![Detalhes Ocorrência - Usuário](imgservicoreservas/detalhes_reserva.png)
+
 ---
+
 ### 4. Editar Reserva
-- **Objetivo:** Usuário edita reserva em status "aberto".
+- **Objetivo:** Usuário edita uma reserva com status "Aberto".
 - **Passos:**
-  1. Login
-  2. Acessar `/reservas/editar/id` clicar no icon de editar.
-  3. Alterar e salvar
-- **Verificações:** Dados atualizados visíveis.
+  1. Login como `usuário`.
+  2. Acessar `/reservas`.
+  3. Clicar no ícone **"Editar"** da reserva desejada.
+  4. Alterar dados do formulário (ex.: mudar data ou horário).
+  5. Testar tentativa de alteração para horário já ocupado → Deve bloquear.
+  6. Testar alteração para horário inválido (início maior que fim) → Deve exibir erro.
+  7. Confirmar a alteração clicando em **“Salvar”**.
+- **Verificações:** 
+  - Toast de sucesso.
+  - Dados atualizados na listagem e nos detalhes.
+  - Validação correta para conflitos e erros.
 ![Editar Formulário](imgservicoreservas/editar_reserva.png)
 ![Editar Alerta](imgservicoreservas/editar_reserva_sucess.png)
+
 ---
+
 ### 5. Cancelar Reserva
-- **Objetivo:** Usuário cancela a reserva criada por ele.
+- **Objetivo:** Usuário cancela uma reserva criada por ele.
 - **Passos:**
-  1. Login
-  2. Clicar no icon “Cancelar” e confirmar
-- **Verificações:** Toast e remoção da lista.
+  1. Login como `usuário`.
+  2. Acessar `/reservas`.
+  3. Clicar no ícone **“Cancelar”** na reserva desejada.
+  4. Confirmar o cancelamento no modal de confirmação.
+- **Verificações:** 
+  - Toast de sucesso após cancelamento.
+  - Reserva deve sumir da listagem ou aparecer como **“Cancelada”**, conforme regra do sistema.
+  - Verificar se não é possível cancelar reservas que já estão com status como **“Finalizada”** ou **“Cancelada”**.
 ![img](imgservicoreservas/cancelar_reserva.png)
 ![img](imgservicoreservas/cancelar_reserva_sucesso.png)
+
 ---
+
 ### 6. Listagem de Reservas (Admin)
 - **Objetivo:** Admin visualiza todas as reservas cadastradas no sistema.
 - **Passos:**
-  1. Login como admin
-  2. Acessar a rota `/reservas`
-- **Verificações:** Lista mostra todas as reservas existentes, independente do autor.
+  1. Login como `admin`.
+  2. Acessar `/reservas`.
+- **Verificações:** 
+  - Lista exibe todas as reservas, independente do usuário que criou.
+  - Verificar se os filtros e buscas funcionam corretamente (por data, status ou espaço).
+  - Conferir se os dados aparecem completos: espaço, data, horário, status, nome do solicitante.
 ![img](imgservicoreservas/listagem_reservas_admin.png)
 ---
 #### Teste telas do serviço de Reservas
