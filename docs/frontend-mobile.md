@@ -165,6 +165,10 @@ Moradores podem atualizar suas próprias reservas enquanto o status estiver como
 **Cancelamento de Reservas**: 
 Moradores podem cancelar suas próprias reservas. Administradores podem cancelar qualquer reserva.
 
+![diagrama fluxo de dados](https://github.com/user-attachments/assets/5ed5f418-3751-4bd6-9514-0c3971fbd071)
+
+
+
 ## Tecnologias Utilizadas
 
 - **React Native** — Framework para desenvolvimento mobile multiplataforma (iOS e Android).
