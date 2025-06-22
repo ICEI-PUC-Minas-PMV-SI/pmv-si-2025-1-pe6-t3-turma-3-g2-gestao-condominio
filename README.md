@@ -34,7 +34,7 @@ Projetado com uma arquitetura escalável baseada em microserviços, o Habitare g
 | ETAPA 5         | [Apresentação](presentation/README.md) |
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+<li><a href="src/README.md"> Instruções de Utilização</a></li>
 
 # Código
 
