@@ -220,15 +220,49 @@ Esta aplicação distribuída utiliza práticas modernas de segurança para prot
 - Requisições sem token, ou com token inválido, não conseguem acessar nem manipular dados protegidos.
 
 
-## Implantação
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
 
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+### Implantação
+
+A implantação da aplicação mobile seria feita por meio da publicação na Google Play Store, seguindo os passos abaixo, em caráter teórico:
+
+### 1. Requisitos de Hardware e Software
+
+- **Hardware (para desenvolvimento e publicação):**
+  - Computador com Windows, macOS ou Linux.
+  - Acesso à internet estável.
+  - Dispositivo Android (opcional, para testes físicos).
+
+- **Software:**
+  - Android Studio instalado com SDK Android atualizado.
+  - Conta de desenvolvedor Google Play (paga, no valor de US$ 25).
+  - Navegador para acesso ao Google Play Console.
+  - Build da aplicação gerada no formato `.aab` (Android App Bundle), exigido pela Play Store.
+
+### 2. Plataforma de Hospedagem
+
+Neste caso, a aplicação será distribuída diretamente pela **Google Play Store**, que atua como a plataforma de hospedagem e distribuição oficial para dispositivos Android.
+
+### 3. Configuração do Ambiente de Implantação
+
+- Gerar a versão final da aplicação no Android Studio.
+- Configurar o arquivo `build.gradle` com versão, nome do app e pacotes.
+- Assinar digitalmente a aplicação com uma chave de assinatura.
+- Preparar os recursos exigidos pela Play Store (ícone, screenshots, descrição, políticas etc.).
+
+### 4. Deploy da Aplicação
+
+- Acessar o [Google Play Console](https://play.google.com/console).
+- Criar um novo app e preencher os metadados obrigatórios.
+- Enviar o arquivo `.aab`.
+- Configurar a política de privacidade, público-alvo e permissões.
+- Submeter a aplicação para revisão e publicação.
+
+### 5. Testes em Produção
+
+- Após a aprovação, é possível lançar uma versão para produção ou optar por um **teste interno**, **fechado** ou **aberto**, para validar o comportamento da aplicação com usuários reais.
+- A coleta de métricas e feedback pode ser feita através das ferramentas fornecidas pelo Play Console.
+
 
 ## Testes 
 ### ✅ Casos de Teste - Serviço de Ocorrências (Mobile)
