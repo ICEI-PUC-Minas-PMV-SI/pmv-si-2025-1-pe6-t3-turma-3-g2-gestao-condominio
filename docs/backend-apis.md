@@ -755,15 +755,56 @@ Todo o tráfego entre os módulos da aplicação, bem como entre o frontend e ba
 ### Atualizações e Correções
 O ciclo de desenvolvimento incluirá atualizações regulares de bibliotecas e dependências, além de revisões de segurança no código-fonte, com suporte a testes automatizados de vulnerabilidades.
 
-## Implantação
+## Implantação - Backend
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+O backend da aplicação também faz parte da arquitetura monolítica e será hospedado no mesmo servidor que o frontend. Esta seção descreve a implantação da lógica da aplicação e seus serviços.
 
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+### 1. Requisitos de Hardware e Software
+
+- **Hardware:**
+  - Servidor com no mínimo 1 vCPU, 1 GB de RAM (recomendado).
+  - Acesso à internet e IP público (para acesso remoto).
+
+- **Software:**
+  - Runtime adequado ( para Node.js )
+  - Banco de dados instalado ( MYSQL ).
+  - Ferramenta de gerenciamento de variáveis de ambiente (`.env`).
+  - Serviço de hospedagem (HEROKU).
+
+### 2. Plataforma de Hospedagem
+
+O backend será hospedado junto ao frontend no mesmo ambiente. Pode-se utilizar plataformas como o HEROKU
+
+### 3. Configuração do Ambiente de Implantação
+
+- Clonar o repositório no servidor.
+- Instalar as dependências com o gerenciador adequado (`npm install`).
+- Configurar variáveis de ambiente (conexão com banco, porta, JWT, etc).
+- Criar e migrar o banco de dados ( MYSQL )
+
+### 4. Deploy da Aplicação
+
+- Iniciar o servidor backend (`pm start`).
+- Configurar serviço como PM2 ou systemd para manter a aplicação rodando.
+- Garantir que as rotas da API estejam funcionando e acessíveis.
+
+### 5. Testes em Produção
+
+- Testar todas as rotas principais da API.
+- Verificar conexão com banco de dados.
+- Validar segurança básica (autenticação e tokens).
+- Monitorar logs em busca de erros.
+
+### 6. Integração com Aplicação Mobile
+
+O backend expõe uma API REST com autenticação baseada em **JWT (JSON Web Token)**.
+
+#### 🔐 Fluxo de autenticação:
+
+1. O app mobile realiza login via endpoint `/api/login`, fornecendo credenciais.
+2. O backend responde com um token JWT, que representa a sessão do usuário.
+3. Todas as requisições seguintes devem incluir o token no cabeçalho:
+
 
 ## Testes
 
