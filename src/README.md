@@ -80,7 +80,7 @@ Este projeto possui três ambientes que devem ser executados separadamente:
     ```
 2.  Instale as dependências:
     ```bash
-
+    npm install
     ```
 3.  Configure as variáveis de ambiente:
     Crie um arquivo `.env` dentro da pasta `mobile`.
