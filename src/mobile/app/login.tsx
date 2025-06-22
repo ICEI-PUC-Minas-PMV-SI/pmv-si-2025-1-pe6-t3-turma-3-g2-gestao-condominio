@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import Constants from 'expo-constants';
 import { salvarToken } from '@/utils/auth';
@@ -48,6 +48,12 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require('../assets/logo-habitare.jpg')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+
       <Text style={styles.title}>Login</Text>
 
       <TextInput
@@ -78,6 +84,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFDEB',
     justifyContent: 'center',
     paddingHorizontal: 24,
+  },
+  logo: {
+    width: 180,
+    height: 180,
+    alignSelf: 'center',
+    marginBottom: 16,
   },
   title: {
     fontSize: 28,
