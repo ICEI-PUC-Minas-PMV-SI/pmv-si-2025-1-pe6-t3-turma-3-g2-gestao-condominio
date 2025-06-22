@@ -1,9 +1,10 @@
+
 import { useEffect, useState } from 'react';
 import Constants from 'expo-constants';
 import { obterToken } from '@/utils/auth';
 
 type Visitante = {
-  _id: string;
+  id: string; 
   nome: string;
   documento: string;
   apartamento: string;
@@ -26,7 +27,7 @@ export function useVisitantes() {
       const token = await obterToken();
       if (!token) throw new Error('Token não encontrado');
 
-      const response = await fetch(`${API_URL}/api/visitantes`, {
+      const response = await fetch(`${API_URL}/api/listar/visitantes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +39,15 @@ export function useVisitantes() {
         throw new Error(data.message || 'Erro ao buscar visitantes');
       }
 
-      setVisitantes(data);
+      const visitantesFormatados = data.map((v: any) => ({
+        id: v._id,
+        nome: v.nome,
+        documento: v.documento,
+        apartamento: v.apartamento,
+        dataVisita: v.dataVisita,
+      }));
+
+      setVisitantes(visitantesFormatados);
     } catch (err: any) {
       console.error("Erro ao buscar visitantes:", err);
       setErro(err.message);
