@@ -25,14 +25,18 @@ Este projeto possui três ambientes que devem ser executados separadamente:
     npm install
     ```
 3.  Configure as variáveis de ambiente:
-    Crie um arquivo `.env` dentro da pasta `backend`.
+   Configure o arquivo `.env` dentro da pasta `backend`.
 
     Exemplo de conteúdo:
 
     ```ini
-    DATABASE_URL=...
-    JWT_SECRET=...
-    PORT=3001
+    PORT=3000
+    MYSQL_DB=condominio
+    MYSQL_USER=auth
+    MYSQL_PASSWORD=123456789
+    MYSQL_PASSWORD=root
+    MYSQL_HOST=127.0.0.1
+    JWT_SECRET=chaveautenticacaoJWT
     ```
 4.  Execute o backend:
     ```bash
