@@ -1234,5 +1234,10 @@ O backend expõe uma API REST com autenticação baseada em **JWT (JSON Web Toke
 
 
 # Referências
+### Microfundamentos PUC
 
+- Microfundamento: Gestão de Serviços de Ti
+- Microfundamento: Arquitetura de Software Distribuído
+- Microfundamento: Apis e Web Services
+- Microfundamento: Recuperação da Informação na Web e Redes Sociais
 
