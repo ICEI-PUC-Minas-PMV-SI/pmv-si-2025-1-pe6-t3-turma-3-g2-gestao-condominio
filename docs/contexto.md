@@ -162,11 +162,15 @@ Exclusão de Moradores: Permite remover moradores do sistema quando necessário,
 
 # Arquitetura da Solução
 
-O sistema possui um frontend web (React.js) para administradores e síndicos e um frontend mobile (React Native) para moradores. Todas as requisições passam pela Amazon API Gateway, que encaminha para os serviços backend desenvolvidos em Node.js e Express.js.
+O sistema é composto por dois clientes: um frontend web (desenvolvido em React.js) voltado para administradores e síndicos, e um aplicativo mobile (em React Native) destinado aos moradores.
 
-A autenticação é feita via JWT, e os dados são armazenados em um banco MySQL. Após o processamento no backend, as respostas retornam pela API Gateway e são entregues ao frontend. Essa estrutura garante organização, segurança e escalabilidade.
+Ambos os frontends se comunicam diretamente com um servidor monolítico backend, desenvolvido com Node.js e Express.js. Esse servidor central reúne todos os módulos da aplicação, como autenticação, reservas, visitantes, ocorrências e notificações, funcionando de forma unificada.
 
-![image_1](https://github.com/user-attachments/assets/1417b15a-20e6-4a4f-9911-ef609736067b)
+A autenticação é realizada por meio de JWT (JSON Web Token), garantindo segurança nas comunicações. Os dados da aplicação são armazenados em um banco de dados MySQL.
+
+Essa estrutura monolítica simplifica a implantação, facilita o desenvolvimento e mantém a integração entre os serviços em um único ponto, promovendo eficiência e coesão no sistema.
+
+![image](https://github.com/user-attachments/assets/18f007ab-90b0-4da6-a67c-135cfe7ef9b6)
 
 
 ## Tecnologias Utilizadas
@@ -175,14 +179,11 @@ A autenticação é feita via JWT, e os dados são armazenados em um banco MySQL
 - **Node.js + Express**: Backend rápido, eficiente e escalável.  
 - **MySQL**: Banco de dados relacional para armazenamento seguro e estruturado.  
 - **JWT (JSON Web Token)**: Autenticação segura e confiável dos usuários.  
-- **AWS**: Infraestrutura de hospedagem escalável e de alta disponibilidade.  
-- **Amazon API Gateway**: Gerenciamento completo de APIs, incluindo criação, publicação, manutenção, monitoramento e segurança.
 
 
 ## Hospedagem  
 
-- O código-fonte é versionado no **GitHub**.  
-- O backend é hospedado em uma instância **EC2**.  
-- O banco de dados está no **RDS (MySQL)**.  
-- O frontend é hospedado no **S3 + CloudFront**, garantindo alta performance.  
+- O código-fonte é versionado no GitHub, facilitando o controle de versão e a colaboração entre os desenvolvedores.
+- A aplicação (frontend e backend integrados) é hospedada no Heroku, utilizando um ambiente Node.js com suporte a rotas estáticas e dinâmicas.
+- O deploy é feito diretamente do repositório do GitHub para o Heroku, utilizando pipelines automatizados.
 
