@@ -207,9 +207,46 @@ A autorização garante que um usuário tenha acesso apenas às funcionalidades 
 - **Segregação de responsabilidades:** Garantir que diferentes perfis de usuário (administradores e moradores) tenham visibilidade e controle diferentes sobre as informações. Por exemplo, moradores só podem acessar e editar seus próprios dados, enquanto administradores podem acessar e modificar dados de todos.
 
 
-## Implantação
+## Implantação - Frontend
 
-Implantação ainda não realizada.
+A aplicação possui uma arquitetura monolítica, sendo que o frontend é implantado em conjunto com o backend. Mesmo assim, esta seção descreve a implantação da camada de interface do usuário de forma separada para fins de organização.
+
+### 1. Requisitos de Hardware e Software
+
+- **Hardware (para build e deploy):**
+  - Computador com sistema operacional Windows, macOS ou Linux.
+  - Acesso à internet.
+  - Acesso a um servidor para hospedagem conjunta com o backend.
+
+- **Software:**
+  - Node.js (caso a aplicação use frameworks como React, Vue ou Angular).
+  - Gerenciador de pacotes como `npm` ou `yarn`.
+  - Ferramentas de build 
+  - Navegador moderno para testes.
+
+### 2. Plataforma de Hospedagem
+
+Como a aplicação é monolítica, o frontend será hospedado no mesmo servidor/backend, utilizaremos HEROKU como exemplo
+
+### 3. Configuração do Ambiente de Implantação
+
+- Instalar as dependências com `npm install`.
+- Configurar variáveis de ambiente, como URLs de API (quando aplicável).
+- Executar o comando de build: `npm run build`.
+- Colocar os arquivos estáticos resultantes da build (ex: pasta `dist` ou `build`) dentro da pasta pública do backend ou na raiz do servidor.
+
+### 4. Deploy da Aplicação
+
+- Subir os arquivos compilados junto com o backend no mesmo servidor.
+- Garantir que as rotas de frontend sejam tratadas pelo backend (quando necessário, usando fallback para `index.html`).
+- Validar o funcionamento da interface acessando a URL pública da aplicação.
+
+### 5. Testes em Produção
+
+- Acessar a aplicação via navegador e testar fluxos principais.
+- Verificar se os arquivos estáticos estão sendo servidos corretamente.
+- Testar responsividade e comportamento geral da interface.
+
 
 ## Testes
 
