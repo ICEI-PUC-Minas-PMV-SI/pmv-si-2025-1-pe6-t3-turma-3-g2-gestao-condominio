@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import Constants from 'expo-constants';
 import { obterToken } from '@/utils/auth';
 
